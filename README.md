@@ -7,8 +7,8 @@ The main purpose is to get started with new technologies.
 
 Initial technology used :
 
-Java 8
-Spring boot
-spring data
+Java 8  <br/>
+Spring boot <br/>
+spring data <br/>
 
 
