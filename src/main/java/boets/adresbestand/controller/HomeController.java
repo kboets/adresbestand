@@ -9,12 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Asus on 17/11/2016.
  */
 @Controller
-public class SearchController {
+public class HomeController {
 
-    @RequestMapping("/search")
-    public String getListUsersView() {
-        ModelMap model = new ModelMap();
-        //model.addAttribute("users", userService.getList());
+    @RequestMapping("/")
+    public String getIndexPage() {
         return "index";
     }
 }
