@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Asus on 17/11/2016.
  */
 @Controller
+//@RequestMapping("/adresbestand")
 public class HomeController {
 
     @RequestMapping("/")
