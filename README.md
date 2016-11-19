@@ -7,7 +7,8 @@ The main purpose is to get started with new technologies.
 
 Initial technology used :
 
-<h2>Java 8  <br/></h2>
+<h2>backend  <br/></h2>
+java 8 <br/>
 Spring boot <br/>
 spring data <br/>
 spring mvc <br/>
