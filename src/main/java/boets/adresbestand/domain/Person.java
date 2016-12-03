@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -20,7 +21,7 @@ public class Person implements Serializable {
     @Column(name = "FIRST_NAME")
     private String firstName;
     @ManyToOne
-    @JoinColumn(name = "person_address_id")
+    @JoinColumn(name = "PERSON_ADDRESS_ID")
     private Address mainAddress;
 
 

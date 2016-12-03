@@ -2,7 +2,7 @@
 <dataset>
     <ADDRESS id="1" STREET="Westelsebaan" NUMBER="15" BOX="[null]" ZIPCODE="3271" CITY="Averbode" />
 
-	<PERSON id="0" FIRST_NAME="Phillip" LAST_NAME="Webb" person_address_id="1" />
+	<PERSON id="0" FIRST_NAME="Phillip" LAST_NAME="Webb" PERSON_ADDRESS_ID="1" />
 	<PERSON id="1" FIRST_NAME="Fred" LAST_NAME="Bloggs"/>
 
 </dataset>
