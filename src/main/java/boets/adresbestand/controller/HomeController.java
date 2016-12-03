@@ -36,6 +36,7 @@ public class HomeController {
     @PostMapping("/searchAddress")
     public String search(Model model, @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn) {
         List<Person> persons = personRepository.findByLastName(searchAddressFormn.getLastName());
+        model.addAttribute("searchAddressForm" , new SearchAddressForm());
         model.addAttribute("persons" , persons);
         return INDEX_PAGE;
     }

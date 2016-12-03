@@ -82,25 +82,33 @@
                             <button type="reset" class="btn btn-default">Reset</button>
                         </div>
                     </form>
-                    <h2 th:text="#{search.result.title}"/>
-                    <p>De volgende person(en) werden teruggevonden.</p>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th th:text="#{firstname}" />
-                            <th th:text="#{lastname}"/>
-                            <th th:text="#{adres}"/>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="person : ${persons}">
-                            <td th:text="${{person.firstName}}"/>
-                            <td th:text="${{person.lastName}}"/>
-                            <td th:text="${{person.mainAddress.value}}"/>
-                        </tr>
-                        </tbody>
-                    </table>
-
+                    <br/><br/>
+                    <div th:if="!${#lists.isEmpty(persons)}">
+                        <h2 th:text="#{search.result.title}"/>
+                        <p>De volgende person(en) werden teruggevonden.</p>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th th:text="#{firstname}"/>
+                                <th th:text="#{lastname}"/>
+                                <th th:text="#{adres}"/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="person : ${persons}">
+                                <td th:text="${person.firstName}"/>
+                                <td th:text="${{person.lastName}}"/>
+                                <td th:text="${{person.mainAddress.value}}"/>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:if="${persons != null} and ${#lists.isEmpty(persons)}">
+                        <h2 th:text="#{search.result.title}"/>
+                        <p>Er werd niemand teruggevonden met deze zoekcriteria. <br/>
+                        Gelieve opnieuw te proberen.
+                        </p>
+                    </div>
 
                     <!--<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
