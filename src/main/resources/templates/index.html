@@ -3,12 +3,12 @@
 
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title th:text="#{welcome.title}" />
-    <link href="../static/css/bootstrap.min.css"  th:href="@{css/bootstrap.css}" rel="stylesheet"/>
+    <title th:text="#{welcome.title}"/>
+    <link href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.css}" rel="stylesheet"/>
     <link href="../static/css/simple-sidebar.css" th:href="@{css/simple-sidebar.css}" rel="stylesheet"/>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
+          rel="stylesheet" media="screen"/>
 
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
@@ -24,7 +24,7 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand">
-                <a th:href="@{/}" th:text="#{home.link}" />
+                <a th:href="@{/}" th:text="#{home.link}"/>
             </li>
             <li>
                 <a href="#">Voeg adres toe</a>
@@ -38,15 +38,15 @@
             <li>
                 <a href="#">Events</a>
             </li>
-           <!-- <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>-->
+            <!-- <li>
+                 <a href="#">About</a>
+             </li>
+             <li>
+                 <a href="#">Services</a>
+             </li>
+             <li>
+                 <a href="#">Contact</a>
+             </li>-->
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -56,31 +56,51 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 th:text="#{searchAddress.title}" />
-                    <form action="#" th:action="@{/searchAddress}" th:object="${searchAddressForm}" method="post"  class="form-horizontal" >
+                    <h1 th:text="#{searchAddress.title}"/>
+                    <form action="#" th:action="@{/searchAddress}" th:object="${searchAddressForm}" method="post"
+                          class="form-horizontal">
 
-							 <p>Hier kan u een of meerdere adressen opzoeken. <br/>
-							 	Geef een voornaam of naam in. Een van beide is verplicht.
-							  </p>
-							  <br/>
-							 <div class="form-group">							 
-    						 	  <label for="firstName" class="col-sm-2">Voornaam</label>
-								  <div class="col-sm-3">
-								     <input type="text" class="form-control" id="firstName" th:field="*{firstName}" />
-								  </div>
-							</div>
-							<div class="form-group">							 
-    						 	  <label for="lastName" class="col-sm-2">Naam</label>
-								  <div class="col-sm-3">
-								     <input type="text" class="form-control" id="lastName" th:field="*{lastName}" />
-								  </div>
-							</div>
+                        <p>Hier kan u een of meerdere adressen opzoeken. <br/>
+                            Geef een voornaam of naam in. Een van beide is verplicht.
+                        </p>
+                        <br/>
+                        <div class="form-group">
+                            <label for="firstName" class="col-sm-2">Voornaam</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="firstName" th:field="*{firstName}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-sm-2">Naam</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="lastName" th:field="*{lastName}"/>
+                            </div>
+                        </div>
 
                         <div class="buttons">
-							<button class="btn bold" id="btn_save">save</button>							
+                            <button class="btn bold" id="btn_save">zoek</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </div>
                     </form>
+                    <h2 th:text="#{search.result.title}"/>
+                    <p>De volgende person(en) werden teruggevonden.</p>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th th:text="#{firstname}" />
+                            <th th:text="#{lastname}"/>
+                            <th th:text="#{adres}"/>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="person : ${persons}">
+                            <td th:text="${{person.firstName}}"/>
+                            <td th:text="${{person.lastName}}"/>
+                            <td th:text="${{person.mainAddress.value}}"/>
+                        </tr>
+                        </tbody>
+                    </table>
+
 
                     <!--<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
                     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
@@ -93,7 +113,7 @@
 </div>
 <!-- Menu Toggle Script -->
 <script>
-    $("#menu-toggle").click(function(e) {
+    $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });

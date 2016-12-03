@@ -1,5 +1,7 @@
 package boets.adresbestand.domain;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -25,6 +27,15 @@ public class Address implements Serializable {
 
     @Column(name = "CITY")
     private String city;
+
+    public String getValue() {
+        return this.toString();
+    }
+
+
+
+    @Transient
+    private String value;
 
     public Long getId() {
         return id;
@@ -72,5 +83,18 @@ public class Address implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(getStreet());
+        builder.append(" " +getNumber());
+        if(StringUtils.isNotBlank(getBox())){
+            builder.append(" " +getBox());
+        }
+        builder.append(" " +getZipCode());
+        builder.append(" " +getCity());
+        return builder.toString();
     }
 }
