@@ -1,11 +1,11 @@
-package boets.adresbestand.form;
+package boets.adresbestand.web.form;
 
 
 import javax.validation.constraints.NotNull;
 
 public class SearchAddressForm {
 
-    @NotNull
+
     private String lastName;
 
     private String firstName;

@@ -1,6 +1,6 @@
 package boets;
 
-import boets.adresbestand.controller.HomeController;
+import boets.adresbestand.web.controller.HomeController;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;

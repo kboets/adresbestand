@@ -60,6 +60,12 @@
                     <form action="#" th:action="@{/searchAddress}" th:object="${searchAddressForm}" method="post"
                           class="form-horizontal">
 
+
+                        <div th:if="${#fields.hasGlobalErrors()}">
+                            <div class="alert alert-danger">
+                                <span><label class="control-label" th:each="err : ${#fields.globalErrors()}" th:text="${err}" /></span>
+                            </div>
+                        </div>
                         <p>Hier kan u een of meerdere adressen opzoeken. <br/>
                             Geef een voornaam of naam in. Een van beide is verplicht.
                         </p>
@@ -73,7 +79,7 @@
                         <div class="form-group">
                             <label for="lastName" class="col-sm-2">Naam</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="lastName" th:field="*{lastName}"/>
+                                <input type="text" class="form-control" id="lastName" th:field="*{lastName}" />
                             </div>
                         </div>
 
