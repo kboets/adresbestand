@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 th:text="#{searchAddress.title}"/>
-                    <form action="#" th:action="@{/searchAddress}" th:object="${searchAddressForm}" method="post"
+                    <form action="#" th:action="@{/create}" th:object="${person}" method="post"
                           class="form-horizontal">
 
                         <div th:if="${#fields.hasGlobalErrors()}">

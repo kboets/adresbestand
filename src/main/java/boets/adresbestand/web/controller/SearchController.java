@@ -1,6 +1,7 @@
 package boets.adresbestand.web.controller;
 
 import boets.adresbestand.domain.Person;
+import boets.adresbestand.service.IPersonService;
 import boets.adresbestand.web.form.SearchAddressForm;
 import boets.adresbestand.repository.PersonRepository;
 import boets.adresbestand.web.validation.SearchAddressFormValidation;
@@ -19,11 +20,12 @@ import java.util.List;
 
 
 @Controller
-public class HomeController {
+public class SearchController {
 
     private final static String INDEX_PAGE = "index";
+
     @Autowired
-    private PersonRepository personRepository;
+    private IPersonService personService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -42,8 +44,8 @@ public class HomeController {
         if(result.hasErrors()){
             return INDEX_PAGE;
         }
+        List<Person> persons = personService.searchPersons(searchAddressFormn);
         model.addAttribute("searchAddressForm" , new SearchAddressForm());
-        List<Person> persons = personRepository.findByLastName(searchAddressFormn.getLastName());
         model.addAttribute("persons" , persons);
         return INDEX_PAGE;
     }

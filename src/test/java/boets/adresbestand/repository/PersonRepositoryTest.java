@@ -33,6 +33,17 @@ public class PersonRepositoryTest {
     public void test_findByPersistedLastName_shouldReturn_OneResult() {
         assertThat(personRepository.findByLastName("Webb"), hasSize(1));
     }
+
+    @Test
+    public void test_findByPersistedFirstName_shouldReturn_OneResult() {
+        assertThat(personRepository.findByFirstName("Phillip"), hasSize(1));
+    }
+
+    @Test
+    public void test_findByPersistedFirstNameAndLastName_shouldReturn_OneResult() {
+        assertThat(personRepository.searchPerson("Webb", "Phillip"), hasSize(1));
+    }
+
     @Test
     public void test_findByNotPersistedLastName_shouldReturn_NoResult() {
         assertThat(personRepository.findByLastName("Dua"), hasSize(0));
@@ -51,5 +62,6 @@ public class PersonRepositoryTest {
     public void test_findMainAddressForNotPersistedName_shouldReturn_NoAddress() {
         assertThat(personRepository.findMainAddressForName("Dua"), hasSize(0));
     }
+
 }
 
