@@ -1,6 +1,7 @@
 package boets.adresbestand.service;
 
 import boets.adresbestand.domain.Person;
+import boets.adresbestand.repository.AddressRepository;
 import boets.adresbestand.repository.PersonRepository;
 import boets.adresbestand.web.form.SearchAddressForm;
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +16,9 @@ public class PersonService implements IPersonService {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     @Override
     public List<Person> searchPersons(SearchAddressForm searchAddressForm) {
         if(StringUtils.isNotBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())){
@@ -28,5 +32,6 @@ public class PersonService implements IPersonService {
     @Override
     public void createPerson(Person person) {
 
+        personRepository.save(person);
     }
 }

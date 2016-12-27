@@ -39,16 +39,16 @@ public class SearchController {
     }
 
 
-    @PostMapping("/searchAddress")
-    public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result) {
-        if(result.hasErrors()){
+        @PostMapping("/searchAddress")
+        public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result) {
+            if(result.hasErrors()){
+                return INDEX_PAGE;
+            }
+            List<Person> persons = personService.searchPersons(searchAddressFormn);
+            model.addAttribute("searchAddressForm" , new SearchAddressForm());
+            model.addAttribute("persons" , persons);
             return INDEX_PAGE;
         }
-        List<Person> persons = personService.searchPersons(searchAddressFormn);
-        model.addAttribute("searchAddressForm" , new SearchAddressForm());
-        model.addAttribute("persons" , persons);
-        return INDEX_PAGE;
-    }
 
 
 

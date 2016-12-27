@@ -7,10 +7,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ADDRESS")
+@SequenceGenerator(name = "ADDRESS_SEQ", sequenceName = "ADDRESS_S", allocationSize = 1)
 public class Address implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ")
     private Long id;
 
     @Column(name = "STREET")

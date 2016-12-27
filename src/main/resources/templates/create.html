@@ -31,9 +31,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 th:text="#{searchAddress.title}"/>
-                    <form action="#" th:action="@{/create}" th:object="${person}" method="post"
-                          class="form-horizontal">
+                    <h1 th:text="#{createAddress.title}"/>
+                    <form action="#" th:action="@{/create}" th:object="${person}" method="post" class="form-horizontal">
 
                         <div th:if="${#fields.hasGlobalErrors()}">
                             <div class="alert alert-danger">
@@ -41,58 +40,48 @@
                                              th:text="${err}"/></span>
                             </div>
                         </div>
-                        <p>Hier kan u een of meerdere adressen opzoeken. <br/>
-                            Geef een voornaam of naam in. Een van beide is verplicht.
-                        </p>
+                        <p>Geef hier het nieuwe adres in. De velden met een * zijn verplicht.</p>
                         <br/>
                         <div class="form-group">
-                            <label for="firstName" class="col-sm-2">Voornaam</label>
+                            <label for="firstName" class="col-sm-2">Voornaam *</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="firstName" th:field="*{firstName}"/>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName" class="col-sm-2">Naam</label>
+                            <label for="lastName" class="col-sm-1">Naam *</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="lastName" th:field="*{lastName}"/>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label for="street" class="col-sm-2">Straat *</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="street" th:field="*{mainAddress.street}"/>
+                            </div>
+                            <label for="houseNumber" class="col-sm-1">Nummer *</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" id="houseNumber" th:field="*{mainAddress.number}"/>
+                            </div>
+                            <label for="box" class="col-sm-1">Bus</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" id="box" th:field="*{mainAddress.number}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="col-sm-2">Gemeente *</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="city" th:field="*{mainAddress.city}"/>
+                            </div>
+                            <label for="zipcode" class="col-sm-1">Postnummer *</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" id="zipcode" th:field="*{mainAddress.zipCode}"/>
+                            </div>
+                        </div>
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save">zoek</button>
+                            <button class="btn bold" id="btn_save">Bewaar</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </div>
                     </form>
                     <br/><br/>
-                    <div th:if="!${#lists.isEmpty(persons)}">
-                        <h2 th:text="#{search.result.title}"/>
-                        <p>De volgende person(en) werden teruggevonden.</p>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th th:text="#{firstname}"/>
-                                <th th:text="#{lastname}"/>
-                                <th th:text="#{adres}"/>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="person : ${persons}">
-                                <td th:text="${person.firstName}"/>
-                                <td th:text="${{person.lastName}}"/>
-                                <td th:text="${{person.mainAddress.value}}"/>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div th:if="${persons != null} and ${#lists.isEmpty(persons)}">
-                        <h2 th:text="#{search.result.title}"/>
-                        <p>Er werd niemand teruggevonden met deze zoekcriteria. <br/>
-                            Gelieve opnieuw te proberen.
-                        </p>
-                    </div>
-
-                    <!--<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
                 </div>
             </div>
         </div>
@@ -100,14 +89,7 @@
     <!-- /#page-content-wrapper -->
 
 </div>
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
 
-</script>
 
 </body>
 
