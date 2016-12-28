@@ -17,7 +17,7 @@ public class Address implements Serializable {
     @Column(name = "STREET")
     private String street;
 
-    @Column(name = "NUMBER")
+    @Column(name = "HOUSENUMBER")
     private String number;
 
     @Column(name = "BOX")

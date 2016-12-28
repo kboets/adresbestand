@@ -22,7 +22,7 @@ public class Person implements Serializable {
     @Column(name = "FIRST_NAME")
     private String firstName;
     @ManyToOne
-    @JoinColumn(name = "PERSON_ADDRESS_ID")
+    @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private Address mainAddress;
 
 
