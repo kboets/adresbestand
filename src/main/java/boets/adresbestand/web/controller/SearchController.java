@@ -24,7 +24,7 @@ import java.util.List;
 public class SearchController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final static String INDEX_PAGE = "index";
+    private final static String SEARCH = "search";
 
     @Autowired
     private IPersonService personService;
@@ -38,19 +38,19 @@ public class SearchController {
     public String getSearchPage(Model model) {
         logger.info("GetAddress");
         model.addAttribute("searchAddressForm", new SearchAddressForm());
-        return INDEX_PAGE;
+        return SEARCH;
     }
 
 
     @PostMapping("/searchAddress")
     public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result) {
         if (result.hasErrors()) {
-            return INDEX_PAGE;
+            return SEARCH;
         }
         List<Person> persons = personService.searchPersons(searchAddressFormn);
         model.addAttribute("searchAddressForm", new SearchAddressForm());
         model.addAttribute("persons", persons);
-        return INDEX_PAGE;
+        return SEARCH;
     }
 
 
