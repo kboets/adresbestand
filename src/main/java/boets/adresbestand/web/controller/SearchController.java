@@ -3,8 +3,9 @@ package boets.adresbestand.web.controller;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.service.IPersonService;
 import boets.adresbestand.web.form.SearchAddressForm;
-import boets.adresbestand.repository.PersonRepository;
 import boets.adresbestand.web.validation.SearchAddressFormValidation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,7 @@ import java.util.List;
 @Controller
 public class SearchController {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final static String INDEX_PAGE = "index";
 
     @Autowired
@@ -33,23 +35,23 @@ public class SearchController {
     }
 
     @GetMapping("/")
-    public String getSearchPage(Model model ) {
-        model.addAttribute("searchAddressForm" , new SearchAddressForm());
+    public String getSearchPage(Model model) {
+        logger.info("GetAddress");
+        model.addAttribute("searchAddressForm", new SearchAddressForm());
         return INDEX_PAGE;
     }
 
 
-        @PostMapping("/searchAddress")
-        public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result) {
-            if(result.hasErrors()){
-                return INDEX_PAGE;
-            }
-            List<Person> persons = personService.searchPersons(searchAddressFormn);
-            model.addAttribute("searchAddressForm" , new SearchAddressForm());
-            model.addAttribute("persons" , persons);
+    @PostMapping("/searchAddress")
+    public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result) {
+        if (result.hasErrors()) {
             return INDEX_PAGE;
         }
-
+        List<Person> persons = personService.searchPersons(searchAddressFormn);
+        model.addAttribute("searchAddressForm", new SearchAddressForm());
+        model.addAttribute("persons", persons);
+        return INDEX_PAGE;
+    }
 
 
 }
