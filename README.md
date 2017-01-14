@@ -14,7 +14,7 @@ spring data <br/>
 spring mvc <br/>
 
 <h2> template engine<br/> </h2>
-thymeleave <br/>
+freemarker <br/>
 
 <h2> front end <br/></h2>
 bootstrap <br/>

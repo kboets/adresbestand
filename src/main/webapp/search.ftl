@@ -1,5 +1,6 @@
+<#import "/spring.ftl" as spring/>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title><@spring.message "searchAddress.title" /></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -20,60 +21,102 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
 
 <body>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Start Bootstrap
-                    </a>
-                </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Shortcuts</a>
-                </li>
-                <li>
-                    <a href="#">Overview</a>
-                </li>
-                <li>
-                    <a href="#">Events</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="/adresbestand/"><@spring.message "home.link" /></a>
+            </li>
+            <li>
+                <a href="#">Dashboard</a>
+            </li>
+            <li>
+                <a href="#">Shortcuts</a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-                    </div>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1><@spring.message "searchAddress.title" /></h1>
+                    <form name="searchAddressForm" action="searchAddress" method="POST" class="form-horizontal">
+                        <p>Hier kan u een of meerdere adressen opzoeken. <br/>
+                            Geef een voornaam of naam in. Een van beide is verplicht.
+                        </p>
+                        <br/>
+                        <div class="form-group">
+                            <label for="firstName" class="col-sm-2">Voornaam</label>
+                            <div class="col-sm-3">
+                            <@spring.formInput "searchAddressForm.firstName" "" "text"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="col-sm-2">Naam</label>
+                            <div class="col-sm-3">
+                            <@spring.formInput "searchAddressForm.lastName" "" "text"/>
+                            </div>
+                        </div>
+
+                        <div class="buttons">
+                            <button class="btn bold" id="btn_save">zoek</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </form>
                 </div>
+                <br/><br/>
+                <#if persons?? && persons?size != 0 >
+                <div class="col-lg-12">
+                    <h2><@spring.message "search.result.title"/></h2>
+                    <p>De volgende person(en) werden teruggevonden.</p>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th><@spring.message "firstname" /></th>
+                            <th><@spring.message "lastname" /></th>
+                            <th><@spring.message "adres" /></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <#list persons as person>
+                            <tr>
+                                <td>${person.firstName}</td>
+                                <td>${person.lastName}</td>
+                                <td>${person.mainAddress.value}</td>
+                            </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
+                </#if>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -89,10 +132,10 @@
 
     <!-- Menu Toggle Script -->
     <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
     </script>
 
 </body>
