@@ -3,7 +3,6 @@ package boets.adresbestand.web.validation;
 import boets.adresbestand.web.form.SearchAddressForm;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
@@ -20,9 +19,14 @@ public class SearchAddressFormValidation implements Validator {
     @Override
     public void validate(Object object, Errors errors) {
         SearchAddressForm form = (SearchAddressForm) object;
-        if(StringUtils.isBlank(form.getFirstName()) && StringUtils.isBlank(form.getLastName())) {
-            errors.reject("error.no.searchCriteria");
+        if (StringUtils.isBlank(form.getFirstName()) && StringUtils.isBlank(form.getLastName())) {
+            errors.reject("error.general.no.searchCriteria");
         }
-
+        if(!StringUtils.isAlphaSpace(form.getFirstName())) {
+            errors.rejectValue("firstName", "error.only.alphanumeric");
+        }
+        if(!StringUtils.isAlphaSpace(form.getLastName())) {
+            errors.rejectValue("lastName", "error.only.alphanumeric");
+        }
     }
 }

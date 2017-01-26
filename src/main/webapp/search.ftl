@@ -1,4 +1,5 @@
 <#import "/spring.ftl" as spring/>
+<#import "macro/sidebar.ftl" as sidebar>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
@@ -14,10 +15,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -30,36 +29,8 @@
 <body>
 
 <div id="wrapper">
-
     <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="/adresbestand/"><@spring.message "home.link" /></a>
-            </li>
-            <li>
-                <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Shortcuts</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
+<@sidebar.menu/>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -69,31 +40,47 @@
                 <div class="col-lg-12">
                     <h1><@spring.message "searchAddress.title" /></h1>
                     <form name="searchAddressForm" action="searchAddress" method="POST" class="form-horizontal">
+                    <#if errors?? && errors?size != 0 >
+                        <#list errors as error>
+                            <div class="alert alert-danger">
+                                <span><label class="control-label"><@spring.message code=error /></span>
+                            </div>
+                        </#list>
+                    </#if>
                         <p>Hier kan u een of meerdere adressen opzoeken. <br/>
                             Geef een voornaam of naam in. Een van beide is verplicht.
                         </p>
+                        <div>
+
+                        </div>
                         <br/>
                         <div class="form-group">
                             <label for="firstName" class="col-sm-2">Voornaam</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-5" >
                             <@spring.formInput "searchAddressForm.firstName" "" "text"/>
+                            <#list spring.status.errorMessages as error>
+                                <b style="color: red">${error}</b>
+                            </#list>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="col-sm-2">Naam</label>
-                            <div class="col-sm-3">
+                            <div class="col-sm-5">
                             <@spring.formInput "searchAddressForm.lastName" "" "text"/>
+                            <#list spring.status.errorMessages as error>
+                                <b style="color: red">${error}</b>
+                            </#list>
                             </div>
                         </div>
 
                         <div class="buttons">
                             <button class="btn bold" id="btn_save">zoek</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                            <button class="btn btn-default" type="reset">reset</button>
                         </div>
                     </form>
                 </div>
                 <br/><br/>
-                <#if persons?? && persons?size != 0 >
+            <#if persons?? && persons?size != 0 >
                 <div class="col-lg-12">
                     <h2><@spring.message "search.result.title"/></h2>
                     <p>De volgende person(en) werden teruggevonden.</p>
@@ -116,7 +103,12 @@
                         </tbody>
                     </table>
                 </div>
-                </#if>
+            <#elseif persons??>
+                <div class="col-lg-12">
+                    <h2><@spring.message "search.result.title"/></h2>
+                    <p>Er werd niemand teruggevonden met deze zoekcriteria. <br/>Gelieve opnieuw te proberen.</p>
+                </div>
+            </#if>
             </div>
         </div>
         <!-- /#page-content-wrapper -->

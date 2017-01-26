@@ -74,7 +74,6 @@ public class PersonService implements IPersonService {
     public List<Person> getPersons(){
         if(persons == null) {
             persons=new ArrayList<>();
-        } else if(persons.isEmpty()){
             persons.add(createJohnDoe());
             persons.add(createMarieJo());
         }
