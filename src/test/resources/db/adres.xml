@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset> 
+  <adres adres_id="10005" street="Westelsebaan " houseNumber="5" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10006" street="Westelsebaan " houseNumber="5" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10007" street="Paul van Ostaijenlaan" houseNumber="43" postalCode="3001" communale="Heverlee" box="" country="[null]"/>
+  <adres adres_id="10008" street="Jeugdlaan" houseNumber="16" postalCode="3900" communale="Overpelt" box="3" country="[null]"/>
+  <adres adres_id="10012" street="Couwenberghstraat " houseNumber="5" postalCode="3970" communale="Leopoldsburg" box="" country="[null]"/>
+  <adres adres_id="10013" street="Sint-Odulphusstraat " houseNumber="4.0" postalCode="3300" communale="Tienen" box="[null]" country="[null]"/>
+  <adres adres_id="10014" street="Sint-Odulphusstraat " houseNumber="4" postalCode="3300" communale="Tienen" box="" country="[null]"/>
+  <adres adres_id="10015" street="Sint-Odulphusstraat " houseNumber="4" postalCode="3300" communale="TIENEN" box="[null]" country="[null]"/>
+  <adres adres_id="10016" street="Sint-Odulphusstraat " houseNumber="6" postalCode="3300" communale="Tienen" box="" country="[null]"/>
+  <adres adres_id="10017" street="Houwaartseweg" houseNumber="61" postalCode="3200" communale="Aarschot" box="" country="[null]"/>
+  <adres adres_id="10018" street="Kolmen" houseNumber="52" postalCode="3980" communale="Tessenderlo" box="0001" country="[null]"/>
+  <adres adres_id="10019" street="Bredestraat" houseNumber="89" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10020" street="Olivierstraat" houseNumber="5" postalCode="3111" communale="Wezemaal" box="" country="[null]"/>
+  <adres adres_id="10021" street="Zandhoefstraat" houseNumber="63" postalCode="2440" communale="Geel" box="b" country="[null]"/>
+  <adres adres_id="10022" street="Sint-Odulphusstraat " houseNumber="4" postalCode="3300" communale="Tienen" box="[null]" country="[null]"/>
+  <adres adres_id="10023" street="Dorpsstraat " houseNumber="9" postalCode="3910" communale="Sint-Huibrechts-Lille" box="" country="[null]"/>
+  <adres adres_id="10024" street="Kunstweg" houseNumber="7" postalCode="8670" communale="Koksijde" box="[null]" country="[null]"/>
+  <adres adres_id="10025" street="Steenberg" houseNumber="35" postalCode="3460" communale="Bekkevoort" box="[null]" country="[null]"/>
+  <adres adres_id="10026" street="Basilieklaan" houseNumber="202" postalCode="3270" communale="Scherpenheuvel" box="[null]" country="[null]"/>
+  <adres adres_id="10027" street="Groendreef" houseNumber="23" postalCode="9160" communale="Lokeren" box="[null]" country="[null]"/>
+  <adres adres_id="10028" street="Groot Overlaer " houseNumber="180" postalCode="3300" communale="Tienen" box="" country="[null]"/>
+  <adres adres_id="10029" street="Domainstraat" houseNumber="37" postalCode="3010" communale="Kessel-lo" box="[null]" country="[null]"/>
+  <adres adres_id="10030" street="Montijstraat" houseNumber="9" postalCode="3128" communale="Baal" box="[null]" country="[null]"/>
+  <adres adres_id="10031" street="Pellemanstraat " houseNumber="18" postalCode="2460" communale="Kasterlee" box="" country="[null]"/>
+  <adres adres_id="10032" street="Lange Schouwestraat " houseNumber="33" postalCode="3520" communale="Zonhoven" box="A" country="[null]"/>
+  <adres adres_id="10033" street="G. Gezellelaan" houseNumber="7" postalCode="3020" communale="Herent" box="" country="[null]"/>
+  <adres adres_id="10034" street="Leemstraat " houseNumber="8" postalCode="3130" communale="Betekom" box="" country="[null]"/>
+  <adres adres_id="10035" street="Milsestraat " houseNumber="95" postalCode="3053" communale="Haasrode" box="" country="[null]"/>
+  <adres adres_id="10036" street="Roteinde" houseNumber="234" postalCode="2230" communale="Herselt" box="[null]" country="[null]"/>
+  <adres adres_id="10037" street="Kesseldallaan " houseNumber="2" postalCode="3010" communale="Kessel-Lo" box="203" country="[null]"/>
+  <adres adres_id="10038" street="Stationsstraat" houseNumber="12" postalCode="3272" communale="Testelt" box="" country="[null]"/>
+  <adres adres_id="10039" street="Paul Van Ostaijenlaan" houseNumber="43" postalCode="3001" communale="Heverlee" box="[null]" country="[null]"/>
+  <adres adres_id="10040" street="Kruisstraat " houseNumber="6" postalCode="3130" communale="Begijnendijk" box="" country="[null]"/>
+  <adres adres_id="10041" street="Kortenbermstraat " houseNumber="18" postalCode="3110" communale="Rotselaar" box="" country="[null]"/>
+  <adres adres_id="10042" street="Geelbroeck" houseNumber="37" postalCode="3700" communale="Tongeren" box="" country="[null]"/>
+  <adres adres_id="10043" street="Kolmen" houseNumber="40" postalCode="3580" communale="Beringen" box="4" country="[null]"/>
+  <adres adres_id="10044" street="Veststraat" houseNumber="39" postalCode="3271" communale="Zichem" box="[null]" country="[null]"/>
+  <adres adres_id="10045" street="Steenaardestraat" houseNumber="57" postalCode="9051" communale="Sint-Denijs-Westrem" box="" country="[null]"/>
+  <adres adres_id="10046" street="Echostraat" houseNumber="5" postalCode="3201" communale="Langdorp" box="" country="[null]"/>
+  <adres adres_id="10047" street="A. Woutersstraat" houseNumber="52" postalCode="3012" communale="Wilsele" box="" country="[null]"/>
+  <adres adres_id="10048" street="Rochusstraat " houseNumber="17" postalCode="3118" communale="Werchter" box="101" country="[null]"/>
+  <adres adres_id="10049" street="Dorpstraat" houseNumber="104" postalCode="3381" communale="Kapellen " box="" country="[null]"/>
+  <adres adres_id="10050" street="" houseNumber="" postalCode="3000" communale="Diepenbeek" box="" country="[null]"/>
+  <adres adres_id="10051" street="Handboogstraat " houseNumber="8" postalCode="9120" communale="Beveren-Waas" box="" country="[null]"/>
+  <adres adres_id="10052" street="Bredestraat" houseNumber="70" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10053" street="Kaulillerweg" houseNumber="105" postalCode="3910" communale="Neerpelt" box="" country="[null]"/>
+  <adres adres_id="10054" street="Mottendelstraat" houseNumber="11" postalCode="3400" communale="Laar-Landen" box="" country="[null]"/>
+  <adres adres_id="10055" street="Kesseldallaan" houseNumber="2" postalCode="3010" communale="Kessel-lo" box="203" country="[null]"/>
+  <adres adres_id="10056" street="Helhoekweg" houseNumber="67" postalCode="2310" communale="Rijkevorsel" box="" country="[null]"/>
+  <adres adres_id="10057" street="Tombergstraat" houseNumber="1A" postalCode="3390" communale="Tielt-Winge" box="[null]" country="[null]"/>
+  <adres adres_id="10058" street="J.Michielsstraat" houseNumber="40" postalCode="2235" communale="Westmeerbeek" box="[null]" country="[null]"/>
+  <adres adres_id="10059" street="Diestsesteenweg" houseNumber="208" postalCode="3010" communale="Kessel-lo" box="" country="[null]"/>
+  <adres adres_id="10060" street="Pelgrimsstraat" houseNumber="19A" postalCode="3272" communale="Messelbroek" box="" country="[null]"/>
+  <adres adres_id="10061" street="Dries " houseNumber="46" postalCode="3380" communale="Glabbeek" box="" country="[null]"/>
+  <adres adres_id="10062" street="Reppelsebaan" houseNumber="3A" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10063" street="Westelsebaan " houseNumber="3" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10064" street="Reppelsebaan" houseNumber="3" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10065" street="Grote Steenweg" houseNumber="426" postalCode="3350" communale="Linter" box="[null]" country="[null]"/>
+  <adres adres_id="10066" street="Vilvoordsebaan" houseNumber="33B" postalCode="3020" communale="Winksele" box="[null]" country="[null]"/>
+  <adres adres_id="10067" street="Zandstraat" houseNumber="72A" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10068" street="Ophemstraat" houseNumber="100" postalCode="3001" communale="Oud-Heverlee" box="[null]" country="[null]"/>
+  <adres adres_id="10069" street="J.Michielsstraat" houseNumber="40" postalCode="2235" communale="Westmeerbeek" box="[null]" country="[null]"/>
+  <adres adres_id="10070" street="Diestsesteenweg" houseNumber="208" postalCode="3010" communale="Kessel-lo" box="" country="[null]"/>
+  <adres adres_id="10071" street="Pelgrimsstraat" houseNumber="19A" postalCode="3272" communale="Messelbroek" box="[null]" country="[null]"/>
+  <adres adres_id="10072" street="Dries " houseNumber="46" postalCode="3380" communale="Glabbeek" box="[null]" country="[null]"/>
+  <adres adres_id="10073" street="Reppelsebaan" houseNumber="3A" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10074" street="Westelsebaan " houseNumber="3" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10075" street="Reppelsebaan" houseNumber="3" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10076" street="Grote Steenweg" houseNumber="426" postalCode="3350" communale="Linter" box="[null]" country="[null]"/>
+  <adres adres_id="10077" street="Vilvoordsebaan" houseNumber="33B" postalCode="3020" communale="Winksele" box="[null]" country="[null]"/>
+  <adres adres_id="10078" street="Zandstraat" houseNumber="72A" postalCode="3271" communale="Averbode" box="[null]" country="[null]"/>
+  <adres adres_id="10079" street="Zuiderring" houseNumber="42" postalCode="3600" communale="Genk" box="" country="[null]"/>
+  <adres adres_id="10080" street="Westelsebaan" houseNumber="121" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10081" street="Westelsebaan" houseNumber="198" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10082" street="Koning Leopoldlaan" houseNumber="1" postalCode="2260" communale="Westerlo" box="" country="[null]"/>
+  <adres adres_id="10083" street="Blauberg" houseNumber="9" postalCode="2230" communale="Herselt" box="" country="[null]"/>
+  <adres adres_id="10084" street="Winterstraat" houseNumber="106" postalCode="3201" communale="Langdorp" box="" country="[null]"/>
+  <adres adres_id="10085" street="Kempenstraat" houseNumber="15" postalCode="2460" communale="Kasterlee" box="" country="[null]"/>
+  <adres adres_id="10086" street="Krekelberg" houseNumber="3" postalCode="3150" communale="Haacht" box="" country="[null]"/>
+  <adres adres_id="10087" street="Testelsesteenweg" houseNumber="35" postalCode="3271" communale="Averbode" box="" country="[null]"/>
+  <adres adres_id="10088" street="Biezebeemden" houseNumber="30" postalCode="3272" communale="Testelt" box="" country="[null]"/>
+  <adres adres_id="10089" street="Warotveld " houseNumber="25" postalCode="3020" communale="Winksele" box="" country="[null]"/>
+  <adres adres_id="10090" street="Weggevoerdenstraat" houseNumber="85" postalCode="3012" communale="Wilsele" box="" country="[null]"/>
+  <adres adres_id="10091" street="Endepoelstraat" houseNumber="36" postalCode="3540" communale="Herk-de-Stad" box="" country="[null]"/>
+  <adres adres_id="10092" street="Vrenenstraat " houseNumber="42" postalCode="3900" communale="Overpelt" box="" country="[null]"/>
+  <adres adres_id="10093" street="Vrenenstraat" houseNumber="40" postalCode="3900" communale="Overpelt" box="" country="[null]"/>
+  <adres adres_id="10094" street="Getteken" houseNumber="13" postalCode="2430" communale="Laakdal" box="" country="[null]"/>
+  <adres adres_id="10095" street="Altenaken" houseNumber="86" postalCode="3320" communale="Hoegaarden" box="" country="[null]"/>
+</dataset>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <person id="10006" titel="EMPTY" firstName="Geert &amp; Anneke &amp; kids" name="Verheyen - Steegen" telephone="" mobilePhone="0496 57 41 41" fax="" gender="[null]" adres_id="10007" email="geert.verheyen@yahoo.com"/>
+  <person id="10007" titel="EMPTY" firstName="Kim &amp; Ronald &amp; Vic" name="Weltens - Schreurs" telephone="" mobilePhone="0473 48 25 21" fax="" gender="[null]" adres_id="10008" email="rweltens@tsz.nl"/>
+  <person id="10008" titel="EMPTY" firstName="Kathleen &amp; Bert &amp; kids" name="Boeckx - Boets" telephone="011/80 12 64" mobilePhone="" fax="" gender="[null]" adres_id="10012" email=""/>
+  <person id="10010" titel="EMPTY" firstName="Florine " name="Boets - Vaes" telephone="016 81 62 88" mobilePhone="" fax="" gender="[null]" adres_id="10014" email=""/>
+  <person id="10012" titel="EMPTY" firstName="Laura &amp; Albert &amp; kids" name="Boets - Robinne" telephone="016 82 30 07" mobilePhone="" fax="" gender="[null]" adres_id="10016" email=""/>
+  <person id="10013" titel="EMPTY" firstName="Raf &amp; kids" name="Aerts" telephone="016 50 14 39" mobilePhone="0477/97 73 62" fax="" gender="[null]" adres_id="10017" email=""/>
+  <person id="10014" titel="EMPTY" firstName="Hilde en Jens" name="Aerts" telephone="" mobilePhone="0475/59 10 79" fax="" gender="[null]" adres_id="10018" email=""/>
+  <person id="10015" titel="EMPTY" firstName="Nasrala &amp; Wim &amp; kids" name="Aerts - Vuchelen" telephone="016 78 32 14" mobilePhone="" fax="" gender="[null]" adres_id="10019" email=""/>
+  <person id="10016" titel="EMPTY" firstName="An &amp; Peter &amp; kids " name="Berckmans-Van Riebeke" telephone="016 75 01 38" mobilePhone="0495/94 42 31" fax="" gender="[null]" adres_id="10020" email=""/>
+  <person id="10017" titel="EMPTY" firstName="Ina &amp; Kurt &amp; kids" name="Broos - Vanlommel" telephone="014 58 05 82 " mobilePhone="0496/14 65 87" fax="" gender="[null]" adres_id="10021" email=""/>
+  <person id="10018" titel="EMPTY" firstName="Marga &amp; Jean-Pierre " name="Drenth - Boets  " telephone="011 56 36 16" mobilePhone="" fax="" gender="[null]" adres_id="10023" email=""/>
+  <person id="10019" titel="EMPTY" firstName="Inge &amp; Luc" name="De Prycker - Cleeren" telephone="058/52 46 96" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10024" email=""/>
+  <person id="10020" titel="EMPTY" firstName="Pascale" name="Decock" telephone="[null]" mobilePhone="0478/23 82 57" fax="[null]" gender="[null]" adres_id="10025" email=""/>
+  <person id="10021" titel="EMPTY" firstName="Anny" name="Didden" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10026" email="[null]"/>
+  <person id="10022" titel="EMPTY" firstName="Isabelle &amp; Filip" name="Deweerdt" telephone="09/ 339 11 88" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10027" email="[null]"/>
+  <person id="10023" titel="EMPTY" firstName="Heidi &amp; Peter &amp; kids" name="Uyttebroeck - Debie" telephone="016/ 81 16 90" mobilePhone="" fax="" gender="[null]" adres_id="10028" email=""/>
+  <person id="10025" titel="EMPTY" firstName="Christel &amp; Carl" name="Derijck - Pelgrims" telephone="016/53 31 24" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10030" email=""/>
+  <person id="10026" titel="EMPTY" firstName="Carine &amp; Dirk &amp; kids" name="Reynders - Lauwers" telephone="" mobilePhone="0475/98 94 30" fax="" gender="[null]" adres_id="10031" email=""/>
+  <person id="10027" titel="EMPTY" firstName="Hilde &amp; Werner &amp; kids" name="Nevels - Lenders " telephone="011/ 66 26 12" mobilePhone="0496/ 11 15 41" fax="" gender="[null]" adres_id="10032" email=""/>
+  <person id="10028" titel="EMPTY" firstName="Sandra" name="Leener" telephone="016/ 22 96 65" mobilePhone="" fax="" gender="[null]" adres_id="10033" email="sandra.leenen@live.be"/>
+  <person id="10029" titel="EMPTY" firstName="Cindy &amp; Yves" name="Luyten- Maes " telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10034" email=""/>
+  <person id="10030" titel="EMPTY" firstName="Clara &amp; Jan &amp; kids" name="Segers - Vandeneede" telephone="016/ 40 13 78 " mobilePhone="0499/37 68 48 " fax="" gender="[null]" adres_id="10035" email=""/>
+  <person id="10031" titel="EMPTY" firstName="Bart" name="Storms" telephone="016/ 57 31 72" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10036" email=""/>
+  <person id="10032" titel="EMPTY" firstName="Jacqueline" name="Stinckens" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10037" email="[null]"/>
+  <person id="10033" titel="EMPTY" firstName="Fabi &amp; Niel" name="Thoelen" telephone="013/ 78 40 70" mobilePhone="0486/88 46 65" fax="" gender="[null]" adres_id="10038" email=""/>
+  <person id="10035" titel="EMPTY" firstName="Ilse &amp; Rombout &amp; kids" name="Verhoeven - Wachters" telephone="016/ 68 01 71" mobilePhone="" fax="" gender="[null]" adres_id="10040" email=""/>
+  <person id="10036" titel="EMPTY" firstName="Katty &amp; Kris" name="VanRoosbroeck  - Van Craen " telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10041" email=""/>
+  <person id="10037" titel="EMPTY" firstName="Heidi &amp; Steven" name=" Degeest - Van der Smissen " telephone="" mobilePhone="0497/44 08 89" fax="" gender="[null]" adres_id="10042" email=""/>
+  <person id="10038" titel="EMPTY" firstName="Petra &amp; Cindy" name="Verluyten" telephone="" mobilePhone="0496/57 60 27" fax="" gender="[null]" adres_id="10043" email=""/>
+  <person id="10040" titel="EMPTY" firstName="Ann &amp; Jan" name="Voets" telephone="089/41 73 38" mobilePhone="0477/360438" fax="" gender="[null]" adres_id="10045" email=""/>
+  <person id="10041" titel="EMPTY" firstName="Marleen &amp; Marc &amp; kids" name="VanHorebeek - Vandeneynde" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10046" email=""/>
+  <person id="10042" titel="EMPTY" firstName="Ellen &amp; Tom &amp; kids" name="Verweijen - Vandevelde" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10047" email=""/>
+  <person id="10043" titel="EMPTY" firstName="Petra" name="Van Horenbeek" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10048" email="[null]"/>
+  <person id="10044" titel="FAMILIE" firstName="" name="Vaes" telephone="016 / 77 95 79" mobilePhone="" fax="" gender="[null]" adres_id="10049" email=""/>
+  <person id="10046" titel="EMPTY" firstName="Katrien &amp; Luc" name="Brughmans - Geerts" telephone="03/227 08 60" mobilePhone="" fax="" gender="[null]" adres_id="10051" email="katrien_brughmans@yahoo.co.uk"/>
+  <person id="10047" titel="EMPTY" firstName="Greta (Moeke)" name="Didden" telephone="013/774862" mobilePhone="" fax="" gender="[null]" adres_id="10052" email=""/>
+  <person id="10048" titel="EMPTY" firstName="Gerda &amp; Guy" name="Stinckens - Fontaine" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10053" email=""/>
+  <person id="10049" titel="EMPTY" firstName="Jeaninne" name="Moyaerts" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10054" email=""/>
+  <person id="10051" titel="EMPTY" firstName="Christel &amp; Jan &amp; kids" name="Lauryssen-Goetschalckx" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10056" email=""/>
+  <person id="10052" titel="EMPTY" firstName="Hilde en Marte" name="Goedhuys" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10057" email="[null]"/>
+  <person id="10053" titel="EMPTY" firstName="Carine" name="Sybens" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10058" email="[null]"/>
+  <person id="10054" titel="EMPTY" firstName="Babs &amp; kids" name="Vandenabeele " telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10059" email=""/>
+  <person id="10055" titel="EMPTY" firstName="Peggy &amp; Pieter &amp; kids" name="Michiels-Lauvrijs " telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10060" email=""/>
+  <person id="10056" titel="EMPTY" firstName="Melanie &amp; Filip &amp; kids" name="Hendrickx-Claeskens" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10061" email=""/>
+  <person id="10057" titel="EMPTY" firstName="Fie, Fan en Emma" name="Knaps-Saenen" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10062" email="[null]"/>
+  <person id="10058" titel="EMPTY" firstName="Ria" name="Van Roy" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10063" email="[null]"/>
+  <person id="10059" titel="EMPTY" firstName="Jos" name="Roden " telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10064" email="[null]"/>
+  <person id="10060" titel="EMPTY" firstName="Rosa en Willy" name="Bertels-Selfslagh" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10065" email="[null]"/>
+  <person id="10061" titel="EMPTY" firstName="Helga" name="Ceunen" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10066" email="[null]"/>
+  <person id="10062" titel="EMPTY" firstName="Peggy &amp; kids" name="Vanderauwera-Claes" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10067" email=""/>
+  <person id="10063" titel="EMPTY" firstName="Els" name="Grauwels" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10068" email="[null]"/>
+  <person id="10069" titel="EMPTY" firstName="Ria" name="Van Roy" telephone="[null]" mobilePhone="[null]" fax="[null]" gender="[null]" adres_id="10074" email="[null]"/>
+  <person id="10074" titel="EMPTY" firstName="Ine" name="Gijsbrechts" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10079" email=""/>
+  <person id="10075" titel="EMPTY" firstName="" name="Claes - Aerts &amp; kinderen" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10080" email=""/>
+  <person id="10076" titel="EMPTY" firstName="" name="Van Braeckel &amp; kinderen" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10081" email=""/>
+  <person id="10077" titel="EMPTY" firstName="" name="Thijs - Aerts &amp; kinderen" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10082" email=""/>
+  <person id="10078" titel="EMPTY" firstName="Ludo" name="Aerts" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10083" email=""/>
+  <person id="10079" titel="EMPTY" firstName="" name="Swinnen - Aerts &amp; kinderen" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10084" email=""/>
+  <person id="10080" titel="FAMILIE" firstName="" name="Broos - Bosch" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10085" email=""/>
+  <person id="10081" titel="EMPTY" firstName="Karen" name="Torfs" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10086" email=""/>
+  <person id="10082" titel="EMPTY" firstName="" name="Vandermeeren - Aerts &amp; Sara" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10087" email=""/>
+  <person id="10083" titel="FAMILIE" firstName="" name="Van Gossum- Lemmens" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10088" email=""/>
+  <person id="10084" titel="EMPTY" firstName="Kathleen &amp; Kurt &amp; Kids" name="Verheyden - Baudart" telephone="016 89 53 56" mobilePhone="" fax="" gender="[null]" adres_id="10089" email=""/>
+  <person id="10085" titel="EMPTY" firstName="Viv &amp; Pierre" name="Luysmans - Geysen " telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10090" email=""/>
+  <person id="10086" titel="EMPTY" firstName="Ann &amp; Peter &amp; kids" name="Fontaine - Vanhove" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10091" email=""/>
+  <person id="10087" titel="EMPTY" firstName="Ruben" name="Weltens" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10092" email=""/>
+  <person id="10088" titel="EMPTY" firstName="Filip &amp; Mieke &amp; kids" name="Weltens" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10093" email=""/>
+  <person id="10089" titel="EMPTY" firstName="Laura &amp; Brenda" name="Vandereyd &amp; Heylen" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10094" email=""/>
+  <person id="10090" titel="EMPTY" firstName="Catherine &amp; Tim" name="Robinne - Van Camp" telephone="" mobilePhone="" fax="" gender="[null]" adres_id="10095" email=""/>
+</dataset>
