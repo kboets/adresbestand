@@ -44,8 +44,8 @@ public class PersonService implements IPersonService {
         address.setStreet("Wetstraat");
         address.setNumber("105");
         address.setBox("b");
-        address.setZipCode("1000");
-        address.setCity("Brussel");
+        address.getMunicipality().setZipCode(1000);
+        address.getMunicipality().setCity("Brussel");
         Person person =new Person();
         person.setFirstName("John");
         person.setLastName("Doh");
@@ -60,8 +60,8 @@ public class PersonService implements IPersonService {
         address.setStreet("Wetstraat");
         address.setNumber("105");
         address.setBox("b");
-        address.setZipCode("1000");
-        address.setCity("Brussel");
+        address.getMunicipality().setZipCode(1000);
+        address.getMunicipality().setCity("Brussel");
         Person person =new Person();
         person.setFirstName("MarieJo");
         person.setLastName("Vervloesem");

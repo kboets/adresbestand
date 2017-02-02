@@ -65,7 +65,7 @@ public class PersonRepositoryTest {
     @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
     public void test_findMainAddressForPersistedName_shouldReturn_OneAddress() {
         assertThat(personRepository.findMainAddressForName("Webb"), hasSize(1));
-        assertThat(personRepository.findMainAddressForName("Webb").get(0).getCity(), equalTo("Averbode"));
+        assertThat(personRepository.findMainAddressForName("Webb").get(0).getMunicipality().getCity(), equalTo("Averbode"));
     }
     @Test
     @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")

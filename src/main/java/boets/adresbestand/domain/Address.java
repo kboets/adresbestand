@@ -23,17 +23,13 @@ public class Address implements Serializable {
     @Column(name = "BOX")
     private String box;
 
-    @Column(name = "ZIPCODE")
-    private String zipCode;
-
-    @Column(name = "CITY")
-    private String city;
+    @ManyToOne
+    @JoinColumn(name = "MUNICIPALITY_ID", referencedColumnName = "ID")
+    private Municipality municipality;
 
     public String getValue() {
         return this.toString();
     }
-
-
 
     @Transient
     private String value;
@@ -70,20 +66,12 @@ public class Address implements Serializable {
         this.box = box;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public Municipality getMunicipality() {
+        return municipality;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setMunicipality(Municipality municipality) {
+        this.municipality = municipality;
     }
 
     @Override
@@ -94,8 +82,8 @@ public class Address implements Serializable {
         if(StringUtils.isNotBlank(getBox())){
             builder.append(" " +getBox());
         }
-        builder.append(" " +getZipCode());
-        builder.append(" " +getCity());
+        builder.append(" " +getMunicipality().getZipCode());
+        builder.append(" " +getMunicipality().getCity());
         return builder.toString();
     }
 }
