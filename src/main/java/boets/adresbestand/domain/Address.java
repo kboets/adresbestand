@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "ADDRESS")
+@Table(name = "ADDRESS", uniqueConstraints = @UniqueConstraint(columnNames = {"STREET", "HOUSENUMBER", "BOX", "MUNICIPALITY_ID"}))
 @SequenceGenerator(name = "ADDRESS_SEQ", sequenceName = "ADDRESS_S", allocationSize = 1)
 public class Address implements Serializable {
 
@@ -67,6 +67,9 @@ public class Address implements Serializable {
     }
 
     public Municipality getMunicipality() {
+        if(municipality == null){
+            municipality = new Municipality();
+        }
         return municipality;
     }
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+    <MUNICIPALITY id="1" ZIPCODE="1000" CITY="Brussel" />
+    <MUNICIPALITY id="2" ZIPCODE="3271" CITY="Averbode" />
+    <MUNICIPALITY id="3" ZIPCODE="3271" CITY="Zichem" />
+</dataset>

@@ -10,5 +10,5 @@ public interface IPersonService {
 
     List<Person> searchPersons(SearchAddressForm searchAddressForm);
 
-    void createPerson(Person person);
+    void savePerson(Person person);
 }

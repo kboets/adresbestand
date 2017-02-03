@@ -35,7 +35,8 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public void createPerson(Person person) {
+    public void savePerson(Person person) {
+
         personRepository.save(person);
     }
     
