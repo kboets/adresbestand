@@ -7,12 +7,16 @@ import boets.adresbestand.repository.PersonRepository;
 import boets.adresbestand.web.form.SearchAddressForm;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class PersonService implements IPersonService {
 
     @Autowired
@@ -36,49 +40,25 @@ public class PersonService implements IPersonService {
 
     @Override
     public void savePerson(Person person) {
-
-        personRepository.save(person);
-    }
-    
-    private Person createJohnDoe() {
-        Address address = new Address();
-        address.setStreet("Wetstraat");
-        address.setNumber("105");
-        address.setBox("b");
-        address.getMunicipality().setZipCode(1000);
-        address.getMunicipality().setCity("Brussel");
-        Person person =new Person();
-        person.setFirstName("John");
-        person.setLastName("Doh");
-        person.setMainAddress(address);
-        
-        
-        return person;
-    }
-
-    private Person createMarieJo() {
-        Address address = new Address();
-        address.setStreet("Wetstraat");
-        address.setNumber("105");
-        address.setBox("b");
-        address.getMunicipality().setZipCode(1000);
-        address.getMunicipality().setCity("Brussel");
-        Person person =new Person();
-        person.setFirstName("MarieJo");
-        person.setLastName("Vervloesem");
-        person.setMainAddress(address);
-
-
-        return person;
-    }
-
-    public List<Person> getPersons(){
-        if(persons == null) {
-            persons=new ArrayList<>();
-            persons.add(createJohnDoe());
-            persons.add(createMarieJo());
+        try {
+            personRepository.save(person);
+        } catch (DataAccessException e) {
+            if (e instanceof DataIntegrityViolationException) {
+                Address persistedAddress = StringUtils.isNotEmpty(person.getMainAddress().getBox()) ? addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getBox(), person.getMainAddress().getMunicipality()) : addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getMunicipality());
+                person.setMainAddress(persistedAddress);
+                personRepository.save(person);
+            }
         }
-        return  persons;
+    }
+
+
+    public List<Person> getPersons() {
+        if (persons == null) {
+            persons = new ArrayList<>();
+            persons.add(MockObject.createJohnDoe());
+            persons.add(MockObject.createMarieJo());
+        }
+        return persons;
     }
 
 }

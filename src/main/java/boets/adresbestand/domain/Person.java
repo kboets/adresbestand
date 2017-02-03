@@ -1,12 +1,7 @@
 package boets.adresbestand.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-
 
 
 @Entity
@@ -21,7 +16,7 @@ public class Person implements Serializable {
     private String lastName;
     @Column(name = "FIRST_NAME")
     private String firstName;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private Address mainAddress;
 

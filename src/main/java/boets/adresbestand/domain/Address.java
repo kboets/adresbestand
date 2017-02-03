@@ -18,7 +18,7 @@ public class Address implements Serializable {
     private String street;
 
     @Column(name = "HOUSENUMBER")
-    private String number;
+    private String houseNumber;
 
     @Column(name = "BOX")
     private String box;
@@ -50,12 +50,12 @@ public class Address implements Serializable {
         this.street = street;
     }
 
-    public String getNumber() {
-        return number;
+    public String getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
     public String getBox() {
@@ -81,7 +81,7 @@ public class Address implements Serializable {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getStreet());
-        builder.append(" " +getNumber());
+        builder.append(" " +getHouseNumber());
         if(StringUtils.isNotBlank(getBox())){
             builder.append(" " +getBox());
         }

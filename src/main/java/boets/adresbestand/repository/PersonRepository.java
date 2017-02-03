@@ -17,10 +17,10 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     List<Person> findByFirstName(String firstName);
 
-    @Query(value = "select p from Person p where p.lastName= ?1 and p.firstName= ?2")
+    @Query(value = "select p from Person p where p.lastName= ?1 and p.firstName like  ?2")
     List<Person> searchPerson(String name, String firstName);
 
-    @Query(value = "select a from Address a, Person p where p.lastName= ?1")
+    @Query(value = "select a from Address a, Person p where p.lastName like ?1")
     List<Address> findMainAddressForName(String lastName);
 
 }
