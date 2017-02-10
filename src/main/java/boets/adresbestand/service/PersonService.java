@@ -6,6 +6,8 @@ import boets.adresbestand.repository.AddressRepository;
 import boets.adresbestand.repository.PersonRepository;
 import boets.adresbestand.web.form.SearchAddressForm;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,6 +20,8 @@ import java.util.List;
 @Service
 @Transactional
 public class PersonService implements IPersonService {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private PersonRepository personRepository;
@@ -45,6 +49,9 @@ public class PersonService implements IPersonService {
         } catch (DataAccessException e) {
             if (e instanceof DataIntegrityViolationException) {
                 Address persistedAddress = StringUtils.isNotEmpty(person.getMainAddress().getBox()) ? addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getBox(), person.getMainAddress().getMunicipality()) : addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getMunicipality());
+                if(persistedAddress == null){
+
+                }
                 person.setMainAddress(persistedAddress);
                 personRepository.save(person);
             }

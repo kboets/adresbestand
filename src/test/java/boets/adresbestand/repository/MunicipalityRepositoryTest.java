@@ -1,6 +1,5 @@
 package boets.adresbestand.repository;
 
-import boets.adresbestand.domain.Municipality;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
@@ -27,7 +26,7 @@ import static org.hamcrest.Matchers.*;
 public class MunicipalityRepositoryTest {
 
     @Autowired
-    private MunicpalityRepository repository;
+    private MunicipalityRepository repository;
 
     @Test
     public void test_findCitiesByZipCode_shouldReturn_OneCity() {

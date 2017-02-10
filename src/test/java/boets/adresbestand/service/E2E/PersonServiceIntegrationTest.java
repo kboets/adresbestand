@@ -1,11 +1,9 @@
 package boets.adresbestand.service.E2E;
 
-import boets.adresbestand.domain.Address;
 import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.repository.AddressRepository;
-import boets.adresbestand.repository.MunicpalityRepository;
-import boets.adresbestand.service.IMunicipalityService;
+import boets.adresbestand.repository.MunicipalityRepository;
 import boets.adresbestand.service.MockObject;
 import boets.adresbestand.service.PersonService;
 import org.junit.Test;
@@ -16,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 /**
@@ -30,7 +27,7 @@ public class PersonServiceIntegrationTest {
     @Autowired
     private PersonService personService;
     @Autowired
-    private MunicpalityRepository repository;
+    private MunicipalityRepository repository;
     @Autowired
     private AddressRepository adresRepository;
     private Municipality brussel;

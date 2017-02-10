@@ -31,7 +31,7 @@ public class AddressRepositoryTest {
     @Autowired
     private AddressRepository addressRepository;
     @Autowired
-    private MunicpalityRepository municipalityRepository;
+    private MunicipalityRepository municipalityRepository;
 
 
     @Test
