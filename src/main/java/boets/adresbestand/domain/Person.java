@@ -2,6 +2,7 @@ package boets.adresbestand.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -16,6 +17,14 @@ public class Person implements Serializable {
     private String lastName;
     @Column(name = "FIRST_NAME")
     private String firstName;
+    @Column(name = "PHONE")
+    private String phone;
+    @Column(name = "MOBILE_PHONE")
+    private String mobilePhone;
+    @ElementCollection
+    @Column(name = "EMAIL")
+    private List<String> emails;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private Address mainAddress;
@@ -51,5 +60,21 @@ public class Person implements Serializable {
 
     public void setMainAddress(Address mainAddress) {
         this.mainAddress = mainAddress;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
     }
 }

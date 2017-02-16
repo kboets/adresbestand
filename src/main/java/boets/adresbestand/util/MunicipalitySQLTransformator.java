@@ -37,7 +37,7 @@ public class MunicipalitySQLTransformator {
        };
 
 
-     private static String transformToCorrectFormat(String raw) {
+     public static String transformToCorrectFormat(String raw) {
          //check only uppercase -> to lowercase
          if(StringUtils.isAllUpperCase(raw)){
              raw = StringUtils.capitalize(raw.toLowerCase());

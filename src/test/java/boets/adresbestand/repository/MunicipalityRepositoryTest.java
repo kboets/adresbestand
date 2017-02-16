@@ -52,4 +52,29 @@ public class MunicipalityRepositoryTest {
     public void test_findAllMunicipalities_shouldReturnThree() {
         assertThat(repository.findAll(), hasSize(3));
     }
+
+    @Test
+    public void test_findByZipCodeAndCity_shouldReturnOne() {
+        String city = "Averbode";
+        int zipCode = 3271;
+        assertThat(repository.findByZipCodeAndCity(zipCode, city).getId(), is(equalTo(2L)));
+    }
+
+    @Test
+    public void test_findByZipCode_shouldReturnOne() {
+        int zipCode = 1000;
+        assertThat(repository.findByZipCode(zipCode), hasSize(1));
+    }
+
+    @Test
+    public void test_findByZipCode_shouldReturnTwo() {
+        int zipCode = 3271;
+        assertThat(repository.findByZipCode(zipCode), hasSize(2));
+    }
+
+    @Test
+    public void test_findByZipCode_shouldReturnNone() {
+        int zipCode = 3910;
+        assertThat(repository.findByZipCode(zipCode), hasSize(0));
+    }
 }

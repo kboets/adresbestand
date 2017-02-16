@@ -49,10 +49,9 @@ public class PersonService implements IPersonService {
         } catch (DataAccessException e) {
             if (e instanceof DataIntegrityViolationException) {
                 Address persistedAddress = StringUtils.isNotEmpty(person.getMainAddress().getBox()) ? addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getBox(), person.getMainAddress().getMunicipality()) : addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getMunicipality());
-                if(persistedAddress == null){
-
+                if(persistedAddress != null){
+                    person.setMainAddress(persistedAddress);
                 }
-                person.setMainAddress(persistedAddress);
                 personRepository.save(person);
             }
         }

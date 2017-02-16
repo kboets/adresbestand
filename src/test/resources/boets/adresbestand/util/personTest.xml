@@ -1,0 +1,6 @@
+<dataset>
+    <person id="10006" titel="EMPTY" firstName="Geert &amp; Anneke &amp; kids" name="Verheyen - Steegen" telephone="" mobilePhone="0496 57 41 41" fax="" gender="[null]" adres_id="10007" email="geert.verheyen@yahoo.com"/>
+    <person id="10007" titel="EMPTY" firstName="Kim &amp; Ronald &amp; Vic" name="Weltens - Schreurs" telephone="" mobilePhone="0473 48 25 21" fax="" gender="[null]" adres_id="10008" email="rweltens@tsz.nl"/>
+    <person id="10008" titel="EMPTY" firstName="Kathleen &amp; Bert &amp; kids" name="Boeckx - Boets" telephone="011/80 12 64" mobilePhone="" fax="" gender="[null]" adres_id="10012" email=""/>
+    <person id="10010" titel="EMPTY" firstName="Florine " name="Boets - Vaes" telephone="016 81 62 88" mobilePhone="" fax="" gender="[null]" adres_id="10014" email=""/>
+</dataset>

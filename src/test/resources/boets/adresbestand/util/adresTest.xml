@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <adres adres_id="10007" street="Paul van Ostaijenlaan" houseNumber="43" postalCode="3001" communale="Heverlee" box="" country="[null]"/>
+    <adres adres_id="10012" street="Couwenberghstraat " houseNumber="5" postalCode="3970" communale="Leopoldsburg" box="" country="[null]"/>
+</dataset>

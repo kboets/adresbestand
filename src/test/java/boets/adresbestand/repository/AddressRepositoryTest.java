@@ -54,5 +54,16 @@ public class AddressRepositoryTest {
         Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "17", "a", municipality);
         assertThat(address, is(notNullValue()));
     }
+    @Test
+    public void test_saveNewAddressWithMunicipality_shouldNotRaiseException() {
+        Municipality municipality = municipalityRepository.findOne(1L);
+        Address address = new Address();
+        address.setStreet("Dorpsstraat");
+        address.setHouseNumber("15");
+        address.setMunicipality(municipality);
+        assertThat(address.getId(), nullValue());
+        addressRepository.save(address);
+        assertThat(address.getId(), notNullValue());
+    }
 
 }

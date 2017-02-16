@@ -17,5 +17,8 @@ public interface MunicipalityRepository extends JpaRepository<Municipality, Long
     @Query(value = "select m.zipCode from Municipality m where m.city= ?1")
     Integer findZipCodeByCity(String city);
 
+    Municipality findByZipCodeAndCity(Integer zipCode, String city);
+
+    List<Municipality> findByZipCode(Integer zipCode);
 
 }
