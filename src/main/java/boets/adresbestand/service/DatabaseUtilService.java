@@ -87,11 +87,21 @@ public class DatabaseUtilService implements IDatabaseUtilService {
             Node nNode = personNodeList.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                Long id = Long.parseLong(eElement.getAttribute("id"));
+                Long adres_id = Long.parseLong(eElement.getAttribute("adres_id"));
                 Person person = new Person();
                 person.setFirstName(eElement.getAttribute("firstName"));
                 person.setLastName(eElement.getAttribute("name"));
-
+                person.setMainAddress(addressMap.get(adres_id));
+                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("mobilePhone")) && StringUtils.isNotEmpty(eElement.getAttribute("mobilePhone"))) {
+                    person.setMobilePhone(eElement.getAttribute("mobilePhone"));
+                }
+                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("telephone")) && StringUtils.isNotEmpty(eElement.getAttribute("telephone"))) {
+                    person.setPhone(eElement.getAttribute("telephone"));
+                }
+                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("email")) && StringUtils.isNotEmpty(eElement.getAttribute("email"))) {
+                    person.addEmail(eElement.getAttribute("email"));
+                }
+                persons.add(person);
             }
         }
         return persons;
@@ -109,7 +119,9 @@ public class DatabaseUtilService implements IDatabaseUtilService {
                 Address address = new Address();
                 address.setStreet(StringUtils.capitalize(eElement.getAttribute("street")));
                 address.setHouseNumber(StringUtils.capitalize(eElement.getAttribute("houseNumber")));
-                address.setBox(StringUtils.capitalize(eElement.getAttribute("box")));
+                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("box"))) {
+                    address.setBox(StringUtils.capitalize(eElement.getAttribute("box")));
+                }
                 int zipCode =  Integer.parseInt(eElement.getAttribute("postalCode"));
                 String city = StringUtils.capitalize(eElement.getAttribute("communale"));
                 address.setMunicipality(municipalityService.retrieveMunicipality(zipCode, city));

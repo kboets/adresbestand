@@ -2,7 +2,9 @@ package boets.adresbestand.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -23,7 +25,7 @@ public class Person implements Serializable {
     private String mobilePhone;
     @ElementCollection
     @Column(name = "EMAIL")
-    private List<String> emails;
+    private Set<String> emails;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
@@ -76,5 +78,20 @@ public class Person implements Serializable {
 
     public void setMobilePhone(String mobilePhone) {
         this.mobilePhone = mobilePhone;
+    }
+
+    public Set<String> getEmails() {
+        if(emails == null) {
+            emails = new HashSet<>();
+        }
+        return emails;
+    }
+
+    public void setEmails(Set<String> emails) {
+        this.emails = emails;
+    }
+
+    public void addEmail(String email){
+        getEmails().add(email);
     }
 }
