@@ -3,6 +3,8 @@ package boets.adresbestand.service;
 import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.repository.MunicipalityRepository;
 import boets.adresbestand.util.MunicipalitySQLTransformator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Service
 public class MunicipalityService implements IMunicipalityService {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MunicipalityRepository municipalityRepository;
 
@@ -29,6 +32,9 @@ public class MunicipalityService implements IMunicipalityService {
                     break;
                 }
             }
+        }
+        if(municipality == null){
+            logger.warn("Could not retrieve a Municipality with zipCode "+zipCode+" and city "+city);
         }
         return municipality;
     }

@@ -10,5 +10,9 @@ public interface IPersonService {
 
     List<Person> searchPersons(SearchAddressForm searchAddressForm);
 
-    void savePerson(Person person);
+    void savePerson(Person person) throws Exception;
+
+    List<String> savePersons(List<Person> persons) throws Exception;
+
+    Integer getTotalSavedPersons();
 }
