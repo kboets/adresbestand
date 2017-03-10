@@ -1,6 +1,7 @@
 package boets.adresbestand.aop;
 
 import org.aopalliance.intercept.Joinpoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,13 +18,13 @@ public class RepositoryAOP {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("within(boets.adresbestand.service.PersonService)")
+    @Pointcut("execution(boets.adresbestand.repository.PersonRepository)")
     public void pointCutClass(){
     }
 
-    @AfterThrowing(pointcut = "serviceMethod()", throwing = "t")
-    public void handleConstraintViolationException(Throwable t){
-
+    @AfterThrowing(pointcut = "pointCutClass()", throwing = "t")
+    public void handleConstraintViolationException(ProceedingJoinPoint joinPoint, Throwable t){
+        logger.info("entering ");
 
     }
 }
