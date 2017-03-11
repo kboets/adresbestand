@@ -1,12 +1,19 @@
 package boets.adresbestand.domain;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "ADDRESS", uniqueConstraints = @UniqueConstraint(columnNames = {"STREET", "HOUSENUMBER", "BOX", "MUNICIPALITY_ID"}))
+@Table(name = "ADDRESS")//, uniqueConstraints = @UniqueConstraint(columnNames = {"STREET", "HOUSENUMBER", "BOX", "MUNICIPALITY_ID"}))
 @SequenceGenerator(name = "ADDRESS_SEQ", sequenceName = "ADDRESS_S", allocationSize = 1)
 public class Address implements Serializable {
 
@@ -23,9 +30,12 @@ public class Address implements Serializable {
     @Column(name = "BOX")
     private String box;
 
-    @ManyToOne
+    @ManyToOne(cascade = javax.persistence.CascadeType.DETACH)
     @JoinColumn(name = "MUNICIPALITY_ID", referencedColumnName = "ID")
     private Municipality municipality;
+
+    @OneToMany(mappedBy="mainAddress", fetch=FetchType.EAGER)
+    private Set<Person> persons;
 
     public String getValue() {
         return this.toString();
@@ -76,6 +86,24 @@ public class Address implements Serializable {
     public void setMunicipality(Municipality municipality) {
         this.municipality = municipality;
     }
+
+    public Set<Person> getPersons() {
+        if(persons == null){
+            persons = new HashSet<>();
+        }
+        return persons;
+    }
+
+    public void setPersons(Set<Person> persons) {
+        this.persons = persons;
+    }
+
+    public void addPerson(Person person) {
+        getPersons().add(person);
+        person.setMainAddress(this);
+    }
+
+
 
     @Override
     public String toString() {

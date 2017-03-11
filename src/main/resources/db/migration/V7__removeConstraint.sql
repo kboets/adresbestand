@@ -1,0 +1,2 @@
+ALTER TABLE ADDRESS
+DROP CONSTRAINT addressUniqueConstraint;

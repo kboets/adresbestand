@@ -1,7 +1,8 @@
-package boets.adresbestand.service;
+package boets.adresbestand.mock;
 
 import boets.adresbestand.domain.Address;
 import boets.adresbestand.domain.Person;
+import boets.adresbestand.service.MunicipalityMockCreator;
 
 /**
  * Created by Asus on 3/02/2017.
@@ -10,11 +11,10 @@ public class MockObject {
 
     public static Person createJohnDoe() {
         Address address = new Address();
-        address.setStreet("Wetstraat");
+        address.setStreet("Schoolstraat");
         address.setHouseNumber("105");
         address.setBox("b");
-        address.getMunicipality().setZipCode(1000);
-        address.getMunicipality().setCity("Brussel");
+        address.setMunicipality(MunicipalityMockCreator.createTienen());
         Person person =new Person();
         person.setFirstName("John");
         person.setLastName("Doh");
@@ -24,13 +24,12 @@ public class MockObject {
 
     public static Person createMarieJo() {
         Address address = new Address();
-        address.setStreet("Wetstraat");
+        address.setStreet("Schoolstraat");
         address.setHouseNumber("105");
         address.setBox("b");
-        address.getMunicipality().setZipCode(1000);
-        address.getMunicipality().setCity("Brussel");
+        address.setMunicipality(MunicipalityMockCreator.createTienen());
         Person person =new Person();
-        person.setFirstName("MarieJo");
+        person.setFirstName("Marie-Jo");
         person.setLastName("Vervloesem");
         person.setMainAddress(address);
 

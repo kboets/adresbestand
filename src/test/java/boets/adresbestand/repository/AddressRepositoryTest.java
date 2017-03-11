@@ -37,21 +37,21 @@ public class AddressRepositoryTest {
     @Test
     public void test_findByUniqueConstraint_withCorrectValues_shouldReturnOneAddress(){
         Municipality municipality = municipalityRepository.findOne(1L);
-        Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "15", municipality);
+        Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "15", municipality.getZipCode());
         assertThat(address, is(notNullValue()));
     }
 
     @Test
     public void test_findByUniqueConstraint_withWrongValues_shouldReturnOneAddress(){
         Municipality municipality = municipalityRepository.findOne(1L);
-        Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "13", municipality);
+        Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "13", municipality.getZipCode());
         assertThat(address, is(nullValue()));
     }
 
     @Test
     public void test_findByUniqueConstraint_withCorrectBox_shouldReturnOneAddress(){
         Municipality municipality = municipalityRepository.findOne(1L);
-        Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "17", "a", municipality);
+        Address address = addressRepository.findByUniqueConstraint("Westelsebaan", "17", "a", municipality.getZipCode());
         assertThat(address, is(notNullValue()));
     }
     @Test

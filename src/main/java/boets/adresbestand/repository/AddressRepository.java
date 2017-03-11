@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
-     @Query(value = "select a from Address a where a.street like ?1 and a.houseNumber like ?2 and a.municipality = ?3")
-    Address findByUniqueConstraint(String street, String houseNumber, Municipality municipality);
+     @Query(value = "select a from Address a where a.street like ?1 and a.houseNumber like ?2 and a.municipality.zipCode = ?3")
+    Address findByUniqueConstraint(String street, String houseNumber, Integer zipCode);
 
-    @Query(value = "select a from Address a where a.street like ?1 and a.houseNumber like ?2 and a.box = ?3 and a.municipality = ?4")
-    Address findByUniqueConstraint(String street, String houseNumber, String box, Municipality municipality);
+    @Query(value = "select a from Address a where a.street like ?1 and a.houseNumber like ?2 and a.box = ?3 and a.municipality.zipCode = ?4")
+    Address findByUniqueConstraint(String street, String houseNumber, String box, Integer zipCode);
 
 }

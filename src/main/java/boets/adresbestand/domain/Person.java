@@ -27,7 +27,7 @@ public class Person implements Serializable {
     @Column(name = "EMAIL")
     private Set<String> emails;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne (cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private Address mainAddress;
 
@@ -93,5 +93,17 @@ public class Person implements Serializable {
 
     public void addEmail(String email){
         getEmails().add(email);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("Person has name ");
+        builder.append(this.getLastName());
+        builder.append(" and first name ");
+        builder.append(this.getFirstName());
+        builder.append(" and address ");
+        builder.append(this.getMainAddress().toString());
+        return builder.toString();
     }
 }

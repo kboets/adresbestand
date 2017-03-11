@@ -44,31 +44,42 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public void savePerson(Person person) throws Exception {
-        personRepository.save(person);
-//        } catch(UnexpectedRollbackException ex){
-//            if (ex.getMostSpecificCause() instanceof SQLIntegrityConstraintViolationException) {
-//                Address persistedAddress = StringUtils.isNotEmpty(person.getMainAddress().getBox()) ? addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getBox(), person.getMainAddress().getMunicipality()) : addressRepository.findByUniqueConstraint(person.getMainAddress().getStreet(), person.getMainAddress().getHouseNumber(), person.getMainAddress().getMunicipality());
-//                if(persistedAddress != null){
-//                    person.setMainAddress(persistedAddress);
-//                }
-//                personRepository.save(person);
-//            }
-//        } catch (Exception e) {
-//            throw e;
-//        }
+    public void savePerson(Person person)   {
+        Address addressAlreadySaved = getPersistedAddress(person.getMainAddress());
+        try {
+            if(addressAlreadySaved != null) {
+                addressAlreadySaved.addPerson(person);
+                person.setMainAddress(addressAlreadySaved);
+                personRepository.save(person);
+            } else {
+                personRepository.save(person);
+            }
+        } catch(DataIntegrityViolationException ex){
+            logger.warn("Person could not be saved : " +person.toString());
+
+        }
+
     }
 
-    @Transactional
+    private Address getPersistedAddress(Address address) {
+        Address persistedAddress = null;
+        if(address !=null) {
+            if(StringUtils.isNotEmpty(address.getBox())){
+                persistedAddress = addressRepository.findByUniqueConstraint(address.getStreet(), address.getHouseNumber(), address.getBox(), address.getMunicipality().getZipCode());
+            } else {
+                persistedAddress = addressRepository.findByUniqueConstraint(address.getStreet(), address.getHouseNumber(), address.getMunicipality().getZipCode());
+            }
+        }
+        return  persistedAddress;
+    }
+
     @Override
-    public List<String> savePersons(List<Person> persons) throws Exception {
+    public List<String> savePersons(List<Person> persons) {
         List<String> savedPersons = new ArrayList<>();
         for(Person person : persons) {
-           this.savePerson(person);
-           savedPersons.add("Saved Person " + person.getLastName() + " " +person.getFirstName());
-//                logger.error("Could not save Person " + person.getLastName() + " " +person.getFirstName());
-//                savedPersons.add("Could not save Person " + person.getLastName() + " " +person.getFirstName());
-//                return savedPersons;
+            this.savePerson(person);
+            logger.info("Saved Person " + person.getLastName() + " " +person.getFirstName());
+            savedPersons.add("Saved Person " + person.getLastName() + " " +person.getFirstName());
         }
         return savedPersons;
     }
