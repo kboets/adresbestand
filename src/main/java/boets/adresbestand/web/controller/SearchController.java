@@ -45,6 +45,14 @@ public class SearchController {
         return SEARCH;
     }
 
+    @GetMapping("/findAll")
+    public String getAllAddresses(Model model) {
+        logger.info("Retrieving all addresses Address");
+        List<Person> persons = personService.findAllPersons();
+        model.addAttribute("persons", persons);
+        model.addAttribute("searchAddressForm", new SearchAddressForm());
+        return SEARCH;
+    }
 
     @PostMapping("/resetSearch")
     public String resetSearchPage(Model model) {
@@ -70,6 +78,8 @@ public class SearchController {
         model.addAttribute("persons", persons);
         return SEARCH;
     }
+
+
 
 
 }

@@ -24,6 +24,7 @@ public class PersonController {
         return CREATE_PAGE;
     }
 
+
     @PostMapping("/create")
     public String create(Model model, @ModelAttribute("person") Person person) {
        personService.savePerson(person);

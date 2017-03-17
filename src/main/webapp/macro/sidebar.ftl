@@ -5,10 +5,10 @@
             <a href="/adresbestand/"><@spring.message "home.link" /></a>
         </li>
         <li>
-            <a href="<@spring.url '/create'/>"><@spring.message "create.link" /></a>
+            <a href="<@spring.url '/findAll'/>"><@spring.message "findAll.link" /></a>
         </li>
         <li>
-            <a href="#">Shortcuts</a>
+            <a href="<@spring.url '/create'/>"><@spring.message "create.link" /></a>
         </li>
         <li>
             <a href="#">Overview</a>

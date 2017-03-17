@@ -95,7 +95,7 @@
                         <tbody>
                             <#list persons as person>
                             <tr>
-                                <td>${person.firstName}</td>
+                                <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>
                                 <td>${person.mainAddress.value}</td>
                             </tr>

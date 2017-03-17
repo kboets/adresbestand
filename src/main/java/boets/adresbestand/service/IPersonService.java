@@ -10,6 +10,8 @@ public interface IPersonService {
 
     List<Person> searchPersons(SearchAddressForm searchAddressForm);
 
+    List<Person> findAllPersons();
+
     void savePerson(Person person);
 
     List<String> savePersons(List<Person> persons);

@@ -44,6 +44,11 @@ public class PersonService implements IPersonService {
     }
 
     @Override
+    public List<Person> findAllPersons() {
+        return personRepository.findAll();
+    }
+
+    @Override
     public void savePerson(Person person)   {
         Address addressAlreadySaved = getPersistedAddress(person.getMainAddress());
         try {
@@ -80,6 +85,7 @@ public class PersonService implements IPersonService {
             this.savePerson(person);
             logger.info("Saved Person " + person.getLastName() + " " +person.getFirstName());
             savedPersons.add("Saved Person " + person.getLastName() + " " +person.getFirstName());
+            savedPersons.add(System.lineSeparator());
         }
         return savedPersons;
     }
