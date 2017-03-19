@@ -102,20 +102,16 @@
                     <#if page_index == currentIndex>
                         <li class="active"><a href="<@spring.url '/findAll/${page_index}'/>">${page_index}</a></li>
                     <#else>
-                        <li><a href="<@spring.url '/findAll/${page_index}'/>"><c:out value="${i}" /></a></li>
+                        <li><a href="<@spring.url '/findAll/${page_index}'/>">${page_index}</a></li>
                     </#if>
                 </#list>
-
-                    <c:choose>
-                        <c:when test="${currentIndex == deploymentLog.totalPages}">
-                            <li class="disabled"><a href="#">&gt;</a></li>
-                            <li class="disabled"><a href="#">&gt;&gt;</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="${nextUrl}">&gt;</a></li>
-                            <li><a href="${lastUrl}">&gt;&gt;</a></li>
-                        </c:otherwise>
-                    </c:choose>
+                <#if currentIndex == persons.totalPages>
+                    <li class="disabled"><a href="#">&gt;</a></li>
+                    <li class="disabled"><a href="#">&gt;&gt;</a></li>
+                <#else>
+                    <li><a href="<@spring.url '/findAll/${currentIndex + 1}'/>"">&gt;</a></li>
+                    <li><a href="<@spring.url '/findAll/${persons.totalPages}'/>">&gt;&gt;</a></li>
+                </#if>
                 </ul>
             </div>
                 <#--<div class="col-lg-12">-->
