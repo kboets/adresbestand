@@ -20,3 +20,6 @@ freemarker <br/>
 bootstrap <br/>
 jquery <br/>
 
+<h2> Database server <br/></h2>
+Oracle XE
+
