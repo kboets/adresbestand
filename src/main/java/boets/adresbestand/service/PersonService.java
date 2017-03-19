@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,7 @@ import java.util.List;
 public class PersonService implements IPersonService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final int PAGE_SIZE = 10;
 
     @Autowired
     private PersonRepository personRepository;
@@ -44,8 +48,9 @@ public class PersonService implements IPersonService {
     }
 
     @Override
-    public List<Person> findAllPersons() {
-        return personRepository.findAll();
+    public Page<Person> findAllPersons(Integer pageNumber) {
+        PageRequest pageRequest = new PageRequest(pageNumber-1, PAGE_SIZE, Sort.Direction.ASC, "lastName");
+        return personRepository.findAll(pageRequest);
     }
 
     @Override

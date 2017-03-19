@@ -8,15 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -45,12 +43,20 @@ public class SearchController {
         return SEARCH;
     }
 
-    @GetMapping("/findAll")
-    public String getAllAddresses(Model model) {
+    @GetMapping("/findAll/{pageNumber}")
+    public String getAllAddresses(@PathVariable Integer pageNumber, Model model) {
         logger.info("Retrieving all addresses Address");
-        List<Person> persons = personService.findAllPersons();
-        model.addAttribute("persons", persons);
+        Page<Person> page = personService.findAllPersons(pageNumber);
+        int current = page.getNumber() + 1;
+        int begin = Math.max(1, current - 5);
+        int end = Math.min(begin + 10, page.getTotalPages());
+
         model.addAttribute("searchAddressForm", new SearchAddressForm());
+        model.addAttribute("persons", page);
+        model.addAttribute("beginIndex", begin);
+        model.addAttribute("endIndex", end);
+        model.addAttribute("currentIndex", current);
+
         return SEARCH;
     }
 
