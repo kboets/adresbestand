@@ -83,57 +83,26 @@
             <#if persons?? && persons?size != 0 >
             <h2><@spring.message "search.result.title"/></h2>
                 <p>De volgende person(en) werden teruggevonden.</p>
-
-                <#assign firstUrl='/findAll/1'> />
-                <#assign lasttUrl='/findAll/${persons.totalPages}'> />
-                <#assign prevUrl='/findAll/${currentIndex - 1}'> />
-                <#assign nextUrl='/findAll/${currentIndex + 1}'> />
-
-            <div class="pagination">
-                <ul>
-                <#if currentIndex == 1>
-                    <li class="disabled"><a href="#">&lt;&lt;</a></li>
-                    <li class="disabled"><a href="#">&lt;</a></li>
-                <#else>
-                    <li><a href="<@spring.url '/findAll/1'/>">&lt;&lt;</a></li>
-                    <li><a href="<@spring.url '/findAll/${currentIndex - 1}'/>">&lt;</a></li>
-                </#if>
-                <#list persons as page>
-                    <#if page_index == currentIndex>
-                        <li class="active"><a href="<@spring.url '/findAll/${page_index}'/>">${page_index}</a></li>
-                    <#else>
-                        <li><a href="<@spring.url '/findAll/${page_index}'/>">${page_index}</a></li>
-                    </#if>
-                </#list>
-                <#if currentIndex == persons.totalPages>
-                    <li class="disabled"><a href="#">&gt;</a></li>
-                    <li class="disabled"><a href="#">&gt;&gt;</a></li>
-                <#else>
-                    <li><a href="<@spring.url '/findAll/${currentIndex + 1}'/>"">&gt;</a></li>
-                    <li><a href="<@spring.url '/findAll/${persons.totalPages}'/>">&gt;&gt;</a></li>
-                </#if>
-                </ul>
-            </div>
-                <#--<div class="col-lg-12">-->
-                    <#--<table class="table table-bordered">-->
-                        <#--<thead>-->
-                        <#--<tr>-->
-                            <#--<th><@spring.message "firstname" /></th>-->
-                            <#--<th><@spring.message "lastname" /></th>-->
-                            <#--<th><@spring.message "adres" /></th>-->
-                        <#--</tr>-->
-                        <#--</thead>-->
-                        <#--<tbody>-->
-                            <#--<#list persons as person>-->
-                            <#--<tr>-->
-                                <#--<td><#if (person.firstName??)>${person.firstName}</#if></td>-->
-                                <#--<td>${person.lastName}</td>-->
-                                <#--<td>${person.mainAddress.value}</td>-->
-                            <#--</tr>-->
-                            <#--</#list>-->
-                        <#--</tbody>-->
-                    <#--</table>-->
-                <#--</div>-->
+                <div class="col-lg-12">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th><@spring.message "firstname" /></th>
+                            <th><@spring.message "lastname" /></th>
+                            <th><@spring.message "adres" /></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <#list persons as person>
+                            <tr>
+                                <td><#if (person.firstName??)>${person.firstName}</#if></td>
+                                <td>${person.lastName}</td>
+                                <td>${person.mainAddress.value}</td>
+                            </tr>
+                            </#list>
+                        </tbody>
+                    </table>
+                </div>
             <#elseif persons??>
                 <div class="col-lg-12">
                     <h2><@spring.message "search.result.title"/></h2>

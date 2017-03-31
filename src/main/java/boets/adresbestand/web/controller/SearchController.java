@@ -27,11 +27,12 @@ public class SearchController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final static String SEARCH = "search";
+    private final static String SEARCH_RESULT = "searchResult";
 
     @Autowired
     private IPersonService personService;
 
-    @InitBinder
+    @InitBinder("searchAddressForm")
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(new SearchAddressFormValidation());
     }
@@ -51,13 +52,12 @@ public class SearchController {
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
 
-        model.addAttribute("searchAddressForm", new SearchAddressForm());
-        model.addAttribute("persons", page);
+        model.addAttribute("pagePersons", page);
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
 
-        return SEARCH;
+        return SEARCH_RESULT;
     }
 
     @PostMapping("/resetSearch")
