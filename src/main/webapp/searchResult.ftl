@@ -65,6 +65,16 @@
                                  <li><a href="<@spring.url '/findAll/${totalPages}'/>">&gt;&gt;</a></li>
                              </#if>
                         </div>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th><@spring.message "showAll.firstname" /></th>
+                                <th><@spring.message "showAll.lastname" /></th>
+                                <th><@spring.message "showAll.address" /></th>
+                            </tr>
+
+                            </thead>
+                        </table>
 
 
                     </div>
