@@ -68,12 +68,23 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th><@spring.message "showAll.firstname" /></th>
-                                <th><@spring.message "showAll.lastname" /></th>
-                                <th><@spring.message "showAll.address" /></th>
+                                <th class="col-md-1"></th>
+                                <th class="col-md-2"><@spring.message "showAll.firstname" /></th>
+                                <th class="col-md-2"><@spring.message "showAll.lastname" /></th>
+                                <th class="col-md-4"><@spring.message "showAll.address" /></th>
                             </tr>
-
                             </thead>
+                            <#list pagePersons.content as person>
+                            <tr>
+                                <td><a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                    &nbsp;
+                                    <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                </td>
+                                <td><#if (person.firstName??)>${person.firstName}</#if></td>
+                                <td>${person.lastName}</td>
+                                <td>${person.mainAddress.street} ${person.mainAddress.houseNumber}, ${person.mainAddress.municipality.zipCode?c} ${person.mainAddress.municipality.city} </td>
+                            </tr>
+                            </#list>
                         </table>
 
 
