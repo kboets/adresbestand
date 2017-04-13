@@ -1,32 +1,11 @@
 <#import "/spring.ftl" as spring/>
 <#import "macro/sidebar.ftl" as sidebar>
+<#import "macro/head.ftl" as header>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
+    <@header.headmeta/>
     <title><@spring.message "searchAddress.title" /></title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="<@spring.url '/css/bootstrap.min.css'/>" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="<@spring.url '/css/simple-sidebar.css' />" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
-
 <body>
 
     <div id="wrapper">
@@ -39,8 +18,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                        <h1><@spring.message "showAll.title" /></h1>
+                        <p><@spring.message "showAll.subtitle" /></p>
                         <div class="pagination">
                             <#if currentIndex == 1>
                                 <li class="disabled"><a href="#">&lt;&lt;</a></li>
@@ -76,7 +55,8 @@
                             </thead>
                             <#list pagePersons.content as person>
                             <tr>
-                                <td><a class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                <#assign personId=person.id>
+                                <td><a href="<@spring.url '/update/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     &nbsp;
                                     <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 </td>

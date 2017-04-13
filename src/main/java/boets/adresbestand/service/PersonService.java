@@ -101,4 +101,9 @@ public class PersonService implements IPersonService {
         return personRepository.findAll().size();
     }
 
+    @Override
+    public Person getPersonByUniqueId(Long id) {
+        return personRepository.findOne(id);
+    }
+
 }

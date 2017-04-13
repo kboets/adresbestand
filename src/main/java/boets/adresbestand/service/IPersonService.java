@@ -18,4 +18,6 @@ public interface IPersonService {
     List<String> savePersons(List<Person> persons);
 
     Integer getTotalSavedPersons();
+
+    Person getPersonByUniqueId(Long id);
 }
