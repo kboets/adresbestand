@@ -2,13 +2,12 @@
 <#import "macro/sidebar.ftl" as sidebar>
 <#import "macro/head.ftl" as header>
 <html>
-
 <head lang="en">
-<@header.headmeta/>
-    <#if person??>
+    <@header.headmeta/>
+    <#if person.lastName??>
         <title><@spring.message "createAddress.title" /></title>
     <#else>
-        <title><@spring.message "updateAddress.titleAddress.title" /></title>
+        <title><@spring.message "updateAddress.title" /></title>
     </#if>
 </head>
 <body>
@@ -23,14 +22,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><#if person??>
-                            <@spring.message "updateAddress.title" />
+                    <h1><#if person.lastName??>
+                           <@spring.message "updateAddress.title" />
                         <#else>
                             <@spring.message "createAddress.title" />
                         </#if>
                     </h1>
                     <form name="person" action="create_update.ftl" method="POST" class="form-horizontal">
-                        <p>Geef hier het nieuwe adres in. De velden met een * zijn verplicht.</p>
+                        <p><#if person.lastName??>
+                            <@spring.message "uc.subUpdateTitle" />
+                        <#else>
+                            <@spring.message "uc.subCreateTitle" />
+                        </#if></p>
                         <br/>
                         <div class="form-group">
                             <label for="firstName" class="col-sm-1">Voornaam *</label>
@@ -59,7 +62,7 @@
                         <div class="form-group">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
-                                <@spring.formInput "person.mainAddress.municipality.city" "size='35'" "text"/>
+                                <@spring.formInput "person.mainAddress.municipality.city" "size='35'" "text" />
                             </div>
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
                             <div class="col-sm-1">
@@ -79,8 +82,6 @@
     <!-- /#page-content-wrapper -->
 
 </div>
-
-
 </body>
 
 </html>

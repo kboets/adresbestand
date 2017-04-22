@@ -8,6 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Matchers.*;
 import static org.mockito.Matchers.any;
@@ -49,5 +52,15 @@ public class MunicipalityServiceTest {
 
         assertThat(municipality, is(notNullValue()));
         assertThat(municipality.getId(), is(equalTo(3L)));
+    }
+
+    @Test
+    public void test_getAllCitiesWithId_shouldReturnCorrectHashMap() {
+        //when
+        when(municipalityRepositoryMock.findAll()).thenReturn(MunicipalityMockCreator.createRandomMunicipalities());
+
+        Map<Long, String> mapResult = objectUnderTest.getAllCitiesWithId();
+
+        assertThat(mapResult.get(1L), is(equalTo("Zichem")));
     }
 }

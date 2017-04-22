@@ -3,7 +3,9 @@ package boets.adresbestand.service;
 import boets.adresbestand.domain.Municipality;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Asus on 11/02/2017.
@@ -40,4 +42,13 @@ public class MunicipalityMockCreator {
         municipalities.add(createZichem());
         return municipalities;
     }
+    public static List<Municipality> createRandomMunicipalities(){
+        List<Municipality> municipalities = new ArrayList<>();
+        municipalities.add(createAverbode());
+        municipalities.add(createZichem());
+        municipalities.add(createTienen());
+        return municipalities;
+    }
+
+
 }
