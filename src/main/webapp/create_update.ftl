@@ -62,11 +62,19 @@
                         <div class="form-group">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
-                                <@spring.formInput "person.mainAddress.municipality.city" "size='35'" "text" />
+                                <input type="text" class="form-control" id="city" value=""
+                                <#if person.mainAddress.municipality.city??>
+                                       value="${person.mainAddress.municipality.city}"
+                                </#if>
+                                />
                             </div>
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
                             <div class="col-sm-1">
-                                <@spring.formInput "person.mainAddress.municipality.zipCode" "size='4'" "text"/>
+                                <input type="text" class="form-control" id="zipCode" value=""
+                                <#if person.mainAddress.municipality.zipCode??>
+                                       value="${person.mainAddress.municipality.zipCode}"
+                                </#if>
+                                />
                             </div>
                         </div>
                         <div class="buttons">
@@ -80,7 +88,41 @@
         </div>
     </div>
     <!-- /#page-content-wrapper -->
+    <script>
+        $(document).ready(function() {
+            $('#city').autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    $.getJSON("<@spring.url '/getCitiesWithName'/>", request, function(result) {
+                        response($.map(result, function(item) {
+                            return {
+                                // following property gets displayed in drop down
+                                label: item.city,
+                                // following property gets entered in the textbox
+                                value: item.city
+                            }
+                        }));
+                    });
+                }
+            <#--source:-->
+            <#--serviceUrl: '<@spring.url '/getCitiesWithName'/>',-->
+            <#--paramName: "cityName",-->
+            <#--delimiter: ",",-->
+            <#--transformResult: function(response) {-->
+            <#--return {-->
+            <#--suggestions: $.map($.parseJSON(response), function(item) {-->
+            <#--return { value: item.city, data: item.id };-->
+            <#--})-->
 
+            <#--};-->
+
+            <#--}-->
+            });
+
+
+        });
+
+    </script>
 </div>
 </body>
 

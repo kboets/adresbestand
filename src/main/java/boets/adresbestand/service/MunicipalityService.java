@@ -48,4 +48,9 @@ public class MunicipalityService implements IMunicipalityService {
         return  municipalityRepository.findAll().stream().collect(Collectors.toMap(Municipality::getId, Municipality::getCity));
     }
 
+    @Override
+    public List<Municipality> getAllMuncipalities() {
+        return municipalityRepository.findAll();
+    }
+
 }

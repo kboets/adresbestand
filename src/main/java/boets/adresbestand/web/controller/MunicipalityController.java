@@ -1,14 +1,20 @@
 package boets.adresbestand.web.controller;
 
+import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.service.IMunicipalityService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.stream.Collectors;
 
 /**
  * Created by Asus on 22/04/2017.
@@ -21,14 +27,24 @@ public class MunicipalityController {
 
     private ConcurrentHashMap<Long, String> cities;
 
-    @GetMapping("/getAllCities")
-    public @ResponseBody Map<Long,String> getAllCities(){
+    Queue<Municipality> municipalities;
+
+    @GetMapping(value = "/getAllCities", produces = {"application/json"})
+    public @ResponseBody Map<Long,String> getAllCities(HttpServletResponse response){
         if (getCities()== null) {
             cities = new ConcurrentHashMap<>();
             cities.putAll(municipalityService.getAllCitiesWithId());
         }
         Map<Long, String> hashMap = new HashMap<Long, String>(cities);
         return hashMap;
+    }
+    @GetMapping("/getCitiesWithName")
+    public @ResponseBody  List<Municipality> getCity(@RequestParam("term") String cityName){
+        if (municipalities == null) {
+            municipalities = new ConcurrentLinkedQueue<Municipality>();
+            municipalities.addAll(municipalityService.getAllMuncipalities());
+        }
+        return  municipalities.stream().filter(municipality -> municipality.getCity().contains(StringUtils.capitalize(cityName.toLowerCase()))).collect(Collectors.toList());
     }
 
     public ConcurrentHashMap<Long, String> getCities() {
