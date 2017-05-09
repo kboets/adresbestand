@@ -38,32 +38,53 @@
                         <div class="form-group">
                             <label for="firstName" class="col-sm-1">Voornaam *</label>
                             <div class="col-sm-3">
-                                <@spring.formInput "person.firstName" "size='35'" "text" />
+                                <input type="text" class="form-control" id="firstName" value=""
+                                <#if person.firstName??>
+                                       value="${person.firstName}"
+                                </#if>
+                                />
                             </div>
                             <label for="lastName" class="col-sm-1">Naam *</label>
                             <div class="col-sm-3">
-                                <@spring.formInput "person.lastName" "size='35'" "text"/>
+                                <input type="text" class="form-control" id="lastName" value=""
+                                <#if person.lastName??>
+                                       value="${person.lastName}"
+                                </#if>
+                                />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="street" class="col-sm-1">Straat *</label>
                             <div class="col-sm-3">
-                                <@spring.formInput "person.mainAddress.street" "size='35'" "text"/>
+                                <input type="text" class="form-control" id="street" value=""
+                                <#if person.mainAddress?? && person.mainAddress.street??>
+                                       value="${person.mainAddress.street}"
+                                </#if>
+                                />
+                                <#--<@spring.formInput "person.mainAddress.street" "size='35'" "text"/>-->
                             </div>
                             <label for="houseNumber" class="col-sm-1">Nummer *</label>
-                            <div class="col-sm-2">
-                                <@spring.formInput "person.mainAddress.houseNumber" "size='5'" "text"/>
-                            </div>
                             <div class="col-sm-1">
-                                <label for="box">Bus</label>
-                                <@spring.formInput "person.mainAddress.box" "size='3'" "text"/>
+                                <input type="text" class="form-control" id="houseNumber" value=""
+                                <#if person.mainAddress?? && person.mainAddress.houseNumber??>
+                                       value="${person.mainAddress.houseNumber}"
+                                </#if>
+                                />
+                            </div>
+                            <label for="box" class="col-sm-1">Bus</label>
+                            <div class="col-sm-1">
+                                <input type="text" class="form-control" id="box" value=""
+                                <#if person.mainAddress?? && person.mainAddress.box??>
+                                       value="${person.mainAddress.box}"
+                                </#if>
+                                />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="city" value=""
-                                <#if person.mainAddress.municipality.city??>
+                                <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                        value="${person.mainAddress.municipality.city}"
                                 </#if>
                                 />
@@ -71,7 +92,7 @@
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
                             <div class="col-sm-1">
                                 <input type="text" class="form-control" id="zipCode" value=""
-                                <#if person.mainAddress.municipality.zipCode??>
+                                <#if person.mainAddress?? && person.mainAddress.municipality.zipCode??>
                                        value="${person.mainAddress.municipality.zipCode}"
                                 </#if>
                                 />
