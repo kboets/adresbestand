@@ -28,7 +28,7 @@
                             <@spring.message "createAddress.title" />
                         </#if>
                     </h1>
-                    <form name="person" action="create_update.ftl" method="POST" class="form-horizontal">
+                    <form name="person" action="createUpdate" method="POST" class="form-horizontal">
                         <p><#if person.lastName??>
                             <@spring.message "uc.subUpdateTitle" />
                         <#else>
@@ -38,17 +38,21 @@
                         <div class="form-group">
                             <label for="firstName" class="col-sm-1">Voornaam *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="firstName" value=""
+                                <input type="text" class="form-control" id="firstName" name="firstName"
                                 <#if person.firstName??>
                                        value="${person.firstName}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
                             </div>
                             <label for="lastName" class="col-sm-1">Naam *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="lastName" value=""
+                                <input type="text" class="form-control" id="lastName" name="lastName"
                                 <#if person.lastName??>
                                        value="${person.lastName}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
                             </div>
@@ -56,26 +60,31 @@
                         <div class="form-group">
                             <label for="street" class="col-sm-1">Straat *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="street" value=""
+                                <input type="text" class="form-control" id="street" name="mainAddress.street"
                                 <#if person.mainAddress?? && person.mainAddress.street??>
                                        value="${person.mainAddress.street}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
-                                <#--<@spring.formInput "person.mainAddress.street" "size='35'" "text"/>-->
                             </div>
                             <label for="houseNumber" class="col-sm-1">Nummer *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="houseNumber" value=""
+                                <input type="text" class="form-control" id="houseNumber" name="mainAddress.houseNumber"
                                 <#if person.mainAddress?? && person.mainAddress.houseNumber??>
                                        value="${person.mainAddress.houseNumber}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
                             </div>
                             <label for="box" class="col-sm-1">Bus</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="box" value=""
+                                <input type="text" class="form-control" id="box" name="mainAddress.box"
                                 <#if person.mainAddress?? && person.mainAddress.box??>
                                        value="${person.mainAddress.box}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
                             </div>
@@ -83,17 +92,21 @@
                         <div class="form-group">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="city" value=""
+                                <input type="text" class="form-control" id="city" name="mainAddress.municipality.city"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                        value="${person.mainAddress.municipality.city}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
                             </div>
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="zipCode" value=""
+                                <input type="text" class="form-control" id="zipCode" name="mainAddress.municipality.zipCode"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.zipCode??>
                                        value="${person.mainAddress.municipality.zipCode}"
+                                <#else>
+                                       value=""
                                 </#if>
                                 />
                             </div>
@@ -112,7 +125,7 @@
     <script>
         $(document).ready(function() {
             $('#city').autocomplete({
-                minLength: 1,
+                minLength: 2,
                 source: function (request, response) {
                     $.getJSON("<@spring.url '/getCitiesWithName'/>", request, function(result) {
                         response($.map(result, function(item) {
@@ -125,19 +138,6 @@
                         }));
                     });
                 }
-            <#--source:-->
-            <#--serviceUrl: '<@spring.url '/getCitiesWithName'/>',-->
-            <#--paramName: "cityName",-->
-            <#--delimiter: ",",-->
-            <#--transformResult: function(response) {-->
-            <#--return {-->
-            <#--suggestions: $.map($.parseJSON(response), function(item) {-->
-            <#--return { value: item.city, data: item.id };-->
-            <#--})-->
-
-            <#--};-->
-
-            <#--}-->
             });
 
 

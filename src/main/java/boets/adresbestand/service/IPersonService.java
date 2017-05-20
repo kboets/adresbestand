@@ -15,6 +15,8 @@ public interface IPersonService {
 
     void savePerson(Person person);
 
+    void updatePerson(Person person);
+
     List<String> savePersons(List<Person> persons);
 
     Integer getTotalSavedPersons();

@@ -20,22 +20,25 @@ public class PersonController {
 
 
     @GetMapping("/create")
-    public String getCreatePersonPage(Model model ) {
-        model.addAttribute("person" , new Person());
+    public String getCreatePersonPage(Model model) {
+        model.addAttribute("person", new Person());
         return CREATE_UPDATE_PAGE;
     }
 
     @GetMapping("/update/{personId}")
-    public String getUpdatePersonPage(@PathVariable Long personId, Model model ) {
+    public String getUpdatePersonPage(@PathVariable Long personId, Model model) {
         model.addAttribute("person", personService.getPersonByUniqueId(personId));
         return CREATE_UPDATE_PAGE;
     }
 
 
-    @PostMapping("/create")
+    @PostMapping("/createUpdate")
     public String create(Model model, @ModelAttribute("person") Person person) {
-       personService.savePerson(person);
-
-       return  CREATE_UPDATE_PAGE;
+        if (person.getId() != null) {
+            personService.updatePerson(person);
+        } else {
+            personService.savePerson(person);
+        }
+        return CREATE_UPDATE_PAGE;
     }
 }

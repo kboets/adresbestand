@@ -36,8 +36,6 @@ public class PersonService implements IPersonService {
     @Autowired
     private AddressRepository addressRepository;
 
-    private List<Person> persons;
-
     @Override
     public List<Person> searchPersons(SearchAddressForm searchAddressForm) {
         if(StringUtils.isNotBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())){
@@ -67,9 +65,12 @@ public class PersonService implements IPersonService {
             }
         } catch(DataIntegrityViolationException ex){
             logger.warn("Person could not be saved : " +person.toString());
-
         }
+    }
 
+    @Override
+    public void updatePerson(Person person) {
+        personRepository.save(person);
     }
 
     private Address getPersistedAddress(Address address) {
