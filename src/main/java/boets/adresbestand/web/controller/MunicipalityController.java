@@ -38,7 +38,7 @@ public class MunicipalityController {
         Map<Long, String> hashMap = new HashMap<Long, String>(cities);
         return hashMap;
     }
-    @GetMapping("/getCitiesWithName")
+    @GetMapping(value="/getCitiesWithName",  produces = {"application/json"})
     public @ResponseBody  List<Municipality> getCity(@RequestParam("term") String cityName){
         if (municipalities == null) {
             municipalities = new ConcurrentLinkedQueue<Municipality>();

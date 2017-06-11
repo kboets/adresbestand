@@ -11,6 +11,9 @@
 <!-- Custom CSS -->
 <link href="<@spring.url '/css/simple-sidebar.css' />" rel="stylesheet">
 
+<!-- Adresbestand CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+
 <script src="<@spring.url '/js/jquery.js'/>"></script>
 <script src="<@spring.url '/js/bootstrap.min.js'/>"></script>
 <script src="<@spring.url '/js/jquery-ui.js'/>"></script>

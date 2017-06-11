@@ -4,6 +4,7 @@
 <html>
 <head lang="en">
     <@header.headmeta/>
+        <script src="<@spring.url '/js/adresbestand_cu.js'/>"></script>
     <#if person.lastName??>
         <title><@spring.message "createAddress.title" /></title>
     <#else>
@@ -89,10 +90,10 @@
                                 />
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="city" name="mainAddress.municipality.city"
+                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                        value="${person.mainAddress.municipality.city}"
                                 <#else>
@@ -112,7 +113,7 @@
                             </div>
                         </div>
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save">bewaar</button>
+                            <button class="btn bold" id="btn_save" type="button">bewaar</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </div>
                     </form>
@@ -122,28 +123,7 @@
         </div>
     </div>
     <!-- /#page-content-wrapper -->
-    <script>
-        $(document).ready(function() {
-            $('#city').autocomplete({
-                minLength: 2,
-                source: function (request, response) {
-                    $.getJSON("<@spring.url '/getCitiesWithName'/>", request, function(result) {
-                        response($.map(result, function(item) {
-                            return {
-                                // following property gets displayed in drop down
-                                label: item.city,
-                                // following property gets entered in the textbox
-                                value: item.city
-                            }
-                        }));
-                    });
-                }
-            });
-
-
-        });
-
-    </script>
+    <script></script>
 </div>
 </body>
 
