@@ -30,6 +30,12 @@
                         </#if>
                     </h1>
                     <form name="person" action="createUpdate" method="POST" class="form-horizontal">
+                    <#if success??>
+                        <div class="alert alert-success">
+                            <i class="icon-ok-sign icon-green"></i> <span> <@spring.message code=success /></span>
+                        </div>
+                    </#if>
+
                         <p><#if person.lastName??>
                             <@spring.message "uc.subUpdateTitle" />
                         <#else>
@@ -93,11 +99,14 @@
                         <div class="form-group ">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
+                                <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
                                 <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
+                                       placeholder="${person.mainAddress.municipality.city}"
                                        value="${person.mainAddress.municipality.city}"
                                 <#else>
                                        value=""
+                                       placeholder=""
                                 </#if>
                                 />
                             </div>
@@ -105,7 +114,7 @@
                             <div class="col-sm-1">
                                 <input type="text" class="form-control" id="zipCode" name="mainAddress.municipality.zipCode"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.zipCode??>
-                                       value="${person.mainAddress.municipality.zipCode}"
+                                       value="${person.mainAddress.municipality.zipCode?c}"
                                 <#else>
                                        value=""
                                 </#if>
@@ -113,7 +122,7 @@
                             </div>
                         </div>
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save" type="button">bewaar</button>
+                            <button class="btn bold" id="btn_save">bewaar</button>
                             <button type="reset" class="btn btn-default">Reset</button>
                         </div>
                     </form>

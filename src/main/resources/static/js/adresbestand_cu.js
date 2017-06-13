@@ -3,6 +3,7 @@ $(document).ready(function() {
         minLength: 1,
         select: function( event, ui ) {
           $("#zipCode").val(ui.item.zipCode);
+          $("#municipalityId").val(ui.item.id);
         },
         source : function(request, response) {
             $.ajax({
@@ -12,11 +13,13 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function(data) {
                     var zipCode = null
+                    var id = null
                     response($.map(data, function(item) {
                        return {
                            label:item.city,
                            value:item.city,
-                           zipCode:item.zipCode
+                           zipCode:item.zipCode,
+                           id: item.id
                        }
                     }));
                 }
