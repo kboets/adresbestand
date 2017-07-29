@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#city').autocomplete({
-        minLength: 1,
+        minLength: 2,
         select: function( event, ui ) {
           $("#zipCode").val(ui.item.zipCode);
           $("#municipalityId").val(ui.item.id);
