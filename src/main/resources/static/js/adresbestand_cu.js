@@ -7,7 +7,7 @@ $(document).ready(function() {
         },
         source : function(request, response) {
             $.ajax({
-                url:'getCitiesWithName',
+                url: getContextPath()+'/getCitiesWithName',
                 method:'get',
                 data: {term: request.term},
                 dataType: 'json',
@@ -28,10 +28,10 @@ $(document).ready(function() {
     });
 
 
-    // $('#btn_save').click(function(){
-    //     console.log('inside button');
-    // });
-
 
 });
+
+function getContextPath() {
+    return window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+}
 

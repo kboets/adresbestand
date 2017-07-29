@@ -29,7 +29,7 @@
                             <@spring.message "createAddress.title" />
                         </#if>
                     </h1>
-                    <form name="person" action="createUpdate" method="POST" class="form-horizontal">
+                    <form id="createUpdate" name="person" action="createUpdate" method="POST" class="form-horizontal">
                     <#if success??>
                         <div class="alert alert-success">
                             <i class="icon-ok-sign icon-green"></i> <span> <@spring.message code=success /></span>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label for="firstName" class="col-sm-1">Voornaam *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                <input type="text" class="form-control" id="firstName" name="firstName" required
                                 <#if person.firstName??>
                                        value="${person.firstName}"
                                 <#else>
@@ -55,7 +55,7 @@
                             </div>
                             <label for="lastName" class="col-sm-1">Naam *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                <input type="text" class="form-control" id="lastName" name="lastName" required
                                 <#if person.lastName??>
                                        value="${person.lastName}"
                                 <#else>
@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label for="street" class="col-sm-1">Straat *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="street" name="mainAddress.street"
+                                <input type="text" class="form-control" id="street" name="mainAddress.street" required
                                 <#if person.mainAddress?? && person.mainAddress.street??>
                                        value="${person.mainAddress.street}"
                                 <#else>
@@ -77,7 +77,7 @@
                             </div>
                             <label for="houseNumber" class="col-sm-1">Nummer *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="houseNumber" name="mainAddress.houseNumber"
+                                <input type="text" class="form-control" id="houseNumber" name="mainAddress.houseNumber" required
                                 <#if person.mainAddress?? && person.mainAddress.houseNumber??>
                                        value="${person.mainAddress.houseNumber}"
                                 <#else>
@@ -100,7 +100,7 @@
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
                                 <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
-                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city"
+                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city" required
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                        placeholder="${person.mainAddress.municipality.city}"
                                        value="${person.mainAddress.municipality.city}"
@@ -112,7 +112,7 @@
                             </div>
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="zipCode" name="mainAddress.municipality.zipCode"
+                                <input type="text" class="form-control" id="zipCode" name="mainAddress.municipality.zipCode" required
                                 <#if person.mainAddress?? && person.mainAddress.municipality.zipCode??>
                                        value="${person.mainAddress.municipality.zipCode?c}"
                                 <#else>
