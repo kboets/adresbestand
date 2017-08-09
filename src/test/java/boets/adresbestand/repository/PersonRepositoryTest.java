@@ -35,13 +35,19 @@ public class PersonRepositoryTest {
     @Test
     @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
     public void test_findByPersistedLastName_shouldReturn_OneResult() {
-        assertThat(personRepository.findByLastName("Webb"), hasSize(1));
+        assertThat(personRepository.findByLastNameContaining("Webb"), hasSize(1));
+    }
+
+    @Test
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    public void test_findByPersistedLastNameAlmostCorrect_shouldReturn_OneResult() {
+        assertThat(personRepository.findByLastNameContaining("Web"), hasSize(1));
     }
 
     @Test
     @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
     public void test_findByPersistedFirstName_shouldReturn_OneResult() {
-        assertThat(personRepository.findByFirstName("Phillip"), hasSize(1));
+        assertThat(personRepository.findByFirstNameContaining("Phillip"), hasSize(1));
     }
 
     @Test
@@ -53,7 +59,7 @@ public class PersonRepositoryTest {
     @Test
     @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
     public void test_findByNotPersistedLastName_shouldReturn_NoResult() {
-        assertThat(personRepository.findByLastName("Dua"), hasSize(0));
+        assertThat(personRepository.findByLastNameContaining("Dua"), hasSize(0));
     }
     @Test
     @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
