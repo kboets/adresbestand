@@ -38,6 +38,6 @@ public class DatabaseUtilServiceE2ETest {
     @Test
     public void test_mapPersons_checkSize() {
         List<Person> result = objectUnderTest.migratePersons();
-        assertThat(result, hasSize(69));
+        assertThat(result, hasSize(66));
     }
 }

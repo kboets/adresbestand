@@ -24,10 +24,9 @@ public class MockObject {
 
     public static Person createMarieJo() {
         Address address = new Address();
-        address.setStreet("Schoolstraat");
-        address.setHouseNumber("105");
-        address.setBox("b");
-        address.setMunicipality(MunicipalityMockCreator.createTienen());
+        address.setStreet("Westelsebaan");
+        address.setHouseNumber("15");
+        address.setMunicipality(MunicipalityMockCreator.createAverbode());
         Person person =new Person();
         person.setFirstName("Marie-Jo");
         person.setLastName("Vervloesem");

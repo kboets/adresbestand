@@ -44,7 +44,7 @@ public class DatabaseUtilServiceTest {
         //when
         when(municipalityServiceMock.retrieveMunicipality(anyInt(), anyString())).thenReturn(MunicipalityMockCreator.createAverbode());
         List<Person> personList = objectUnderTest.migratePersons();
-        assertThat(personList, hasSize(69));
+        assertThat(personList, hasSize(66));
 
     }
 

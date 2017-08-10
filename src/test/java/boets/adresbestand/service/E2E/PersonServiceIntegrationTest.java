@@ -1,9 +1,6 @@
 package boets.adresbestand.service.E2E;
 
-import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.domain.Person;
-import boets.adresbestand.repository.AddressRepository;
-import boets.adresbestand.repository.MunicipalityRepository;
 import boets.adresbestand.mock.MockObject;
 import boets.adresbestand.service.MunicipalityMockCreator;
 import boets.adresbestand.service.PersonService;
@@ -13,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
@@ -37,34 +33,23 @@ import static org.hamcrest.Matchers.*;
 public class PersonServiceIntegrationTest {
 
     @Autowired
-    private PersonService personService;
-    @Autowired
-    private MunicipalityRepository repository;
-    @Autowired
-    private AddressRepository adresRepository;
-    private Municipality brussel;
-
-
-
+    private PersonService objectUnderTest;
 
     @Test
     public void test_savePersonWithNewAddress_shouldSaveCorrect() {
         Person john = MockObject.createJohnDoe();
         assertThat(john.getId(), is(nullValue()));
         john.getMainAddress().setMunicipality(MunicipalityMockCreator.createTienen());
-        personService.savePerson(john);
+        objectUnderTest.savePerson(john);
         assertThat(john.getId(), is(notNullValue()));
     }
 
-    //@DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
     @Test
     public void test_savePersonWithExistingAddress_shouldWorkCorrectly() {
-        Person john = MockObject.createJohnDoe();
-        john.getMainAddress().setMunicipality(MunicipalityMockCreator.createTienen());
-        personService.savePerson(john);
         Person marieJo = MockObject.createMarieJo();
-        marieJo.getMainAddress().setMunicipality(MunicipalityMockCreator.createTienen());
-        personService.savePerson(marieJo);
+        marieJo.getMainAddress().setMunicipality(MunicipalityMockCreator.createAverbode());
+        objectUnderTest.savePerson(marieJo);
         assertThat(marieJo.getId(), is(notNullValue()));
     }
 
