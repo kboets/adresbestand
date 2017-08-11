@@ -69,10 +69,10 @@ public class SearchController {
     @PostMapping("/searchAddress")
     public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
-            List <ObjectError> validationErrors = result.getAllErrors();
-            List <String> errors = new ArrayList<>();
-            for(ObjectError error :validationErrors){
-                if(StringUtils.contains(error.getCode(), "general")){
+            List<ObjectError> validationErrors = result.getAllErrors();
+            List<String> errors = new ArrayList<>();
+            for (ObjectError error : validationErrors) {
+                if (StringUtils.contains(error.getCode(), "general")) {
                     errors.add(error.getCode());
                 }
             }
@@ -84,8 +84,6 @@ public class SearchController {
         model.addAttribute("persons", persons);
         return SEARCH;
     }
-
-
 
 
 }

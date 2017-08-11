@@ -40,6 +40,7 @@ public class DatabaseUtilService implements IDatabaseUtilService {
     @Autowired
     private MunicipalityService municipalityService;
 
+
     @Override
     public String createMunicipalityScript() {
         try {
@@ -48,7 +49,7 @@ public class DatabaseUtilService implements IDatabaseUtilService {
             String name = "V3__insertMunicipality.sql";
             File file = new File("D:\\javadev\\projects\\adresbestand\\src\\main\\resources\\db\\migration", name);
             file.createNewFile();
-            FileUtils.writeLines(file, sqlInserts);
+            FileUtils.writeLines(file, "UTF-8", sqlInserts);
         } catch (FileNotFoundException e) {
             logger.error("Could not load csv file " + e);
             return "NOT OK";
