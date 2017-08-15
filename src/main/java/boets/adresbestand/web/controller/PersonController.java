@@ -33,6 +33,13 @@ public class PersonController {
         return CREATE_UPDATE_PAGE;
     }
 
+    @GetMapping("/remove/{personId}")
+    public String removeUpdatePersonPage(@PathVariable Long personId, Model model) {
+        model.addAttribute("person", personService.getPersonByUniqueId(personId));
+        personService.removePerson(personService.getPersonByUniqueId(personId));
+        return CREATE_UPDATE_PAGE;
+    }
+
 
     @PostMapping("/createUpdate")
     public String create(Model model, @ModelAttribute("person") Person person) {
@@ -48,4 +55,5 @@ public class PersonController {
 
         return CREATE_UPDATE_PAGE;
     }
+
 }

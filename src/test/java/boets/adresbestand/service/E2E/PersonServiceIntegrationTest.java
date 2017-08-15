@@ -2,6 +2,7 @@ package boets.adresbestand.service.E2E;
 
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.mock.MockObject;
+import boets.adresbestand.repository.AddressRepository;
 import boets.adresbestand.service.MunicipalityMockCreator;
 import boets.adresbestand.service.PersonService;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -34,6 +35,9 @@ public class PersonServiceIntegrationTest {
 
     @Autowired
     private PersonService objectUnderTest;
+    @Autowired
+    private AddressRepository addressRepository;
+
 
     @Test
     public void test_savePersonWithNewAddress_shouldSaveCorrect() {
@@ -51,6 +55,30 @@ public class PersonServiceIntegrationTest {
         marieJo.getMainAddress().setMunicipality(MunicipalityMockCreator.createAverbode());
         objectUnderTest.savePerson(marieJo);
         assertThat(marieJo.getId(), is(notNullValue()));
+    }
+
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @Test
+    public void givenOnePersonOnAddress_whenRemovePerson_shouldAlsoRemoveAddress() {
+        Person Webb = objectUnderTest.getPersonByUniqueId(0L);
+        assertThat(Webb.getId(), is(equalTo(0L)));
+        Long addressId = Webb.getMainAddress().getId();
+        assertThat(Webb.getMainAddress().getPersons().size(), is(equalTo(1)));
+        objectUnderTest.removePerson(Webb);
+        assertThat(objectUnderTest.getPersonByUniqueId(0L), nullValue());
+        assertThat(addressRepository.findOne(addressId), nullValue());
+    }
+
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest2.xml")
+    @Test
+    public void givenTwoPersonsOnAddress_whenRemovePerson_shouldNotRemoveAddress() {
+        Person Webb = objectUnderTest.getPersonByUniqueId(0L);
+        assertThat(Webb.getId(), is(equalTo(0L)));
+        Long addressId = Webb.getMainAddress().getId();
+        assertThat(Webb.getMainAddress().getPersons().size(), is(equalTo(2)));
+        objectUnderTest.removePerson(Webb);
+        assertThat(objectUnderTest.getPersonByUniqueId(0L), nullValue());
+        assertThat(addressRepository.findOne(addressId), notNullValue());
     }
 
 

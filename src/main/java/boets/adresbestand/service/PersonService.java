@@ -9,17 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +50,7 @@ public class PersonService implements IPersonService {
 
     @Override
     public void savePerson(Person person)   {
-        Address addressAlreadySaved = getPersistedAddress(person.getMainAddress());
+        Address addressAlreadySaved = getAddressByUniqueConstraint(person.getMainAddress());
         try {
             if(addressAlreadySaved != null) {
                 addressAlreadySaved.addPerson(person);
@@ -73,7 +69,21 @@ public class PersonService implements IPersonService {
         personRepository.save(person);
     }
 
-    private Address getPersistedAddress(Address address) {
+    @Override
+    public void removePerson(Person person) {
+        Address address = addressRepository.findOne(person.getMainAddress().getId());
+        if(address.getPersons().size() == 1) {
+            logger.info("Only one person lives in this address; remove address as wel");
+            addressRepository.delete(address);
+            personRepository.delete(person);
+        } else {
+            logger.info("More persons live in this address; don not remove address");
+            personRepository.delete(person);
+        }
+    }
+
+
+    private Address getAddressByUniqueConstraint(Address address) {
         Address persistedAddress = null;
         if(address !=null) {
             if(StringUtils.isNotEmpty(address.getBox())){

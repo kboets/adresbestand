@@ -17,9 +17,12 @@ public interface IPersonService {
 
     void updatePerson(Person person);
 
+    void removePerson(Person person);
+
     List<String> savePersons(List<Person> persons);
 
     Integer getTotalSavedPersons();
 
     Person getPersonByUniqueId(Long id);
+
 }
