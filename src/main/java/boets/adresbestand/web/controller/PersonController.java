@@ -33,16 +33,20 @@ public class PersonController {
         return CREATE_UPDATE_PAGE;
     }
 
+    //@PostMapping("/update")
+
     @GetMapping("/remove/{personId}")
     public String removeUpdatePersonPage(@PathVariable Long personId, Model model) {
         model.addAttribute("person", personService.getPersonByUniqueId(personId));
         personService.removePerson(personService.getPersonByUniqueId(personId));
+        model.addAttribute("person",new Person());
+        model.addAttribute("success","success_remove");
         return CREATE_UPDATE_PAGE;
     }
 
 
-    @PostMapping("/createUpdate")
-    public String create(Model model, @ModelAttribute("person") Person person) {
+    @PostMapping("update/createUpdate")
+    public String update(Model model, @ModelAttribute("person") Person person) {
         if (person.getId() != null) {
             personService.updatePerson(person);
             model.addAttribute("person",person);
@@ -52,6 +56,15 @@ public class PersonController {
             model.addAttribute("person", new Person());
             model.addAttribute("success","success_create");
         }
+
+        return CREATE_UPDATE_PAGE;
+    }
+
+    @PostMapping("createUpdate")
+    public String create(Model model, @ModelAttribute("person") Person person) {
+        personService.savePerson(person);
+        model.addAttribute("person", new Person());
+        model.addAttribute("success","success_create");
 
         return CREATE_UPDATE_PAGE;
     }

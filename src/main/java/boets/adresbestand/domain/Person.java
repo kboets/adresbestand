@@ -27,7 +27,7 @@ public class Person implements Serializable {
     @Column(name = "EMAIL")
     private Set<String> emails;
 
-    @ManyToOne (cascade = {CascadeType.PERSIST})
+    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private Address mainAddress;
 

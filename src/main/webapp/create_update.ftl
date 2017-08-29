@@ -35,7 +35,6 @@
                             <i class="icon-ok-sign icon-green"></i> <span> <@spring.message code=success /></span>
                         </div>
                     </#if>
-
                         <p><#if person.lastName??>
                             <@spring.message "uc.subUpdateTitle" />
                         <#else>
@@ -45,7 +44,11 @@
                         <div class="form-group">
                             <label for="firstName" class="col-sm-1">Voornaam *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="firstName" name="firstName" required
+                                <#if person.id??>
+                                    <input type="hidden" name="id" id="id"  value="${person.id}"/>
+                                </#if>
+
+                                <input type="text" class="form-control" id="firstName" name="firstName" required autofocus
                                 <#if person.firstName??>
                                        value="${person.firstName}"
                                 <#else>
@@ -67,6 +70,9 @@
                         <div class="form-group">
                             <label for="street" class="col-sm-1">Straat *</label>
                             <div class="col-sm-3">
+                                <#if person.mainAddress??>
+                                    <input type="hidden" name="mainAddress.id" id="mainAddress.id"  value="${person.mainAddress.id}"/>
+                                </#if>
                                 <input type="text" class="form-control" id="street" name="mainAddress.street" required
                                 <#if person.mainAddress?? && person.mainAddress.street??>
                                        value="${person.mainAddress.street}"
@@ -99,7 +105,11 @@
                         <div class="form-group ">
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
-                                <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
+                                <#if person.mainAddress?? && person.mainAddress.municipality.city??>
+                                    <input type="text" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id" value="${person.mainAddress.municipality.id}"/>
+                                <#else>
+                                    <input type="text" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
+                                </#if>
                                 <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city" required
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                        placeholder="${person.mainAddress.municipality.city}"

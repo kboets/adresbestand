@@ -58,7 +58,7 @@
                                 <#assign personId=person.id>
                                 <td><a href="<@spring.url '/update/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     &nbsp;
-                                    <a class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                    <a href="<@spring.url '/remove/${personId}'/>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                                 </td>
                                 <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>

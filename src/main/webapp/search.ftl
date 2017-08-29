@@ -39,19 +39,13 @@
                         <div class="form-group">
                             <label for="firstName" class="col-sm-2">Voornaam</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="firstName" name="firstName" />
-                            <#--<#list spring.status.errorMessages as error>-->
-                                <#--<b style="color: red">${error}</b>-->
-                            <#--</#list>-->
+                                <input type="text" class="form-control" id="firstName" name="firstName" autofocus />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="col-sm-2">Naam</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="lastName" name="lastName" required minlength="2" />
-                            <#--<#list spring.status.errorMessages as error>-->
-                                <#--<b style="color: red">${error}</b>-->
-                            <#--</#list>-->
+                                <input type="text" class="form-control" id="lastName" name="lastName" minlength="2" />
                             </div>
                         </div>
 
@@ -69,6 +63,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
+                            <th></th>
                             <th><@spring.message "firstname" /></th>
                             <th><@spring.message "lastname" /></th>
                             <th><@spring.message "adres" /></th>
@@ -77,6 +72,11 @@
                         <tbody>
                             <#list persons as person>
                             <tr>
+                                <#assign personId=person.id>
+                                <td><a href="<@spring.url '/update/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                    &nbsp;
+                                    <a href="<@spring.url '/remove/${personId}'/>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                </td>
                                 <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>
                                 <td>${person.mainAddress.value}</td>
