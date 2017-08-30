@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class PersonController {
 
     private final static String CREATE_UPDATE_PAGE = "create_update";
-    private final static String REDIRECT_CU_PAGES="redirect:/create_update";
+    private final static String REDIRECT_CU_PAGES = "redirect:/create_update";
 
     @Autowired
     private IPersonService personService;
@@ -33,30 +33,21 @@ public class PersonController {
         return CREATE_UPDATE_PAGE;
     }
 
-    //@PostMapping("/update")
-
     @GetMapping("/remove/{personId}")
     public String removeUpdatePersonPage(@PathVariable Long personId, Model model) {
         model.addAttribute("person", personService.getPersonByUniqueId(personId));
         personService.removePerson(personService.getPersonByUniqueId(personId));
-        model.addAttribute("person",new Person());
-        model.addAttribute("success","success_remove");
+        model.addAttribute("person", new Person());
+        model.addAttribute("success", "success_remove");
         return CREATE_UPDATE_PAGE;
     }
 
 
     @PostMapping("update/createUpdate")
     public String update(Model model, @ModelAttribute("person") Person person) {
-        if (person.getId() != null) {
-            personService.updatePerson(person);
-            model.addAttribute("person",person);
-            model.addAttribute("success","success_update");
-        } else {
-            personService.savePerson(person);
-            model.addAttribute("person", new Person());
-            model.addAttribute("success","success_create");
-        }
-
+        personService.updatePerson(person);
+        model.addAttribute("person", person);
+        model.addAttribute("success", "success_update");
         return CREATE_UPDATE_PAGE;
     }
 
@@ -64,7 +55,7 @@ public class PersonController {
     public String create(Model model, @ModelAttribute("person") Person person) {
         personService.savePerson(person);
         model.addAttribute("person", new Person());
-        model.addAttribute("success","success_create");
+        model.addAttribute("success", "success_create");
 
         return CREATE_UPDATE_PAGE;
     }

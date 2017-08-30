@@ -106,9 +106,9 @@
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
-                                    <input type="text" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id" value="${person.mainAddress.municipality.id}"/>
+                                    <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id" value="${person.mainAddress.municipality.id}"/>
                                 <#else>
-                                    <input type="text" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
+                                    <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
                                 </#if>
                                 <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city" required
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
