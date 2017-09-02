@@ -152,3 +152,6 @@ body {
 .mySize {
     size: 35px;
 }
+.error {
+    color: red;
+}
