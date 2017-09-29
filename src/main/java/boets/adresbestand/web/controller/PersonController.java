@@ -33,6 +33,13 @@ public class PersonController {
         return CREATE_UPDATE_PAGE;
     }
 
+    @GetMapping("/view/{personId}")
+    public String getReadOnlyPersonPage(@PathVariable Long personId, Model model) {
+        model.addAttribute("person", personService.getPersonByUniqueId(personId));
+        model.addAttribute("readOnly",true);
+        return CREATE_UPDATE_PAGE;
+    }
+
     @GetMapping("/remove/{personId}")
     public String removeUpdatePersonPage(@PathVariable Long personId, Model model) {
         model.addAttribute("person", personService.getPersonByUniqueId(personId));

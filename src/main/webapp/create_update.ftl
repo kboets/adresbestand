@@ -11,6 +11,11 @@
     <#else>
         <title><@spring.message "updateAddress.title" /></title>
     </#if>
+    <#if readOnly??>
+        <#assign readOnly=readOnly>
+    <#else>
+        <#assign readOnly=false>
+    </#if>
 </head>
 <body>
 
@@ -24,8 +29,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><#if person.lastName??>
-                           <@spring.message "updateAddress.title" />
+                    <h1><#if readOnly>
+                            <@spring.message "readAddress.title" />
+                        <#elseif person.lastName??>
+                            <@spring.message "updateAddress.title" />
                         <#else>
                             <@spring.message "createAddress.title" />
                         </#if>
@@ -36,7 +43,9 @@
                             <i class="icon-ok-sign icon-green"></i> <span> <@spring.message code=success /></span>
                         </div>
                     </#if>
-                        <p><#if person.lastName??>
+                        <p><#if readOnly>
+                            <@spring.message "uc.readTitle" />
+                        <#elseif person.lastName??>
                             <@spring.message "uc.subUpdateTitle" />
                         <#else>
                             <@spring.message "uc.subCreateTitle" />
@@ -54,6 +63,9 @@
                                 <#else>
                                        value=""
                                 </#if>
+                                 <#if readOnly>
+                                        disabled
+                                 </#if>
                                 />
                             </div>
                             <label for="lastName" class="col-sm-1">Naam *</label>
@@ -63,6 +75,9 @@
                                        value="${person.lastName}"
                                 <#else>
                                        value=""
+                                </#if>
+                                <#if readOnly>
+                                       disabled
                                 </#if>
                                 />
                             </div>
@@ -79,6 +94,9 @@
                                 <#else>
                                        value=""
                                 </#if>
+                                <#if readOnly>
+                                       disabled
+                                </#if>
                                 />
                             </div>
                             <label for="houseNumber" class="col-sm-1">Nummer *</label>
@@ -89,6 +107,9 @@
                                 <#else>
                                        value=""
                                 </#if>
+                                <#if readOnly>
+                                       disabled
+                                </#if>
                                 />
                             </div>
                             <label for="box" class="col-sm-1">Bus</label>
@@ -98,6 +119,9 @@
                                        value="${person.mainAddress.box}"
                                 <#else>
                                        value=""
+                                </#if>
+                                <#if readOnly>
+                                       disabled
                                 </#if>
                                 />
                             </div>
@@ -118,6 +142,9 @@
                                        value=""
                                        placeholder=""
                                 </#if>
+                                <#if readOnly>
+                                       disabled
+                                </#if>
                                 />
                             </div>
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
@@ -128,12 +155,17 @@
                                 <#else>
                                        value=""
                                 </#if>
+                                <#if readOnly>
+                                       disabled
+                                </#if>
                                 />
                             </div>
                         </div>
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save">bewaar</button>
-                            <button type="reset" class="btn btn-default">Reset</button>
+                            <#if !readOnly>
+                                <button class="btn bold" id="btn_save">bewaar</button>
+                                <button type="reset" class="btn btn-default">Reset</button>
+                            </#if>
                         </div>
                     </form>
                     <br/><br/>
