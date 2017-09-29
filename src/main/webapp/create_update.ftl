@@ -73,7 +73,7 @@
                                 <#if person.mainAddress??>
                                     <input type="hidden" name="mainAddress.id" id="mainAddress.id"  value="${person.mainAddress.id}"/>
                                 </#if>
-                                <input type="text" class="form-control" id="street" name="street"
+                                <input type="text" class="form-control" id="street" name="mainAddress.street"
                                 <#if person.mainAddress?? && person.mainAddress.street??>
                                        value="${person.mainAddress.street}"
                                 <#else>
@@ -83,7 +83,7 @@
                             </div>
                             <label for="houseNumber" class="col-sm-1">Nummer *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="houseNumber" name="houseNumber"
+                                <input type="text" class="form-control" id="houseNumber" name="mainAddress.houseNumber"
                                 <#if person.mainAddress?? && person.mainAddress.houseNumber??>
                                        value="${person.mainAddress.houseNumber}"
                                 <#else>
@@ -93,7 +93,7 @@
                             </div>
                             <label for="box" class="col-sm-1">Bus</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="box" name="box"
+                                <input type="text" class="form-control" id="box" name="mainAddress.box"
                                 <#if person.mainAddress?? && person.mainAddress.box??>
                                        value="${person.mainAddress.box}"
                                 <#else>
@@ -106,11 +106,11 @@
                             <label for="city" class="col-sm-1">Gemeente *</label>
                             <div class="col-sm-3">
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
-                                    <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="municipalityId" value="${person.mainAddress.municipality.id}"/>
+                                    <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id" value="${person.mainAddress.municipality.id}"/>
                                 <#else>
-                                    <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="municipalityId"/>
+                                    <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id"/>
                                 </#if>
-                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="city"
+                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="mainAddress.municipality.city"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                        placeholder="${person.mainAddress.municipality.city}"
                                        value="${person.mainAddress.municipality.city}"
@@ -122,7 +122,7 @@
                             </div>
                             <label for="zipcode" class="col-sm-1">Postnummer *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="zipCode" name="zipCode"
+                                <input type="text" class="form-control" id="zipCode" name="mainAddress.municipality.zipCode"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.zipCode??>
                                        value="${person.mainAddress.municipality.zipCode?c}"
                                 <#else>
@@ -141,11 +141,11 @@
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-    <script>
-        console.log("inside page of create update");
+    <#--<!-- /#page-content-wrapper &ndash;&gt;-->
+    <#--<script>-->
+        <#--console.log("inside page of create update");-->
 
-    </script>
+    <#--</script>-->
 </div>
 </body>
 
