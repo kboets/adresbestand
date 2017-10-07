@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <@header.headmeta/>
+        <script src="<@spring.url '/js/adresbestand_searchResult.js'/>"></script>
     <title><@spring.message "searchAddress.title" /></title>
 </head>
 <body>
@@ -60,29 +61,49 @@
                                     &nbsp;
                                     <a href="<@spring.url '/view/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
                                     &nbsp;
-                                    <a href="<@spring.url '/remove/${personId}'/>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                    <a href="#bannerformmodal" data-toggle="modal" data-target="#bannerformmodal" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
                                 </td>
                                 <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>
                                 <td>${person.mainAddress.street} ${person.mainAddress.houseNumber}, ${person.mainAddress.municipality.zipCode?c} ${person.mainAddress.municipality.city} </td>
                             </tr>
+                                <!-- Modal -->
+                                <div class="modal fade bannerformmodal" id="bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </#list>
                         </table>
-
-
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
+
+        <!-- /#page-content-wrap
+        per -->
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <#--<!-- jQuery &ndash;&gt;-->
+    <#--<script src="js/jquery.js"></script>-->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <#--<!-- Bootstrap Core JavaScript &ndash;&gt;-->
+    <#--<script src="js/bootstrap.min.js"></script>-->
 
     <!-- Menu Toggle Script -->
     <script>

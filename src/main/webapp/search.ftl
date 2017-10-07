@@ -32,9 +32,6 @@
                         <p>Hier kan u een of meerdere adressen opzoeken. <br/>
                             Geef een voornaam of naam in. Een van beide is verplicht.
                         </p>
-                        <div>
-
-                        </div>
                         <br/>
                         <div class="form-group">
                             <label for="firstName" class="col-sm-2">Voornaam</label>
@@ -99,24 +96,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-
     <!-- Menu Toggle Script -->
-    <script>
-//        $(document).ready(function() {
-//            console.log("ready and set");
-//            $("#menu-toggle").click(function (e) {
-//                e.preventDefault();
-//                $("#wrapper").toggleClass("toggled");
-//            });
-//
-//            $("searchAddressForm").validate();
-//        });
-
-
-
-    </script>
-
 </body>
-
 </html>
