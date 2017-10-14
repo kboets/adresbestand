@@ -61,28 +61,29 @@
                                     &nbsp;
                                     <a href="<@spring.url '/view/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
                                     &nbsp;
-                                    <a href="#bannerformmodal" data-toggle="modal" data-target="#bannerformmodal" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
+                                    <a href="personRemoveModal" data-toggle="modal" data-id="${personId}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
                                 </td>
                                 <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>
                                 <td>${person.mainAddress.street} ${person.mainAddress.houseNumber}, ${person.mainAddress.municipality.zipCode?c} ${person.mainAddress.municipality.city} </td>
                             </tr>
                                 <!-- Modal -->
-                                <div class="modal fade bannerformmodal" id="bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
+                                <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                <h3 class="modal-title" id="exampleModalLabel"><@spring.message "removeModal.title" /></h3>
                                             </div>
                                             <div class="modal-body">
-                                                ...
+                                                <input type="hidden" name="hiddenValue" id="personId" value="1" />
+                                                <@spring.message "removeModal.body" />
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Remove</button>
+                                                <button id="confirm_modal"  type="button" class="btn btn-primary"><@spring.message "removeModal.remove" /></button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><@spring.message "removeModal.close" /></button>
                                             </div>
                                         </div>
                                     </div>

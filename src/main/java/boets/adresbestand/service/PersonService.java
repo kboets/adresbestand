@@ -77,7 +77,7 @@ public class PersonService implements IPersonService {
             personRepository.delete(person);
             addressRepository.delete(address);
         } else {
-            logger.info("More persons live in this address; don not remove address");
+            logger.info("More persons live in this address; do not remove address");
             personRepository.delete(person);
         }
     }
