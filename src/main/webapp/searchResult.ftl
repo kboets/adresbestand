@@ -95,21 +95,7 @@
             </div>
         </div>
 
-        <!-- /#page-content-wrap
-        per -->
     </div>
-    <!-- /#wrapper -->
-
-    <#--<!-- jQuery &ndash;&gt;-->
-    <#--<script src="js/jquery.js"></script>-->
-
-    <#--<!-- Bootstrap Core JavaScript &ndash;&gt;-->
-    <#--<script src="js/bootstrap.min.js"></script>-->
-
-    <!-- Menu Toggle Script -->
-    <script>
-
-    </script>
 
 </body>
 

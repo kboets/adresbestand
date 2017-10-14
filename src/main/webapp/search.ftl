@@ -4,17 +4,14 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <@header.headmeta/>
-        <script src="<@spring.url '/js/adresbestand_search.js'/>"></script>
+        <script src="<@spring.url '/js/adresbestand_searchResult.js'/>"></script>
     <title><@spring.message "searchAddress.title" /></title>
 </head>
-
 <body>
 
 <div id="wrapper">
     <!-- Sidebar -->
 <@sidebar.menu/>
-    <!-- /#sidebar-wrapper -->
-
     <!-- Page Content -->
     <div id="page-content-wrapper">
         <div class="container-fluid">
@@ -29,33 +26,33 @@
                             </div>
                         </#list>
                     </#if>
-                        <p>Hier kan u een of meerdere adressen opzoeken. <br/>
-                            Geef een voornaam of naam in. Een van beide is verplicht.
+                        <p><@spring.message "search.intro1" /> <br/>
+                        <@spring.message "search.intro2" />
                         </p>
                         <br/>
                         <div class="form-group">
-                            <label for="firstName" class="col-sm-2">Voornaam</label>
+                            <label for="firstName" class="col-sm-2"><@spring.message "firstname" /></label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="firstName" name="firstName" autofocus />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="lastName" class="col-sm-2">Naam</label>
+                            <label for="lastName" class="col-sm-2"><@spring.message "lastname" /></label>
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" id="lastName" name="lastName" minlength="2" />
                             </div>
                         </div>
 
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save">zoek</button>
-                            <button class="btn btn-default" type="reset">reset</button>
+                            <button class="btn bold" id="btn_save"><@spring.message "button.search" /></button>
+                            <button class="btn btn-default" type="reset"><@spring.message "button.reset" /></button>
                         </div>
                     </form>
                 </div>
                 <br/><br/>
             <#if persons?? && persons?size != 0 >
                 <h2><@spring.message "search.result.title"/></h2>
-                <p>De volgende person(en) werden teruggevonden.</p>
+                <p><@spring.message "search.result.intro"/></p>
                 <div class="col-lg-12">
                     <table class="table table-bordered">
                         <thead>
@@ -74,12 +71,33 @@
                                     &nbsp;
                                     <a href="<@spring.url '/view/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
                                     &nbsp;
-                                    <a href="<@spring.url '/remove/${personId}'/>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                    <a href="personRemoveModal" data-toggle="modal" data-id="${personId}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
                                 </td>
                                 <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>
                                 <td>${person.mainAddress.value}</td>
                             </tr>
+                            <!-- Modal -->
+                            <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="exampleModalLabel"><@spring.message "removeModal.title" /></h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="hidden" name="hiddenValue" id="personId" value="1" />
+                                            <@spring.message "removeModal.body" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="confirm_modal"  type="button" class="btn btn-primary"><@spring.message "removeModal.remove" /></button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><@spring.message "removeModal.close" /></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </#list>
                         </tbody>
                     </table>
@@ -87,15 +105,12 @@
             <#elseif persons??>
                 <div class="col-lg-12">
                     <h2><@spring.message "search.result.title"/></h2>
-                    <p>Er werd niemand teruggevonden met deze zoekcriteria. <br/>Gelieve opnieuw te proberen.</p>
+                    <p><@spring.message "search.noresult.intro"/><br/><@spring.message "search.noresult.intro2"/></p>
                 </div>
             </#if>
             </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
+           </div>
     </div>
-    <!-- /#wrapper -->
-    <!-- Menu Toggle Script -->
+
 </body>
 </html>

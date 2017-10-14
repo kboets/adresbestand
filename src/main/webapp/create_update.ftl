@@ -11,11 +11,6 @@
     <#else>
         <title><@spring.message "updateAddress.title" /></title>
     </#if>
-    <#if readOnly??>
-        <#assign readOnly=readOnly>
-    <#else>
-        <#assign readOnly=false>
-    </#if>
 </head>
 <body>
 
@@ -29,12 +24,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1><#if readOnly>
+                    <h1><#if readOnly??>
+                            <#assign modus="readOnly">
                             <@spring.message "readAddress.title" />
                         <#elseif person.lastName??>
                             <@spring.message "updateAddress.title" />
+                            <#assign modus="edit">
                         <#else>
                             <@spring.message "createAddress.title" />
+                            <#assign modus="create">
                         </#if>
                     </h1>
                     <form id="createUpdateForm" name="person" action="createUpdate" method="POST" class="form-horizontal">
@@ -43,16 +41,16 @@
                             <i class="icon-ok-sign icon-green"></i> <span> <@spring.message code=success /></span>
                         </div>
                     </#if>
-                        <p><#if readOnly>
+                        <p><#if modus=="readOnly">
                             <@spring.message "uc.readTitle" />
-                        <#elseif person.lastName??>
+                        <#elseif modus=="edit">
                             <@spring.message "uc.subUpdateTitle" />
                         <#else>
                             <@spring.message "uc.subCreateTitle" />
                         </#if></p>
                         <br/>
                         <div class="form-group">
-                            <label for="firstName" class="col-sm-1">Voornaam </label>
+                            <label for="firstName" class="col-sm-1"><@spring.message "firstname" /></label>
                             <div class="col-sm-3">
                                 <#if person.id??>
                                     <input type="hidden" name="id" id="id"  value="${person.id}"/>
@@ -63,12 +61,12 @@
                                 <#else>
                                        value=""
                                 </#if>
-                                 <#if readOnly>
+                                 <#if modus=="readOnly">
                                         disabled
                                  </#if>
                                 />
                             </div>
-                            <label for="lastName" class="col-sm-1">Naam *</label>
+                            <label for="lastName" class="col-sm-1"><@spring.message "lastname" /> *</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="lastName" name="lastName"
                                 <#if person.lastName??>
@@ -76,14 +74,14 @@
                                 <#else>
                                        value=""
                                 </#if>
-                                <#if readOnly>
+                                <#if modus=="readOnly">
                                        disabled
                                 </#if>
                                 />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="street" class="col-sm-1">Straat *</label>
+                            <label for="street" class="col-sm-1"><@spring.message "street" /> *</label>
                             <div class="col-sm-3">
                                 <#if person.mainAddress??>
                                     <input type="hidden" name="mainAddress.id" id="mainAddress.id"  value="${person.mainAddress.id}"/>
@@ -94,12 +92,12 @@
                                 <#else>
                                        value=""
                                 </#if>
-                                <#if readOnly>
+                                <#if modus=="readOnly">
                                        disabled
                                 </#if>
                                 />
                             </div>
-                            <label for="houseNumber" class="col-sm-1">Nummer *</label>
+                            <label for="houseNumber" class="col-sm-1"><@spring.message "housenumber" /> *</label>
                             <div class="col-sm-1">
                                 <input type="text" class="form-control" id="houseNumber" name="mainAddress.houseNumber"
                                 <#if person.mainAddress?? && person.mainAddress.houseNumber??>
@@ -107,12 +105,12 @@
                                 <#else>
                                        value=""
                                 </#if>
-                                <#if readOnly>
+                                <#if modus=="readOnly">
                                        disabled
                                 </#if>
                                 />
                             </div>
-                            <label for="box" class="col-sm-1">Bus</label>
+                            <label for="box" class="col-sm-1"><@spring.message "box" /></label>
                             <div class="col-sm-1">
                                 <input type="text" class="form-control" id="box" name="mainAddress.box"
                                 <#if person.mainAddress?? && person.mainAddress.box??>
@@ -120,14 +118,14 @@
                                 <#else>
                                        value=""
                                 </#if>
-                                <#if readOnly>
+                                <#if modus=="readOnly">
                                        disabled
                                 </#if>
                                 />
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="city" class="col-sm-1">Gemeente *</label>
+                            <label for="city" class="col-sm-1"><@spring.message "city" /> *</label>
                             <div class="col-sm-3">
                                 <#if person.mainAddress?? && person.mainAddress.municipality.city??>
                                     <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="mainAddress.municipality.id" value="${person.mainAddress.municipality.id}"/>
@@ -142,12 +140,12 @@
                                        value=""
                                        placeholder=""
                                 </#if>
-                                <#if readOnly>
+                                <#if modus=="readOnly">
                                        disabled
                                 </#if>
                                 />
                             </div>
-                            <label for="zipcode" class="col-sm-1">Postnummer *</label>
+                            <label for="zipcode" class="col-sm-1"><@spring.message "zipcode" /> *</label>
                             <div class="col-sm-1">
                                 <input type="text" class="form-control" id="zipCode" name="mainAddress.municipality.zipCode"
                                 <#if person.mainAddress?? && person.mainAddress.municipality.zipCode??>
@@ -155,16 +153,18 @@
                                 <#else>
                                        value=""
                                 </#if>
-                                <#if readOnly>
+                                <#if modus=="readOnly">
                                        disabled
                                 </#if>
                                 />
                             </div>
                         </div>
                         <div class="buttons">
-                            <#if !readOnly>
-                                <button class="btn bold" id="btn_save">bewaar</button>
-                                <button type="reset" class="btn btn-default">Reset</button>
+                            <#if modus=="create">
+                                <button class="btn bold" id="btn_save"><@spring.message "button.save" /></button>
+                                <button type="reset" class="btn btn-default"><@spring.message "button.reset" /></button>
+                            <#elseif modus=="edit">
+                                <button class="btn bold" id="btn_save"><@spring.message "button.save" /></button>
                             </#if>
                         </div>
                     </form>
@@ -173,11 +173,7 @@
             </div>
         </div>
     </div>
-    <#--<!-- /#page-content-wrapper &ndash;&gt;-->
-    <#--<script>-->
-        <#--console.log("inside page of create update");-->
 
-    <#--</script>-->
 </div>
 </body>
 
