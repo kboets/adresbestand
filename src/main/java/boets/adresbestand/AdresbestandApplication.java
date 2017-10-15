@@ -7,12 +7,15 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class AdresbestandApplication {
+public class AdresbestandApplication extends SpringBootServletInitializer  {
 
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(AdresbestandApplication.class);
+	}
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdresbestandApplication.class, args);
-
 	}
 }
