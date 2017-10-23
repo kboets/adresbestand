@@ -1,5 +1,8 @@
 package boets.adresbestand.domain;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Persistable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -27,7 +30,7 @@ public class Person implements Serializable {
     @Column(name = "EMAIL")
     private Set<String> emails;
 
-    @ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID")
     private Address mainAddress;
 
@@ -81,7 +84,7 @@ public class Person implements Serializable {
     }
 
     public Set<String> getEmails() {
-        if(emails == null) {
+        if (emails == null) {
             emails = new HashSet<>();
         }
         return emails;
@@ -91,12 +94,12 @@ public class Person implements Serializable {
         this.emails = emails;
     }
 
-    public void addEmail(String email){
+    public void addEmail(String email) {
         getEmails().add(email);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Person has name ");
         builder.append(this.getLastName());
@@ -105,5 +108,12 @@ public class Person implements Serializable {
         builder.append(" and address ");
         builder.append(this.getMainAddress().toString());
         return builder.toString();
+    }
+
+    public void capitalizeToUpperCase() {
+        this.setFirstName(StringUtils.capitalize(this.getFirstName()));
+        this.setLastName(StringUtils.capitalize(this.getLastName()));
+        this.getMainAddress().setStreet(StringUtils.capitalize(this.getMainAddress().getStreet()));
+        this.getMainAddress().getMunicipality().setCity(StringUtils.capitalize(this.getMainAddress().getMunicipality().getCity()));
     }
 }

@@ -1,5 +1,7 @@
 package boets.adresbestand.service.E2E;
 
+import boets.adresbestand.domain.Address;
+import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.mock.MockObject;
 import boets.adresbestand.repository.AddressRepository;
@@ -80,6 +82,17 @@ public class PersonServiceIntegrationTest {
         assertThat(objectUnderTest.getPersonByUniqueId(0L), nullValue());
         assertThat(addressRepository.findOne(addressId), notNullValue());
     }
+
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
+    @Test
+    public void givenOnePerson_whenCreateTheSameLowerCase_shouldNotAddedTwice() {
+        Person lowerWebbLowerCase = MockObject.createLowerCaseWebbPerson();
+        objectUnderTest.savePerson(lowerWebbLowerCase);
+        assertThat(objectUnderTest.getTotalSavedPersons(), is(equalTo(1)));
+
+    }
+
+
 
 
 }

@@ -2,6 +2,7 @@ package boets.adresbestand.repository;
 
 import boets.adresbestand.domain.Address;
 import boets.adresbestand.domain.Person;
+import boets.adresbestand.mock.MockObject;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
@@ -15,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
+
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -78,6 +81,16 @@ public class PersonRepositoryTest {
     public void test_findMainAddressForNotPersistedName_shouldReturn_NoAddress() {
         assertThat(personRepository.findMainAddressForName("Dua"), hasSize(0));
     }
+
+    @Test
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
+    public void givenSamePersonAsPersisted_findUniquePerson_shouldReturnPerson() {
+        Person webb = MockObject.createLowerCaseWebbPerson();
+        webb.capitalizeToUpperCase();
+        Optional<Person> result = personRepository.findUniquePerson(webb);
+        assertThat(result.isPresent(), equalTo(Boolean.TRUE));
+    }
+
 //    @Test
 //    public void test_SaveNewPersonWithNewAddress() {
 //        Address address=new Address();

@@ -1,6 +1,7 @@
 package boets.adresbestand.mock;
 
 import boets.adresbestand.domain.Address;
+import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.service.MunicipalityMockCreator;
 
@@ -34,6 +35,21 @@ public class MockObject {
 
 
         return person;
+    }
+
+    public static Person createLowerCaseWebbPerson() {
+        Person webbLowerCase = new Person();
+        webbLowerCase.setFirstName("phillip");
+        webbLowerCase.setLastName("webb");
+        Address address = new Address();
+        address.setHouseNumber("5");
+        address.setStreet("westelsebaan");
+        Municipality municipality = new Municipality();
+        municipality.setCity("Averbode");
+        municipality.setZipCode(3271);
+        address.setMunicipality(municipality);
+        webbLowerCase.setMainAddress(address);
+        return webbLowerCase;
     }
 
 }

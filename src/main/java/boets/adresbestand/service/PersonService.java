@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -50,18 +51,20 @@ public class PersonService implements IPersonService {
 
     @Override
     public void savePerson(Person person)   {
-        Address addressAlreadySaved = getAddressByUniqueConstraint(person.getMainAddress());
-        try {
-            if(addressAlreadySaved != null) {
-                addressAlreadySaved.addPerson(person);
-                person.setMainAddress(addressAlreadySaved);
+        person.capitalizeToUpperCase();
+        Optional<Person> personOptional = personRepository.findUniquePerson(person);
+        if(!personOptional.isPresent()) {
+            Optional<Address> optionalAddress = getAddressByUniqueConstraint(person.getMainAddress());
+            if(optionalAddress.isPresent()){
+                Address address = optionalAddress.get();
+                address.addPerson(person);
+                person.setMainAddress(address);
                 personRepository.save(person);
-            } else {
-                personRepository.save(person);
+                return;
             }
-        } catch(DataIntegrityViolationException ex){
-            logger.warn("Person could not be saved : " +person.toString());
+            personRepository.save(person);
         }
+
     }
 
     @Override
@@ -83,16 +86,16 @@ public class PersonService implements IPersonService {
     }
 
 
-    private Address getAddressByUniqueConstraint(Address address) {
+    private Optional<Address> getAddressByUniqueConstraint(Address address) {
         Address persistedAddress = null;
         if(address !=null) {
             if(StringUtils.isNotEmpty(address.getBox())){
-                persistedAddress = addressRepository.findByUniqueConstraint(address.getStreet(), address.getHouseNumber(), address.getBox(), address.getMunicipality().getZipCode());
+                persistedAddress = addressRepository.findByUniqueConstraint(StringUtils.capitalize(address.getStreet()), address.getHouseNumber(), address.getBox(), address.getMunicipality().getZipCode());
             } else {
-                persistedAddress = addressRepository.findByUniqueConstraint(address.getStreet(), address.getHouseNumber(), address.getMunicipality().getZipCode());
+                persistedAddress = addressRepository.findByUniqueConstraint(StringUtils.capitalize(address.getStreet()), address.getHouseNumber(), address.getMunicipality().getZipCode());
             }
         }
-        return  persistedAddress;
+        return  Optional.ofNullable(persistedAddress);
     }
 
     @Override
