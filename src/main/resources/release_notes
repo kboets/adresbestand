@@ -13,3 +13,5 @@
     * added emails
 20/10/2017 version 1.2.0
     * added jndi lookup + application-prd properties
+23/10/2017 version 1.2.1
+    * bugfixed adding double persons
