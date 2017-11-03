@@ -116,4 +116,35 @@ public class Person implements Serializable {
         this.getMainAddress().setStreet(StringUtils.capitalize(this.getMainAddress().getStreet()));
         this.getMainAddress().getMunicipality().setCity(StringUtils.capitalize(this.getMainAddress().getMunicipality().getCity()));
     }
+
+    public String printPersonName(){
+        StringBuilder builder = new StringBuilder();
+        if(StringUtils.isNotEmpty(this.getFirstName())) {
+            builder.append(this.getFirstName());
+            builder.append(" ");
+        }
+        builder.append(this.getLastName());
+        return builder.toString();
+
+    }
+
+    public String printStreetAndNumber() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getMainAddress().getStreet());
+        builder.append(" ");
+        builder.append(this.getMainAddress().getHouseNumber());
+        if(StringUtils.isNotEmpty(this.getMainAddress().getBox())) {
+            builder.append(" ");
+            builder.append(this.getMainAddress().getBox());
+        }
+        return builder.toString();
+    }
+
+    public String printMunicipale() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getMainAddress().getMunicipality().getZipCode());
+        builder.append(" ");
+        builder.append(this.getMainAddress().getMunicipality().getCity());
+        return builder.toString();
+    }
 }
