@@ -39,16 +39,14 @@ public class PrintController {
     @Autowired
     private IPrintService printService;
 
-    @GetMapping("/print")
-    public ResponseEntity<ByteArrayResource> printAddress() throws IOException {
-        List<Person> personList = new ArrayList<>();
-        Path path = Paths.get(FILE_PATH);
-        byte[] data = Files.readAllBytes(path);
+    @GetMapping("/print/{personId}")
+    public ResponseEntity<ByteArrayResource> printAddress(@PathVariable Long personId) throws IOException {
+        byte[] data = printService.createPdf(personId);
 
         ByteArrayResource resource = new ByteArrayResource(data);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment;filename=" + path.getFileName().toString())
+                        "attachment;filename=" + "adresbestand.pdf")
                 .contentType(MediaType.APPLICATION_PDF).contentLength(data.length)
                 .body(resource);
 

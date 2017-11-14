@@ -23,13 +23,12 @@ public class PrintServiceTest {
 
     @Autowired
     private IPrintService objectUnderTest;
-
     private List<Person> personList;
-
     @Before
     public void init() {
         personList = new ArrayList<>();
     }
+
 
     @Test
     public void givenOneAddress_createPdf_shouldReturnDocumentWithOnePage() {
