@@ -18,7 +18,7 @@ public class PdfCreator {
         //2. add content to document
         //https://www.tutorialspoint.com/pdfbox/pdfbox_adding_text.htm
 
-        //3. print content
+        //3. createPdf content
 
     }
 }

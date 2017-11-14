@@ -188,6 +188,8 @@
                                 <button type="reset" class="btn btn-default"><@spring.message "button.reset" /></button>
                             <#elseif modus=="edit">
                                 <button class="btn bold" id="btn_save"><@spring.message "button.save" /></button>
+                            <#elseif modus=="edit" || modus=="readOnly">
+                                <a href="<@spring.url '/print'/>" class="btn btn-info" role="button"><@spring.message "button.print" /></a>
                             </#if>
                         </div>
                     </form>

@@ -11,5 +11,5 @@ import java.util.Optional;
  */
 public interface IPrintService {
 
-    Optional<PDDocument> print (List<Person> persons);
+    Optional<PDDocument> createPdf(List<Person> persons);
 }

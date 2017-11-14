@@ -1,5 +1,8 @@
 $(document).ready(function() {
-    console.log("adresbestand_cu.js");
+
+    $("#btn_print").click(function () {
+
+    })
 
 
     $("#createUpdateForm").validate();

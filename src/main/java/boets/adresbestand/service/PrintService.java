@@ -57,13 +57,12 @@ public class PrintService implements IPrintService {
         offSetMap.put(new Integer(20), createFloats("495", "150"));
 
     }
-    public Optional<PDDocument> print(List<Person> persons) {
+    public Optional<PDDocument> createPdf(List<Person> persons) {
         //1. create document
         PDDocument document = createPdfDocument(persons.size());
         //2. add content to document
         try {
             addContentPdf(persons,document);
-            document.save(new File("C:/tmp/load.pdf"));
             document.close();
         } catch (IOException e) {
             logger.warn("Exception occured while setting content to pdf" + e);
@@ -89,7 +88,6 @@ public class PrintService implements IPrintService {
                 contentStream.beginText();
                 contentStream.newLineAtOffset(offSetMap.get(offSet)[0],offSetMap.get(offSet)[1]);
                 contentStream.setLeading(14.5f);
-                //contentStream.setLeading(leadingMap.get(j));
                 contentStream.showText(persons.get(0).printPersonName());
                 contentStream.newLine();
                 contentStream.showText(persons.get(0).printStreetAndNumber());

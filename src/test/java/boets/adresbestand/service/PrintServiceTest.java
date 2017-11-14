@@ -6,10 +6,8 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -34,49 +32,49 @@ public class PrintServiceTest {
     }
 
     @Test
-    public void givenOneAddress_print_shouldReturnDocumentWithOnePage() {
+    public void givenOneAddress_createPdf_shouldReturnDocumentWithOnePage() {
         personList.add(MockObject.createJohnDoe());
-        Optional<PDDocument> documentOptional = objectUnderTest.print(personList);
+        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
         assertThat(documentOptional.isPresent()).isTrue();
         assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
     }
 
     @Test
-    public void givenThreeAddresses_print_shouldReturnDocumentWithOnePage() {
+    public void givenThreeAddresses_createPdf_shouldReturnDocumentWithOnePage() {
         for(int i=0;i<3;i++) {
             personList.add(MockObject.createJohnDoe());
         }
-        Optional<PDDocument> documentOptional = objectUnderTest.print(personList);
+        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
         assertThat(documentOptional.isPresent()).isTrue();
         assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
     }
 
     @Test
-    public void givenSixAddresses_print_shouldReturnDocumentWithOnePage() {
+    public void givenSixAddresses_createPdf_shouldReturnDocumentWithOnePage() {
         for(int i=0;i<6;i++) {
             personList.add(MockObject.createJohnDoe());
         }
-        Optional<PDDocument> documentOptional = objectUnderTest.print(personList);
+        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
         assertThat(documentOptional.isPresent()).isTrue();
         assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
     }
 
     @Test
-    public void givenFullPageAddresses_print_shouldReturnDocumentWithOnePage() {
+    public void givenFullPageAddresses_createPdf_shouldReturnDocumentWithOnePage() {
         for(int i=0;i<21;i++) {
             personList.add(MockObject.createJohnDoe());
         }
-        Optional<PDDocument> documentOptional = objectUnderTest.print(personList);
+        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
         assertThat(documentOptional.isPresent()).isTrue();
         assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
     }
 
     @Test
-    public void givenMultipleFullPageAddresses_print_shouldReturnDocumentWithOnePage() {
+    public void givenMultipleFullPageAddresses_createPdf_shouldReturnDocumentWithOnePage() {
         for(int i=0;i<44;i++) {
             personList.add(MockObject.createJohnDoe());
         }
-        Optional<PDDocument> documentOptional = objectUnderTest.print(personList);
+        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
         assertThat(documentOptional.isPresent()).isTrue();
         assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(3);
     }
