@@ -17,6 +17,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @Controller
 public class SearchController {
 
+    public static final String PERSONS = "personList";
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final static String SEARCH = "search";
     private final static String SEARCH_RESULT = "searchResult";
@@ -67,7 +69,7 @@ public class SearchController {
     }
 
     @PostMapping("/searchAddress")
-    public String search(Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result, RedirectAttributes redirectAttributes) {
+    public String search(HttpServletRequest request, Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             List<ObjectError> validationErrors = result.getAllErrors();
             List<String> errors = new ArrayList<>();
@@ -80,6 +82,7 @@ public class SearchController {
             return SEARCH;
         }
         List<Person> persons = personService.searchPersons(searchAddressFormn);
+        request.getSession().setAttribute(SearchController.PERSONS, persons);
         model.addAttribute("searchAddressForm", new SearchAddressForm());
         model.addAttribute("persons", persons);
         return SEARCH;

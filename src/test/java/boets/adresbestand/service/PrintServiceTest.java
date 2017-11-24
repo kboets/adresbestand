@@ -30,51 +30,51 @@ public class PrintServiceTest {
     }
 
 
-    @Test
-    public void givenOneAddress_createPdf_shouldReturnDocumentWithOnePage() {
-        personList.add(MockObject.createJohnDoe());
-        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
-        assertThat(documentOptional.isPresent()).isTrue();
-        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
-    }
-
-    @Test
-    public void givenThreeAddresses_createPdf_shouldReturnDocumentWithOnePage() {
-        for(int i=0;i<3;i++) {
-            personList.add(MockObject.createJohnDoe());
-        }
-        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
-        assertThat(documentOptional.isPresent()).isTrue();
-        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
-    }
-
-    @Test
-    public void givenSixAddresses_createPdf_shouldReturnDocumentWithOnePage() {
-        for(int i=0;i<6;i++) {
-            personList.add(MockObject.createJohnDoe());
-        }
-        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
-        assertThat(documentOptional.isPresent()).isTrue();
-        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
-    }
-
-    @Test
-    public void givenFullPageAddresses_createPdf_shouldReturnDocumentWithOnePage() {
-        for(int i=0;i<21;i++) {
-            personList.add(MockObject.createJohnDoe());
-        }
-        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
-        assertThat(documentOptional.isPresent()).isTrue();
-        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
-    }
-
-    @Test
-    public void givenMultipleFullPageAddresses_createPdf_shouldReturnDocumentWithOnePage() {
-        for(int i=0;i<44;i++) {
-            personList.add(MockObject.createJohnDoe());
-        }
-        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
-        assertThat(documentOptional.isPresent()).isTrue();
-        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(3);
-    }
+//    @Test
+//    public void givenOneAddress_createPdf_shouldReturnDocumentWithOnePage() {
+//        personList.add(MockObject.createJohnDoe());
+//        Optional<PDDocument> documentOptional = objectUnderTest.createP(personList);
+//        assertThat(documentOptional.isPresent()).isTrue();
+//        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
+//    }
+//
+//    @Test
+//    public void givenThreeAddresses_createPdf_shouldReturnDocumentWithOnePage() {
+//        for(int i=0;i<3;i++) {
+//            personList.add(MockObject.createJohnDoe());
+//        }
+//        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
+//        assertThat(documentOptional.isPresent()).isTrue();
+//        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
+//    }
+//
+//    @Test
+//    public void givenSixAddresses_createPdf_shouldReturnDocumentWithOnePage() {
+//        for(int i=0;i<6;i++) {
+//            personList.add(MockObject.createJohnDoe());
+//        }
+//        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
+//        assertThat(documentOptional.isPresent()).isTrue();
+//        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
+//    }
+//
+//    @Test
+//    public void givenFullPageAddresses_createPdf_shouldReturnDocumentWithOnePage() {
+//        for(int i=0;i<21;i++) {
+//            personList.add(MockObject.createJohnDoe());
+//        }
+//        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
+//        assertThat(documentOptional.isPresent()).isTrue();
+//        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(1);
+//    }
+//
+//    @Test
+//    public void givenMultipleFullPageAddresses_createPdf_shouldReturnDocumentWithOnePage() {
+//        for(int i=0;i<44;i++) {
+//            personList.add(MockObject.createJohnDoe());
+//        }
+//        Optional<PDDocument> documentOptional = objectUnderTest.createPdf(personList);
+//        assertThat(documentOptional.isPresent()).isTrue();
+//        assertThat(documentOptional.get().getNumberOfPages()).isEqualTo(3);
+//    }
 }

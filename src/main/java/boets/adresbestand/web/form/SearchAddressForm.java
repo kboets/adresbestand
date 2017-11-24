@@ -1,7 +1,10 @@
 package boets.adresbestand.web.form;
 
 
+import boets.adresbestand.domain.Person;
+
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 public class SearchAddressForm {
 
@@ -9,6 +12,8 @@ public class SearchAddressForm {
     private String lastName;
 
     private String firstName;
+
+    private List<Person> personList;
 
     public String getLastName() {
         return lastName;
@@ -24,5 +29,13 @@ public class SearchAddressForm {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
     }
 }

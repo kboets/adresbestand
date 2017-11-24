@@ -13,5 +13,7 @@ public interface IPrintService {
 
     byte[] createPdf(Long personId);
 
-    Optional<PDDocument> createPdf(List<Person> persons);
+    byte[] createPdf(List persons);
+
+    //Optional<PDDocument> createPdf(List<Person> persons);
 }

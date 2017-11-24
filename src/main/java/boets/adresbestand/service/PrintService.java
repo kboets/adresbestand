@@ -2,7 +2,6 @@ package boets.adresbestand.service;
 
 import boets.adresbestand.domain.Person;
 import com.google.common.annotations.VisibleForTesting;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
@@ -70,11 +68,16 @@ public class PrintService implements IPrintService {
     public byte[] createPdf(Long personId) {
         List<Person> personList = new ArrayList<>();
         personList.add(personService.getPersonByUniqueId(personId));
-        return transformPDDocument(createPdf(personList));
+        return transformPDDocument(createPDDocument(personList));
     }
 
+    @Override
+    public byte[] createPdf(List persons) {
+        return transformPDDocument(createPDDocument(persons));
+    }
 
-    public Optional<PDDocument> createPdf(List<Person> persons) {
+    @VisibleForTesting
+    private Optional<PDDocument> createPDDocument(List<Person> persons) {
         //1. create document
         PDDocument document = createPdfDocument(persons.size());
         //2. add content to document
