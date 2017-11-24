@@ -91,6 +91,9 @@
                             </#list>
                         </table>
                     </div>
+                    <div class="buttons">
+                        <a href="<@spring.url '/print' />" target="_blank" class="btn btn-info" role="button"><@spring.message "button.print" /></a>
+                    </div>
                 </div>
             </div>
         </div>

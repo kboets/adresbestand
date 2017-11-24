@@ -47,13 +47,13 @@ public class SearchController {
     }
 
     @GetMapping("/findAll/{pageNumber}")
-    public String getAllAddresses(@PathVariable Integer pageNumber, Model model) {
+    public String getAllAddresses(HttpServletRequest request, @PathVariable Integer pageNumber, Model model) {
         logger.info("Retrieving all addresses Address");
         Page<Person> page = personService.findAllPersons(pageNumber);
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
-
+        request.getSession().setAttribute(SearchController.PERSONS,page.getContent());
         model.addAttribute("pagePersons", page);
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);

@@ -126,17 +126,19 @@ public class PrintService implements IPrintService {
             }
             contentStream.setFont(PDType1Font.HELVETICA, 12);
             int offSet = 0;
+            int personCounter = 0;
             for (int j = start; j < realEnd; j++) {
                 contentStream.beginText();
                 contentStream.newLineAtOffset(offSetMap.get(offSet)[0], offSetMap.get(offSet)[1]);
                 contentStream.setLeading(14.5f);
-                contentStream.showText(persons.get(0).printPersonName());
+                contentStream.showText(persons.get(personCounter).printPersonName());
                 contentStream.newLine();
-                contentStream.showText(persons.get(0).printStreetAndNumber());
+                contentStream.showText(persons.get(personCounter).printStreetAndNumber());
                 contentStream.newLine();
-                contentStream.showText(persons.get(0).printMunicipale());
+                contentStream.showText(persons.get(personCounter).printMunicipale());
                 contentStream.endText();
                 offSet++;
+                personCounter++;
             }
             contentStream.close();
 
