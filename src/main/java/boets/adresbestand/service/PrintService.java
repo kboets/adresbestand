@@ -30,37 +30,49 @@ public class PrintService implements IPrintService {
 
     @Autowired
     private IPersonService personService;
+    private static String firstValue = "45";
+    private static String secondValue = "245";
+    private static String thirdValue = "435";
+    private static String firstHorizontalValue = "715";
+    private static String secondHorizontalValue = "610";
+    private static String thirdHorizontalValue = "505";
+    private static String forthHorizontalValue = "400";
+    private static String fifthHorizontalValue = "300";
+    private static String sixthHorizontalValue = "200";
+    private static String seventhHorizontalValue = "100";
+
+
 
     private static Map<Integer, Float[]> offSetMap = new HashMap<>();
 
     static {
-        offSetMap.put(new Integer(0), createFloats("35", "750"));
-        offSetMap.put(new Integer(1), createFloats("265", "750"));
-        offSetMap.put(new Integer(2), createFloats("495", "750"));
+        offSetMap.put(new Integer(0), createFloats(firstValue, firstHorizontalValue));
+        offSetMap.put(new Integer(1), createFloats(secondValue, firstHorizontalValue));
+        offSetMap.put(new Integer(2), createFloats(thirdValue, firstHorizontalValue));
 
-        offSetMap.put(new Integer(3), createFloats("35", "650"));
-        offSetMap.put(new Integer(4), createFloats("265", "650"));
-        offSetMap.put(new Integer(5), createFloats("495", "650"));
+        offSetMap.put(new Integer(3), createFloats(firstValue, secondHorizontalValue));
+        offSetMap.put(new Integer(4), createFloats(secondValue, secondHorizontalValue));
+        offSetMap.put(new Integer(5), createFloats(thirdValue, secondHorizontalValue));
 
-        offSetMap.put(new Integer(6), createFloats("35", "550"));
-        offSetMap.put(new Integer(7), createFloats("265", "550"));
-        offSetMap.put(new Integer(8), createFloats("495", "550"));
+        offSetMap.put(new Integer(6), createFloats(firstValue, thirdHorizontalValue));
+        offSetMap.put(new Integer(7), createFloats(secondValue, thirdHorizontalValue));
+        offSetMap.put(new Integer(8), createFloats(thirdValue, thirdHorizontalValue));
 
-        offSetMap.put(new Integer(9), createFloats("35", "450"));
-        offSetMap.put(new Integer(10), createFloats("265", "450"));
-        offSetMap.put(new Integer(11), createFloats("495", "450"));
+        offSetMap.put(new Integer(9), createFloats(firstValue, forthHorizontalValue));
+        offSetMap.put(new Integer(10), createFloats(secondValue, forthHorizontalValue));
+        offSetMap.put(new Integer(11), createFloats(thirdValue, forthHorizontalValue));
 
-        offSetMap.put(new Integer(12), createFloats("35", "350"));
-        offSetMap.put(new Integer(13), createFloats("265", "350"));
-        offSetMap.put(new Integer(14), createFloats("495", "350"));
+        offSetMap.put(new Integer(12), createFloats(firstValue, fifthHorizontalValue));
+        offSetMap.put(new Integer(13), createFloats(secondValue, fifthHorizontalValue));
+        offSetMap.put(new Integer(14), createFloats(thirdValue, fifthHorizontalValue));
 
-        offSetMap.put(new Integer(15), createFloats("35", "250"));
-        offSetMap.put(new Integer(16), createFloats("265", "250"));
-        offSetMap.put(new Integer(17), createFloats("495", "250"));
+        offSetMap.put(new Integer(15), createFloats(firstValue, sixthHorizontalValue));
+        offSetMap.put(new Integer(16), createFloats(secondValue, sixthHorizontalValue));
+        offSetMap.put(new Integer(17), createFloats(thirdValue, sixthHorizontalValue));
 
-        offSetMap.put(new Integer(18), createFloats("35", "150"));
-        offSetMap.put(new Integer(19), createFloats("265", "150"));
-        offSetMap.put(new Integer(20), createFloats("495", "150"));
+        offSetMap.put(new Integer(18), createFloats(firstValue, seventhHorizontalValue));
+        offSetMap.put(new Integer(19), createFloats(secondValue, seventhHorizontalValue));
+        offSetMap.put(new Integer(20), createFloats(thirdValue, seventhHorizontalValue));
 
     }
 
@@ -131,8 +143,16 @@ public class PrintService implements IPrintService {
                 contentStream.beginText();
                 contentStream.newLineAtOffset(offSetMap.get(offSet)[0], offSetMap.get(offSet)[1]);
                 contentStream.setLeading(14.5f);
-                contentStream.showText(persons.get(personCounter).printPersonName());
-                contentStream.newLine();
+                if(persons.get(personCounter).hasLongName()) {
+                    contentStream.showText(persons.get(personCounter).printPersonFirstName());
+                    contentStream.newLine();
+                    contentStream.showText(persons.get(personCounter).printPersonLastName());
+                    contentStream.newLine();
+                } else {
+                    contentStream.showText(persons.get(personCounter).printPersonNameAndFirstName());
+                    contentStream.newLine();
+                }
+
                 contentStream.showText(persons.get(personCounter).printStreetAndNumber());
                 contentStream.newLine();
                 contentStream.showText(persons.get(personCounter).printMunicipale());

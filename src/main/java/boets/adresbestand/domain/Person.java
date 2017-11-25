@@ -1,12 +1,10 @@
 package boets.adresbestand.domain;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -117,7 +115,7 @@ public class Person implements Serializable {
         this.getMainAddress().getMunicipality().setCity(StringUtils.capitalize(this.getMainAddress().getMunicipality().getCity()));
     }
 
-    public String printPersonName(){
+    public String printPersonNameAndFirstName(){
         StringBuilder builder = new StringBuilder();
         if(StringUtils.isNotEmpty(this.getFirstName())) {
             builder.append(this.getFirstName());
@@ -125,7 +123,20 @@ public class Person implements Serializable {
         }
         builder.append(this.getLastName());
         return builder.toString();
+    }
 
+    public String printPersonFirstName() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getFirstName());
+        builder.append(" ");
+        return builder.toString();
+    }
+
+    public String printPersonLastName() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getLastName());
+        builder.append(" ");
+        return builder.toString();
     }
 
     public String printStreetAndNumber() {
@@ -146,5 +157,9 @@ public class Person implements Serializable {
         builder.append(" ");
         builder.append(this.getMainAddress().getMunicipality().getCity());
         return builder.toString();
+    }
+
+    public boolean hasLongName() {
+        return this.printPersonNameAndFirstName().length()> 15;
     }
 }

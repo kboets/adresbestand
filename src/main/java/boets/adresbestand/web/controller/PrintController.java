@@ -54,29 +54,4 @@ public class PrintController {
         return response;
     }
 
-//    @GetMapping("/print}")
-//    public ResponseEntity<byte[]> printAddress(@PathVariable List<Person> persons) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-//        String filename = "output.pdf";
-//        headers.setContentDispositionFormData(filename, filename);
-//        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-//        ResponseEntity<byte[]> response = null;
-//
-//        Optional<PDDocument> documentOptional = printService.createPdf(persons);
-//        if(documentOptional.isPresent()){
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//            try {
-//                documentOptional.get().save(byteArrayOutputStream);
-//                documentOptional.get().close();
-//                response = new ResponseEntity<byte[]>(byteArrayOutputStream.toByteArray(), headers, HttpStatus.OK);
-//            } catch (IOException e) {
-//                logger.warn(e.getCause().getMessage());
-//                byte[] errorBytes = new byte[]{};
-//                return new ResponseEntity<byte[]>(errorBytes,headers,HttpStatus.INTERNAL_SERVER_ERROR);
-//            }
-//        }
-//
-//        return response;
-//    }
 }
