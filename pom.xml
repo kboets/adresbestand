@@ -5,8 +5,8 @@
 
 	<groupId>boets</groupId>
 	<artifactId>adresbestand</artifactId>
-	<version>1.3.0</version>
-	<packaging>war</packaging>
+	<version>1.4.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>adresbestand</name>
 	<description>addressfile </description>
