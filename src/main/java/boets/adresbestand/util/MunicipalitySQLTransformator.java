@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class MunicipalitySQLTransformator {
 
        private static final String separator = ";";
-       public static String sql="INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(MUNICIPALITY_S.nextVal,";
+       public static String sql="INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),";
 
        public List<String> generateSQLInsertFromCVS(File csvFile) throws IOException{
            InputStream is = new FileInputStream(csvFile);
