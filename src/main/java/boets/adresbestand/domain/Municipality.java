@@ -7,12 +7,11 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "MUNICIPALITY")
-@SequenceGenerator(name = "MUNICIPALITY_SEQ", sequenceName = "MUNICIPALITY_S", allocationSize = 1)
 public class Municipality {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MUNICIPALITY_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "ZIPCODE", nullable = false)

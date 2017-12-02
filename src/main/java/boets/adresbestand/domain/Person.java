@@ -10,11 +10,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PERSON")
-@SequenceGenerator(name = "PERSON_SEQ", sequenceName = "PERSON_S", allocationSize = 1)
 public class Person implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "LAST_NAME")
     private String lastName;

@@ -29,7 +29,7 @@ public class MunicipalitySQLTransformatorTest {
         assertThat(csvFile, notNullValue());
         List<String> sqls = objectUnderTest.generateSQLInsertFromCVS(csvFile);
         assertThat(sqls, hasSize(2));
-        String expected = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),1000,'Brussel');";
+        String expected = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(1000,'Brussel');";
         assertThat(sqls.get(0), is(equalTo(expected)));
     }
 
@@ -38,9 +38,9 @@ public class MunicipalitySQLTransformatorTest {
         csvFile = ResourceUtils.getFile("classpath:boets/adresbestand/util/twoUpperLowerCase.csv");
         List<String> sqls = objectUnderTest.generateSQLInsertFromCVS(csvFile);
         assertThat(sqls, hasSize(2));
-        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),1000,'Brussel');";
+        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(1000,'Brussel');";
         assertThat(sqls.get(0), is(equalTo(expected1)));
-        String expected2 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),3001,'Heverlee');";
+        String expected2 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(3001,'Heverlee');";
         assertThat(sqls.get(1), is(equalTo(expected2)));
     }
 
@@ -49,7 +49,7 @@ public class MunicipalitySQLTransformatorTest {
         csvFile = ResourceUtils.getFile("classpath:boets/adresbestand/util/upperCaseSpecial.csv");
         List<String> sqls = objectUnderTest.generateSQLInsertFromCVS(csvFile);
         assertThat(sqls, hasSize(1));
-        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),1340,'Ottignies-Louvain-La-Neuve');";
+        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(1340,'Ottignies-Louvain-La-Neuve');";
         assertThat(sqls.get(0), is(equalTo(expected1)));
 
     }
@@ -59,9 +59,9 @@ public class MunicipalitySQLTransformatorTest {
         csvFile = ResourceUtils.getFile("classpath:boets/adresbestand/util/hyphen.csv");
         List<String> sqls = objectUnderTest.generateSQLInsertFromCVS(csvFile);
         assertThat(sqls, hasSize(2));
-        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),3700,'''S Herenelderen');";
+        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(3700,'''S Herenelderen');";
         assertThat(sqls.get(0), is(equalTo(expected1)));
-        String expected2 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(NEXTVAL(MUNICIPALITY_S),4217,'Waret-L''Evêque');";
+        String expected2 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(4217,'Waret-L''Evêque');";
         assertThat(sqls.get(1), is(equalTo(expected2)));
     }
     @Test

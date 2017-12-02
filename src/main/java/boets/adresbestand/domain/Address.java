@@ -14,11 +14,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "ADDRESS")//, uniqueConstraints = @UniqueConstraint(columnNames = {"STREET", "HOUSENUMBER", "BOX", "MUNICIPALITY_ID"}))
-@SequenceGenerator(name = "ADDRESS_SEQ", sequenceName = "ADDRESS_S", allocationSize = 1)
 public class Address implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQ")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "STREET")
