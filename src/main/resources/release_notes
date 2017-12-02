@@ -17,3 +17,5 @@
     * bugfixed adding double persons
 25/11/2017 version 1.3
     * adding printing functionality
+02/12/2017 version 1.4
+    * changed db from oracle xe to mariaDb
