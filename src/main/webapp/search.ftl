@@ -77,7 +77,7 @@
                                     </td>
                                     <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                     <td>${person.lastName}</td>
-                                    <td>${person.mainAddress.value}</td>
+                                    <td>${person.mainAddress.value} <#if (person.phone??)><br/> ${person.phone}</#if><#if (person.mobilePhone??)><br/> ${person.mobilePhone}</#if></td>
                                 </tr>
                                 <!-- Modal -->
                                 <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">

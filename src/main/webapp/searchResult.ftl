@@ -52,6 +52,7 @@
                                 <th class="col-md-2"><@spring.message "showAll.firstname" /></th>
                                 <th class="col-md-2"><@spring.message "showAll.lastname" /></th>
                                 <th class="col-md-4"><@spring.message "showAll.address" /></th>
+                                <th class="col-md-2"><@spring.message "showAll.phone" /></th>
                             </tr>
                             </thead>
                             <#list pagePersons.content as person>
@@ -66,6 +67,7 @@
                                 <td><#if (person.firstName??)>${person.firstName}</#if></td>
                                 <td>${person.lastName}</td>
                                 <td>${person.mainAddress.street} ${person.mainAddress.houseNumber}, ${person.mainAddress.municipality.zipCode?c} ${person.mainAddress.municipality.city} </td>
+                                <td><#if (person.phone??)>${person.phone}<br/></#if><#if (person.mobilePhone??)> ${person.mobilePhone}</#if></td>
                             </tr>
                                 <!-- Modal -->
                                 <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
