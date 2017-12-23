@@ -33,48 +33,48 @@ public class PersonRepositoryTest {
     private PersonRepository personRepository;
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findByPersistedLastName_shouldReturn_OneResult() {
         assertThat(personRepository.findByLastNameContaining("Webb"), hasSize(1));
     }
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findByPersistedLastNameAlmostCorrect_shouldReturn_OneResult() {
         assertThat(personRepository.findByLastNameContaining("Web"), hasSize(1));
     }
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findByPersistedFirstName_shouldReturn_OneResult() {
         assertThat(personRepository.findByFirstNameContaining("Phillip"), hasSize(1));
     }
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findByPersistedFirstNameAndLastName_shouldReturn_OneResult() {
         assertThat(personRepository.searchPerson("Webb", "Phillip"), hasSize(1));
     }
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findByNotPersistedLastName_shouldReturn_NoResult() {
         assertThat(personRepository.findByLastNameContaining("Dua"), hasSize(0));
     }
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findAll_shouldReturn_twoResults() {
         assertThat(personRepository.findAll(), hasSize(2));
     }
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findMainAddressForPersistedName_shouldReturn_OneAddress() {
         assertThat(personRepository.findMainAddressForName("Webb"), hasSize(1));
         assertThat(personRepository.findMainAddressForName("Webb").get(0).getMunicipality().getCity(), equalTo("Averbode"));
     }
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     public void test_findMainAddressForNotPersistedName_shouldReturn_NoAddress() {
         assertThat(personRepository.findMainAddressForName("Dua"), hasSize(0));
     }

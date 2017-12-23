@@ -54,13 +54,13 @@ public class PersonService implements IPersonService {
         Optional<Person> personOptional = personRepository.findUniquePerson(person);
 
         if(personOptional.isPresent()){
-            savePersonWithAddress(personOptional.get(), personOptional.flatMap(p -> getAddressByUniqueConstraint(p.getMainAddress())).orElse(null));
+            savePersonWithUpdatedAddress(personOptional.get(), personOptional.flatMap(p -> getAddressByUniqueConstraint(p.getMainAddress())).orElse(null));
         }  else {
             personRepository.save(person);
         }
     }
 
-    private void savePersonWithAddress (Person person, Address address) {
+    private void savePersonWithUpdatedAddress(Person person, Address address) {
         if(address != null) {
             person.setMainAddress(address);
             address.addPerson(person);
