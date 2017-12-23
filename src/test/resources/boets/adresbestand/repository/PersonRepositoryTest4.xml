@@ -6,6 +6,6 @@
     <ADDRESS id="1" STREET="Westelsebaan" HOUSENUMBER="15" BOX="[null]" MUNICIPALITY_ID="1" />
 
 	<PERSON id="0" FIRST_NAME="Phillip" LAST_NAME="Webb" ADDRESS_ID="1" />
-	<PERSON id="1" FIRST_NAME="Fred" LAST_NAME="Bloggs"/>
+	<PERSON id="1" FIRST_NAME="Fred" LAST_NAME="Bloggs" ADDRESS_ID="1"/>
 
 </dataset>

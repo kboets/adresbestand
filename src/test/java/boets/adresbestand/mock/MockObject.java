@@ -44,10 +44,7 @@ public class MockObject {
         Address address = new Address();
         address.setHouseNumber("5");
         address.setStreet("westelsebaan");
-        Municipality municipality = new Municipality();
-        municipality.setCity("Averbode");
-        municipality.setZipCode(3271);
-        address.setMunicipality(municipality);
+        address.setMunicipality(MunicipalityMockCreator.createAverbode());
         webbLowerCase.setMainAddress(address);
         return webbLowerCase;
     }

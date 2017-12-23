@@ -1,7 +1,5 @@
 package boets.adresbestand.service.E2E;
 
-import boets.adresbestand.domain.Address;
-import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.mock.MockObject;
 import boets.adresbestand.repository.AddressRepository;
@@ -41,25 +39,24 @@ public class PersonServiceIntegrationTest {
     private AddressRepository addressRepository;
 
 
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
     @Test
     public void test_savePersonWithNewAddress_shouldSaveCorrect() {
         Person john = MockObject.createJohnDoe();
         assertThat(john.getId(), is(nullValue()));
-        john.getMainAddress().setMunicipality(MunicipalityMockCreator.createTienen());
         objectUnderTest.savePerson(john);
         assertThat(john.getId(), is(notNullValue()));
     }
 
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest2.xml")
     @Test
-    public void test_savePersonWithExistingAddress_shouldWorkCorrectly() {
+    public void test_saveNewPersonWithExistingAddress_addressShouldNotBeSavedTwice() {
         Person marieJo = MockObject.createMarieJo();
-        marieJo.getMainAddress().setMunicipality(MunicipalityMockCreator.createAverbode());
         objectUnderTest.savePerson(marieJo);
         assertThat(marieJo.getId(), is(notNullValue()));
     }
 
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
     @Test
     public void givenOnePersonOnAddress_whenRemovePerson_shouldAlsoRemoveAddress() {
         Person Webb = objectUnderTest.getPersonByUniqueId(0L);
@@ -71,7 +68,7 @@ public class PersonServiceIntegrationTest {
         assertThat(addressRepository.findOne(addressId), nullValue());
     }
 
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest2.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest4.xml")
     @Test
     public void givenTwoPersonsOnAddress_whenRemovePerson_shouldNotRemoveAddress() {
         Person Webb = objectUnderTest.getPersonByUniqueId(0L);
@@ -83,7 +80,7 @@ public class PersonServiceIntegrationTest {
         assertThat(addressRepository.findOne(addressId), notNullValue());
     }
 
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest5.xml")
     @Test
     public void givenOnePerson_whenCreateTheSameLowerCase_shouldNotAddedTwice() {
         Person lowerWebbLowerCase = MockObject.createLowerCaseWebbPerson();

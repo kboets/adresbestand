@@ -1,6 +1,5 @@
 package boets.adresbestand.repository;
 
-import boets.adresbestand.domain.Address;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.mock.MockObject;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
@@ -8,8 +7,6 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -83,7 +80,7 @@ public class PersonRepositoryTest {
     }
 
     @Test
-    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest3.xml")
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest5.xml")
     public void givenSamePersonAsPersisted_findUniquePerson_shouldReturnPerson() {
         Person webb = MockObject.createLowerCaseWebbPerson();
         webb.capitalizeToUpperCase();
