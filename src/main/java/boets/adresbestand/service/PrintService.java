@@ -1,6 +1,8 @@
 package boets.adresbestand.service;
 
 import boets.adresbestand.domain.Person;
+import boets.adresbestand.service.label.LabelDefiner;
+import boets.adresbestand.service.label.LabelDefinerFactory;
 import com.google.common.annotations.VisibleForTesting;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -30,51 +32,8 @@ public class PrintService implements IPrintService {
 
     @Autowired
     private IPersonService personService;
-    private static String firstValue = "45";
-    private static String secondValue = "245";
-    private static String thirdValue = "435";
-    private static String firstHorizontalValue = "715";
-    private static String secondHorizontalValue = "610";
-    private static String thirdHorizontalValue = "505";
-    private static String forthHorizontalValue = "400";
-    private static String fifthHorizontalValue = "300";
-    private static String sixthHorizontalValue = "200";
-    private static String seventhHorizontalValue = "100";
-
-
-
-    private static Map<Integer, Float[]> offSetMap = new HashMap<>();
-
-    static {
-        offSetMap.put(new Integer(0), createFloats(firstValue, firstHorizontalValue));
-        offSetMap.put(new Integer(1), createFloats(secondValue, firstHorizontalValue));
-        offSetMap.put(new Integer(2), createFloats(thirdValue, firstHorizontalValue));
-
-        offSetMap.put(new Integer(3), createFloats(firstValue, secondHorizontalValue));
-        offSetMap.put(new Integer(4), createFloats(secondValue, secondHorizontalValue));
-        offSetMap.put(new Integer(5), createFloats(thirdValue, secondHorizontalValue));
-
-        offSetMap.put(new Integer(6), createFloats(firstValue, thirdHorizontalValue));
-        offSetMap.put(new Integer(7), createFloats(secondValue, thirdHorizontalValue));
-        offSetMap.put(new Integer(8), createFloats(thirdValue, thirdHorizontalValue));
-
-        offSetMap.put(new Integer(9), createFloats(firstValue, forthHorizontalValue));
-        offSetMap.put(new Integer(10), createFloats(secondValue, forthHorizontalValue));
-        offSetMap.put(new Integer(11), createFloats(thirdValue, forthHorizontalValue));
-
-        offSetMap.put(new Integer(12), createFloats(firstValue, fifthHorizontalValue));
-        offSetMap.put(new Integer(13), createFloats(secondValue, fifthHorizontalValue));
-        offSetMap.put(new Integer(14), createFloats(thirdValue, fifthHorizontalValue));
-
-        offSetMap.put(new Integer(15), createFloats(firstValue, sixthHorizontalValue));
-        offSetMap.put(new Integer(16), createFloats(secondValue, sixthHorizontalValue));
-        offSetMap.put(new Integer(17), createFloats(thirdValue, sixthHorizontalValue));
-
-        offSetMap.put(new Integer(18), createFloats(firstValue, seventhHorizontalValue));
-        offSetMap.put(new Integer(19), createFloats(secondValue, seventhHorizontalValue));
-        offSetMap.put(new Integer(20), createFloats(thirdValue, seventhHorizontalValue));
-
-    }
+    @Autowired
+    private LabelDefinerFactory labelDefinerFactory;
 
     @Override
     public byte[] createPdf(Long personId) {
@@ -88,7 +47,7 @@ public class PrintService implements IPrintService {
         return transformPDDocument(createPDDocument(persons));
     }
 
-    @VisibleForTesting
+
     private Optional<PDDocument> createPDDocument(List<Person> persons) {
         //1. create document
         PDDocument document = createPdfDocument(persons.size());
@@ -101,7 +60,7 @@ public class PrintService implements IPrintService {
         return Optional.ofNullable(document);
     }
 
-    @VisibleForTesting
+
     private byte[] transformPDDocument(Optional<PDDocument> documentOptional) {
         try {
             if (documentOptional.isPresent()) {
@@ -136,6 +95,8 @@ public class PrintService implements IPrintService {
             } else {
                 realEnd = persons.size();
             }
+            LabelDefiner labelDefiner = labelDefinerFactory.retrieveLabelDefiner(TOTAL_ADDRESSES_PAGE);
+            Map<Integer, Float[]> offSetMap = labelDefiner.retrieveStylingMap();
             contentStream.setFont(PDType1Font.HELVETICA, 12);
             int offSet = 0;
             int personCounter = 0;
