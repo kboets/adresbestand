@@ -160,28 +160,55 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="emails" class="col-sm-1"><@spring.message "emails" /></label>
+                            <label for="mobilePhone" class="col-sm-1"><@spring.message "mobilePhone" /></label>
                             <div class="col-sm-3">
-                                <#if person.emails?? && person.emails?size != 0 >
-                                    <#list person.emails as emails>
-                                        <#if modus=="readOnly">
-                                            <textarea class="form-control" name="emails" readonly="true">${emails}</textarea>
-                                         <#else>
-                                             <textarea class="form-control" name="emails">${emails}</textarea>
-                                        </#if>
-                                    </textarea>
-                                    </#list>
+                                <input type="text" class="form-control" id="mobilePhone" name="mobilePhone"
+                                <#if person.mobilePhone??>
+                                       value="${person.mobilePhone}"
                                 <#else>
-                                    <#if modus=="readOnly">
-                                        <textarea class="form-control" name="emails" readonly="true"></textarea>
-                                    <#else>
-                                        <textarea class="form-control" name="emails"></textarea>
-                                    </#if>
-
+                                       value=""
                                 </#if>
-
+                                <#if modus=="readOnly">
+                                       disabled
+                                </#if>
+                                />
+                            </div>
+                            <label for="phone" class="col-sm-1"><@spring.message "phone" /></label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                <#if person.phone??>
+                                       value="${person.phone}"
+                                <#else>
+                                       value=""
+                                </#if>
+                                <#if modus=="readOnly">
+                                       disabled
+                                </#if>
+                                />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="emails" class="col-sm-1"><@spring.message "emails" /></label>
+                            <div class="col-sm-3">
+                            <#if person.emails?? && person.emails?size != 0 >
+                                <#list person.emails as emails>
+                                    <#if modus=="readOnly">
+                                        <textarea class="form-control" name="emails" readonly="true">${emails}</textarea>
+                                    <#else>
+                                        <textarea class="form-control" name="emails">${emails}</textarea>
+                                    </#if>
+                                    </textarea>
+                                </#list>
+                            <#else>
+                                <#if modus=="readOnly">
+                                    <textarea class="form-control" name="emails" readonly="true"></textarea>
+                                <#else>
+                                    <textarea class="form-control" name="emails"></textarea>
+                                </#if>
+                            </#if>
+                            </div>
+                        </div>
+
                         <div class="buttons">
                             <#if modus=="create">
                                 <button class="btn bold" id="btn_save"><@spring.message "button.save" /></button>
