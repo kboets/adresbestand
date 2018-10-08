@@ -1,10 +1,11 @@
 <#import "/spring.ftl" as spring/>
 <#import "macro/sidebar.ftl" as sidebar>
 <#import "macro/head.ftl" as header>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" ng-app="adresbestand">
 <head>
     <@header.headmeta/>
         <script src="<@spring.url '/js/adresbestand_searchResult.js'/>"></script>
+
     <title><@spring.message "searchAddress.title" /></title>
 </head>
 <body>
