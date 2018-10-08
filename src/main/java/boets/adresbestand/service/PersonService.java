@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -35,9 +34,9 @@ public class PersonService implements IPersonService {
 
     @Override
     public List<Person> searchPersons(SearchAddressForm searchAddressForm) {
-        if(StringUtils.isNotBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())){
+        if (StringUtils.isNotBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())) {
             return personRepository.searchPerson(StringUtils.capitalize(searchAddressForm.getLastName()), StringUtils.capitalize(StringUtils.capitalize(searchAddressForm.getFirstName())));
-        } else if(StringUtils.isBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())){
+        } else if (StringUtils.isBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())) {
             return personRepository.findByLastNameContaining(StringUtils.capitalize(searchAddressForm.getLastName()));
         }
         return personRepository.findByFirstNameContaining(StringUtils.capitalize(searchAddressForm.getFirstName()));
@@ -45,27 +44,30 @@ public class PersonService implements IPersonService {
 
     @Override
     public Page<Person> findAllPersons(Integer pageNumber) {
-        PageRequest pageRequest = new PageRequest(pageNumber-1, PAGE_SIZE, Sort.Direction.ASC, "lastName");
+        PageRequest pageRequest = new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "lastName");
         return personRepository.findAll(pageRequest);
     }
 
     @Override
-    public void savePerson(Person person)   {
+    public void savePerson(Person person) {
         person.capitalizeToUpperCase();
         Optional<Person> personOptional = personRepository.findUniquePerson(person);
-        if(!personOptional.isPresent()) {
-            Optional<Address> optionalAddress = getAddressByUniqueConstraint(person.getMainAddress());
-            if(optionalAddress.isPresent()){
-                Address address = optionalAddress.get();
-                address.addPerson(person);
-                person.setMainAddress(address);
-                personRepository.save(person);
-                return;
-            }
+
+        if(personOptional.isPresent()){
+            savePersonWithUpdatedAddress(personOptional.get(), personOptional.map(p -> getAddressByUniqueConstraint(p.getMainAddress())).orElse(Optional.empty()));
+        }  else {
             personRepository.save(person);
         }
-
     }
+
+    private void savePersonWithUpdatedAddress(Person person, Optional<Address> address) {
+        if(address.isPresent()) {
+            person.setMainAddress(address.get());
+            address.get().addPerson(person);
+            personRepository.save(person);
+        }
+    }
+
 
     @Override
     public void updatePerson(Person person) {
@@ -75,7 +77,7 @@ public class PersonService implements IPersonService {
     @Override
     public void removePerson(Person person) {
         Address address = addressRepository.findOne(person.getMainAddress().getId());
-        if(address.getPersons().size() == 1) {
+        if (address.getPersons().size() == 1) {
             logger.info("Only one person lives in this address; remove address as wel");
             personRepository.delete(person);
             addressRepository.delete(address);
@@ -88,23 +90,23 @@ public class PersonService implements IPersonService {
 
     private Optional<Address> getAddressByUniqueConstraint(Address address) {
         Address persistedAddress = null;
-        if(address !=null) {
-            if(StringUtils.isNotEmpty(address.getBox())){
+        if (address != null) {
+            if (StringUtils.isNotEmpty(address.getBox())) {
                 persistedAddress = addressRepository.findByUniqueConstraint(StringUtils.capitalize(address.getStreet()), address.getHouseNumber(), address.getBox(), address.getMunicipality().getZipCode());
             } else {
                 persistedAddress = addressRepository.findByUniqueConstraint(StringUtils.capitalize(address.getStreet()), address.getHouseNumber(), address.getMunicipality().getZipCode());
             }
         }
-        return  Optional.ofNullable(persistedAddress);
+        return Optional.ofNullable(persistedAddress);
     }
 
     @Override
     public List<String> savePersons(List<Person> persons) {
         List<String> savedPersons = new ArrayList<>();
-        for(Person person : persons) {
+        for (Person person : persons) {
             this.savePerson(person);
-            logger.info("Saved Person " + person.getLastName() + " " +person.getFirstName());
-            savedPersons.add("Saved Person " + person.getLastName() + " " +person.getFirstName());
+            logger.info("Saved Person " + person.getLastName() + " " + person.getFirstName());
+            savedPersons.add("Saved Person " + person.getLastName() + " " + person.getFirstName());
             savedPersons.add(System.lineSeparator());
         }
         return savedPersons;

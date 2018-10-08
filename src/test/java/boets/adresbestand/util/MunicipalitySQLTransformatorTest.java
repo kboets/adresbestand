@@ -55,16 +55,6 @@ public class MunicipalitySQLTransformatorTest {
     }
 
     @Test
-    public void generateSQLInsertFromCVS_givenCSVFileWithHypen_returnEscapedString() throws Exception {
-        csvFile = ResourceUtils.getFile("classpath:boets/adresbestand/util/hyphen.csv");
-        List<String> sqls = objectUnderTest.generateSQLInsertFromCVS(csvFile);
-        assertThat(sqls, hasSize(2));
-        String expected1 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(3700,'''S Herenelderen');";
-        assertThat(sqls.get(0), is(equalTo(expected1)));
-        String expected2 = "INSERT INTO MUNICIPALITY (ID,ZIPCODE, CITY) values(4217,'Waret-L''Evêque');";
-        assertThat(sqls.get(1), is(equalTo(expected2)));
-    }
-    @Test
     public void generateSQLInsertFromCVS_givenCSVFileWrongSeparator_returnsEmptyList() throws Exception {
         csvFile = ResourceUtils.getFile("classpath:boets/adresbestand/util/wrongSeparator.csv");
         assertThat(csvFile, notNullValue());
