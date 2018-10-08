@@ -1,3 +1,3 @@
 'use strict';
 
-var adresbestand = angular.module('adresbestand', []);
+var adresbestand = angular.module('adresbestand', ['underscore']);

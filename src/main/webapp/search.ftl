@@ -14,19 +14,13 @@
     <!-- Sidebar -->
 <@sidebar.menu/>
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper" ng-controller="mainController">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <h1><@spring.message "searchAddress.title" /></h1>
-                    <form id="searchAddressForm"  name="searchAddressForm" action="searchAddress" method="POST" class="form-horizontal">
-                    <#if errors?? && errors?size != 0 >
-                        <#list errors as error>
-                            <div class="alert alert-danger">
-                                <span><label class="control-label"><@spring.message code=error /></span>
-                            </div>
-                        </#list>
-                    </#if>
+                    <form id="searchAddressForm"  name="searchAddressForm"  class="form-horizontal">
+                        <span ng-show="!searchAddressForm.$invalid">Gelieve tenminste een criteria in te geven</span>
                         <p><@spring.message "search.intro1" /> <br/>
                         <@spring.message "search.intro2" />
                         </p>
@@ -34,20 +28,21 @@
                         <div class="form-group">
                             <label for="firstName" class="col-sm-2"><@spring.message "firstname" /></label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="firstName" name="firstName" autofocus />
+                                <input type="text" class="form-control" id="firstName" name="firstName" ng-model="searchObject.firstName" autofocus />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="col-sm-2"><@spring.message "lastname" /></label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="lastName" name="lastName" minlength="2" />
+                                <input type="text" class="form-control" id="lastName" name="lastName" minlength="2"  searchObject.lastName="searchObject.lastName"/>
                             </div>
                         </div>
 
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save"><@spring.message "button.search" /></button>
+                            <button class="btn bold" id="btn_save" ng-click="runSearch(searchObject)"><@spring.message "button.search" /></button>
                             <button class="btn btn-default" type="reset"><@spring.message "button.reset" /></button>
                         </div>
+
                     </form>
                 </div>
                <br/><br/>

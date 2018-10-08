@@ -88,5 +88,9 @@ public class SearchController {
         return SEARCH;
     }
 
+    public List<Person> search(HttpServletRequest request, @RequestBody SearchAddressForm searchAddressForm) {
+
+        return null;
+    }
 
 }
