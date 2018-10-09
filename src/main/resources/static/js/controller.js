@@ -1,4 +1,4 @@
-adresbestand.controller('mainController', ['$scope','_', function ($scope, _) {
+adresbestand.controller('mainController', ['$scope','$http','_', function ($scope, $http, _) {
     $scope.persons = [];
     $scope.checkedPersons = [];
 
@@ -12,7 +12,7 @@ adresbestand.controller('mainController', ['$scope','_', function ($scope, _) {
             return false;
         }
         else{
-
+            $http.post().then()
         }
 
     }

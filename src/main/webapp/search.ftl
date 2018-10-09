@@ -20,7 +20,7 @@
                 <div class="col-lg-12">
                     <h1><@spring.message "searchAddress.title" /></h1>
                     <form id="searchAddressForm"  name="searchAddressForm"  class="form-horizontal">
-                        <span ng-show="!searchAddressForm.$invalid">Gelieve tenminste een criteria in te geven</span>
+                        <span ng-show="searchAddressForm.$invalid">Gelieve tenminste een criteria in te geven</span>
                         <p><@spring.message "search.intro1" /> <br/>
                         <@spring.message "search.intro2" />
                         </p>

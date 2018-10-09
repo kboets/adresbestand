@@ -3,6 +3,7 @@ package boets.adresbestand.web.controller;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.service.IPersonService;
 import boets.adresbestand.web.form.SearchAddressForm;
+import boets.adresbestand.web.form.SearchObject;
 import boets.adresbestand.web.validation.SearchAddressFormValidation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -88,9 +89,10 @@ public class SearchController {
         return SEARCH;
     }
 
-    public List<Person> search(HttpServletRequest request, @RequestBody SearchAddressForm searchAddressForm) {
-
-        return null;
+    @PostMapping(value = "/searchAddress", produces = {"application/json"})
+    @ResponseBody
+    public List<Person> search(HttpServletRequest request, @RequestBody SearchObject searchObject) {
+        return personService.searchPersons(searchObject);
     }
 
 }

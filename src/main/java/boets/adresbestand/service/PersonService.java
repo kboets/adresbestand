@@ -5,6 +5,7 @@ import boets.adresbestand.domain.Person;
 import boets.adresbestand.repository.AddressRepository;
 import boets.adresbestand.repository.PersonRepository;
 import boets.adresbestand.web.form.SearchAddressForm;
+import boets.adresbestand.web.form.SearchObject;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,7 @@ public class PersonService implements IPersonService {
     private AddressRepository addressRepository;
 
     @Override
+    @Deprecated
     public List<Person> searchPersons(SearchAddressForm searchAddressForm) {
         if (StringUtils.isNotBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())) {
             return personRepository.searchPerson(StringUtils.capitalize(searchAddressForm.getLastName()), StringUtils.capitalize(StringUtils.capitalize(searchAddressForm.getFirstName())));
@@ -40,6 +42,16 @@ public class PersonService implements IPersonService {
             return personRepository.findByLastNameContaining(StringUtils.capitalize(searchAddressForm.getLastName()));
         }
         return personRepository.findByFirstNameContaining(StringUtils.capitalize(searchAddressForm.getFirstName()));
+    }
+
+    @Override
+    public List<Person> searchPersons(SearchObject search) {
+        if (StringUtils.isNotBlank(search.getFirstName()) && StringUtils.isNotBlank(search.getLastName())) {
+            return personRepository.searchPerson(StringUtils.capitalize(search.getLastName()), StringUtils.capitalize(StringUtils.capitalize(search.getFirstName())));
+        } else if (StringUtils.isBlank(search.getFirstName()) && StringUtils.isNotBlank(search.getLastName())) {
+            return personRepository.findByLastNameContaining(StringUtils.capitalize(search.getLastName()));
+        }
+        return personRepository.findByFirstNameContaining(StringUtils.capitalize(search.getFirstName()));
     }
 
     @Override
