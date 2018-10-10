@@ -14,12 +14,12 @@
     <!-- Sidebar -->
 <@sidebar.menu/>
     <!-- Page Content -->
-    <div id="page-content-wrapper" ng-controller="mainController">
-        <div class="container-fluid">
+    <div id="page-content-wrapper" >
+        <div class="container-fluid" ng-controller="mainController">
             <div class="row">
                 <div class="col-lg-12">
                     <h1><@spring.message "searchAddress.title" /></h1>
-                    <form id="searchAddressForm"  name="searchAddressForm"  class="form-horizontal">
+                    <form name="searchAddressForm"  class="form-horizontal" ng-submit="searchPersons(searchObject)">
                         <span ng-show="searchAddressForm.$invalid">Gelieve tenminste een criteria in te geven</span>
                         <p><@spring.message "search.intro1" /> <br/>
                         <@spring.message "search.intro2" />
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="buttons">
-                            <button class="btn bold" id="btn_save" ng-click="runSearch(searchObject)"><@spring.message "button.search" /></button>
+                            <button type="submit" class="btn btn-primary" ><@spring.message "button.search" /></button>
                             <button class="btn btn-default" type="reset"><@spring.message "button.reset" /></button>
                         </div>
 

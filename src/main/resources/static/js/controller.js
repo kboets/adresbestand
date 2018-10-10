@@ -6,13 +6,24 @@ adresbestand.controller('mainController', ['$scope','$http','_', function ($scop
         firstName:'',
         lastName:''
     };
-    $scope.runSearch = function (searchObject) {
+    $scope.searchPersons = function (searchObject) {
         if(searchObject.firstName === '' && searchObject.lastName === ''){
             $scope.searchAddressForm.$invalid = true;
             return false;
         }
         else{
-            $http.post().then()
+            $http({
+                method:"POST",
+                url : 'searchAddress',
+                data: $scope.searchObject
+            })
+                .success(function (response) {
+                    $scope.persons = response.data
+                })
+                .error(function (data, status, headers, config) {
+                    console.log("could not retrieve persons: " + status);
+                });
+
         }
 
     }

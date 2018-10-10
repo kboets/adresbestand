@@ -69,25 +69,25 @@ public class SearchController {
         return SEARCH;
     }
 
-    @PostMapping("/searchAddress")
-    public String search(HttpServletRequest request, Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result, RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) {
-            List<ObjectError> validationErrors = result.getAllErrors();
-            List<String> errors = new ArrayList<>();
-            for (ObjectError error : validationErrors) {
-                if (StringUtils.contains(error.getCode(), "general")) {
-                    errors.add(error.getCode());
-                }
-            }
-            model.addAttribute("errors", errors);
-            return SEARCH;
-        }
-        List<Person> persons = personService.searchPersons(searchAddressFormn);
-        request.getSession().setAttribute(SearchController.PERSONS, persons);
-        model.addAttribute("searchAddressForm", new SearchAddressForm());
-        model.addAttribute("persons", persons);
-        return SEARCH;
-    }
+//    @PostMapping("/searchAddress")
+//    public String search(HttpServletRequest request, Model model, @Valid @ModelAttribute("searchAddressForm") SearchAddressForm searchAddressFormn, BindingResult result, RedirectAttributes redirectAttributes) {
+//        if (result.hasErrors()) {
+//            List<ObjectError> validationErrors = result.getAllErrors();
+//            List<String> errors = new ArrayList<>();
+//            for (ObjectError error : validationErrors) {
+//                if (StringUtils.contains(error.getCode(), "general")) {
+//                    errors.add(error.getCode());
+//                }
+//            }
+//            model.addAttribute("errors", errors);
+//            return SEARCH;
+//        }
+//        List<Person> persons = personService.searchPersons(searchAddressFormn);
+//        request.getSession().setAttribute(SearchController.PERSONS, persons);
+//        model.addAttribute("searchAddressForm", new SearchAddressForm());
+//        model.addAttribute("persons", persons);
+//        return SEARCH;
+//    }
 
     @PostMapping(value = "/searchAddress", produces = {"application/json"})
     @ResponseBody
