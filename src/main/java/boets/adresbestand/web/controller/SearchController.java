@@ -5,6 +5,8 @@ import boets.adresbestand.service.IPersonService;
 import boets.adresbestand.web.form.SearchAddressForm;
 import boets.adresbestand.web.form.SearchObject;
 import boets.adresbestand.web.validation.SearchAddressFormValidation;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,10 +91,12 @@ public class SearchController {
 //        return SEARCH;
 //    }
 
+    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
     @PostMapping(value = "/searchAddress", produces = {"application/json"})
     @ResponseBody
     public List<Person> search(HttpServletRequest request, @RequestBody SearchObject searchObject) {
-        return personService.searchPersons(searchObject);
+        List<Person> persons = personService.searchPersons(searchObject);
+        return persons;
     }
 
 }

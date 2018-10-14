@@ -1,5 +1,6 @@
 package boets.adresbestand.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.CascadeType;
@@ -33,6 +34,7 @@ public class Address implements Serializable {
     @JoinColumn(name = "MUNICIPALITY_ID", referencedColumnName = "ID")
     private Municipality municipality;
 
+    @JsonIgnore
     @OneToMany(mappedBy="mainAddress", fetch=FetchType.EAGER)
     private Set<Person> persons;
 

@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="lastName" class="col-sm-2"><@spring.message "lastname" /></label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="lastName" name="lastName" minlength="2"  searchObject.lastName="searchObject.lastName"/>
+                                <input type="text" class="form-control" id="lastName" name="lastName" minlength="2"  ng-model="searchObject.lastName"/>
                             </div>
                         </div>
 
@@ -47,8 +47,8 @@
                 </div>
                <br/><br/>
                 <div class="col-lg-12">
-                <form id="searchAddressForm2"   name="searchAddressForm2" action="print" method="POST" class="form-horizontal">
-                <#if persons?? && persons?size != 0 >
+                <form id="searchAddressForm2"   name="searchAddressForm2" class="form-horizontal">
+                <div ng-if="!persons.length !== 0 && searched">
                     <h2><@spring.message "search.result.title"/></h2>
                     <p><@spring.message "search.result.intro"/></p>
                     <div class="col-lg-12">
@@ -56,25 +56,28 @@
                             <thead>
                             <tr>
                                 <th></th>
+                                <th><@spring.message "button.print" /></th>
                                 <th><@spring.message "firstname" /></th>
                                 <th><@spring.message "lastname" /></th>
                                 <th><@spring.message "adres" /></th>
                             </tr>
                             </thead>
                             <tbody>
-                                <#list persons as person>
-                                <tr>
-                                    <#assign personId=person.id>
-                                    <td><a href="<@spring.url '/update/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                <tr ng-repeat="person in persons">
+                                    <td><a href="<@spring.url '/update/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                         &nbsp;
-                                        <a href="<@spring.url '/view/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
+                                        <a href="<@spring.url '/view/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
                                         &nbsp;
-                                        <a href="personRemoveModal" data-toggle="modal" data-id="${personId}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
+                                        <a href="personRemoveModal" data-toggle="modal" data-id="{{person.id}}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
                                     </td>
-                                    <td><#if (person.firstName??)>${person.firstName}</#if></td>
-                                    <td>${person.lastName}</td>
-                                    <td>${person.mainAddress.value} <#if (person.phone??)><br/> ${person.phone}</#if><#if (person.mobilePhone??)><br/> ${person.mobilePhone}</#if></td>
+                                    <td></td>
+                                    <td>{{person.firstName}}</td>
+                                    <td>{{person.lastName}}</td>
+                                    <td>{{person.mainAddress.street}} {{person.mainAddress.houseNumber}} {{person.mainAddress.box}}
+                                        <br/>{{person.mainAddress.municipality.zipCode}} {{person.mainAddress.municipality.city}}
+                                        <br/>{{person.phone}} <br/> {{person.mobilePhone}}</td>
                                 </tr>
+
                                 <!-- Modal -->
                                 <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -96,7 +99,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                </#list>
                             </tbody>
                         </table>
                         <div class="buttons">
@@ -104,12 +106,13 @@
                             <#--<a href="<@spring.url '/print' />" target="_blank" class="btn btn-info" role="button"><@spring.message "button.print" /></a>-->
                         </div>
                     </div>
-                <#elseif persons??>
+
+                <div ng-if="persons.length === 0 && searched">
                     <div class="col-lg-12">
                         <h2><@spring.message "search.result.title"/></h2>
                         <p><@spring.message "search.noresult.intro"/><br/><@spring.message "search.noresult.intro2"/></p>
                     </div>
-                </#if>
+                </div>
 
                 </form>
                 </div>

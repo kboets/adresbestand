@@ -1,6 +1,7 @@
 adresbestand.controller('mainController', ['$scope','$http','_', function ($scope, $http, _) {
     $scope.persons = [];
     $scope.checkedPersons = [];
+    $scope.searched = false;
 
     $scope.searchObject = {
         firstName:'',
@@ -18,9 +19,12 @@ adresbestand.controller('mainController', ['$scope','$http','_', function ($scop
                 data: $scope.searchObject
             })
                 .success(function (response) {
-                    $scope.persons = response.data
+                    $scope.persons = response;
+                    $scope.searched= true;
+                    console.log($scope.persons);
                 })
                 .error(function (data, status, headers, config) {
+                    $scope.searched= true;
                     console.log("could not retrieve persons: " + status);
                 });
 
