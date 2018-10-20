@@ -23,7 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<selenium.version>3.5.3</selenium.version>
-		<pdfbox.version>2.0.7</pdfbox.version>
+		<pdfbox.version>2.0.12</pdfbox.version>
         <jackson.version>2.9.3</jackson.version>
 	</properties>
 

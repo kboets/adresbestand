@@ -30,7 +30,7 @@ adresbestand.controller('mainController', ['$scope','$http','$location','$window
 
     $scope.selected = {
         persons:[]
-    }
+    };
 
     $scope.checkAll = function() {
         $scope.selected.persons = angular.copy($scope.persons);
