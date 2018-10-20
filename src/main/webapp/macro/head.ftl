@@ -25,7 +25,9 @@
 
 <script src="<@spring.url '/js/underscore.js'/>"></script>
 <script src="<@spring.url '/js/app.js'/>"></script>
+<script src="<@spring.url '/js/directive.js'/>"></script>
 <script src="<@spring.url '/js/controller.js'/>"></script>
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

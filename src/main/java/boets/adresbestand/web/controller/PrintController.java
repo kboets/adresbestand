@@ -10,10 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -37,18 +34,18 @@ public class PrintController {
 
     }
 
-    @RequestMapping(value = "/print", method = {RequestMethod.GET, RequestMethod.POST})
-    public ResponseEntity<byte[]> printAddress(HttpServletRequest request) throws IOException {
-        List<Person> personList = (List<Person>) request.getSession().getAttribute(SearchController.PERSONS);
-        byte[] data = printService.createPdf(personList);
+    @PostMapping(value = "/print")
+    public ResponseEntity<byte[]> print(@RequestBody List<Person> persons) {
+        byte[] data = printService.createPdf(persons);
         return createResponseEntity(data);
     }
 
     private ResponseEntity<byte[]> createResponseEntity(byte[] data) {
         HttpHeaders headers = new HttpHeaders();
         String fileName = "adresbestand.pdf";
-        headers.add("content-disposition", "inline;filename=" + fileName);
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        //headers.add("content-disposition", "inline;filename=" + fileName);
+        //headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        headers.setContentDispositionFormData(fileName,fileName);
         ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
                 data, headers, HttpStatus.OK);
         return response;

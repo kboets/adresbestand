@@ -47,8 +47,8 @@
                 </div>
                <br/><br/>
                 <div class="col-lg-12">
-                <form id="searchAddressForm2"   name="searchAddressForm2" class="form-horizontal">
-                <div ng-if="!persons.length !== 0 && searched">
+                <form id="searchAddressForm2"   name="searchAddressForm2" class="form-horizontal" ng-submit="print()">
+                <div ng-show="persons.length !== 0 && searched">
                     <h2><@spring.message "search.result.title"/></h2>
                     <p><@spring.message "search.result.intro"/></p>
                     <div class="col-lg-12">
@@ -56,7 +56,7 @@
                             <thead>
                             <tr>
                                 <th></th>
-                                <th><@spring.message "button.print" /></th>
+                                <th></th>
                                 <th><@spring.message "firstname" /></th>
                                 <th><@spring.message "lastname" /></th>
                                 <th><@spring.message "adres" /></th>
@@ -64,13 +64,13 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in persons">
+                                    <td><input type="checkbox"  checklist-model="selected.persons"  checklist-value="person" /> </td>
                                     <td><a href="<@spring.url '/update/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                         &nbsp;
                                         <a href="<@spring.url '/view/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
                                         &nbsp;
                                         <a href="personRemoveModal" data-toggle="modal" data-id="{{person.id}}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
                                     </td>
-                                    <td></td>
                                     <td>{{person.firstName}}</td>
                                     <td>{{person.lastName}}</td>
                                     <td>{{person.mainAddress.street}} {{person.mainAddress.houseNumber}} {{person.mainAddress.box}}
@@ -101,13 +101,14 @@
                                 </div>
                             </tbody>
                         </table>
-                        <div class="buttons">
-                            <button class="btn btn-info" id="btn_print" formtarget="persons"><@spring.message "button.print" /></button>
-                            <#--<a href="<@spring.url '/print' />" target="_blank" class="btn btn-info" role="button"><@spring.message "button.print" /></a>-->
+                        <div class="buttons" ng-show="{{checkedPersons.length !== 0}}">
+                            <button class="btn btn-info" id="btn_print" ><@spring.message "button.print" /></button>
+                            <button class="btn btn-info" id="btn_alle" ng-click="checkAll()"><@spring.message "button.all" /></button>
+                            {{checkedPersons}}
                         </div>
                     </div>
 
-                <div ng-if="persons.length === 0 && searched">
+                <div ng-show="persons.length === 0 && searched">
                     <div class="col-lg-12">
                         <h2><@spring.message "search.result.title"/></h2>
                         <p><@spring.message "search.noresult.intro"/><br/><@spring.message "search.noresult.intro2"/></p>
