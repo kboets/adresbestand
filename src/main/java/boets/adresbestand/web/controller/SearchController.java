@@ -48,21 +48,15 @@ public class SearchController {
         model.addAttribute("searchAddressForm", new SearchAddressForm());
         return SEARCH;
     }
-
-    @GetMapping("/findAll/{pageNumber}")
-    public String getAllAddresses(HttpServletRequest request, @PathVariable Integer pageNumber, Model model) {
-        logger.info("Retrieving all addresses Address");
-        Page<Person> page = personService.findAllPersons(pageNumber);
-        int current = page.getNumber() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, page.getTotalPages());
-        request.getSession().setAttribute(SearchController.PERSONS,page.getContent());
-        model.addAttribute("pagePersons", page);
-        model.addAttribute("beginIndex", begin);
-        model.addAttribute("endIndex", end);
-        model.addAttribute("currentIndex", current);
-
+    @GetMapping("/getAllPersons")
+    public String getAllPersons(Model model) {
         return SEARCH_RESULT;
+    }
+
+    @GetMapping(value = "/findAll", produces = {"application/json"})
+    @ResponseBody
+    public List<Person> getAllPersons() {
+        return personService.findAll();
     }
 
     @PostMapping("/resetSearch")

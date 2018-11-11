@@ -15,7 +15,7 @@
 <@sidebar.menu/>
     <!-- Page Content -->
     <div id="page-content-wrapper" >
-        <div class="container-fluid" ng-controller="mainController">
+        <div class="container-fluid" ng-controller="searchController">
             <div class="row">
                 <div class="col-lg-12">
                     <h1><@spring.message "searchAddress.title" /></h1>

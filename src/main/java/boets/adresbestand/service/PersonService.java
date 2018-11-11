@@ -61,6 +61,11 @@ public class PersonService implements IPersonService {
     }
 
     @Override
+    public List<Person> findAll() {
+        return personRepository.findAll();
+    }
+
+    @Override
     public void savePerson(Person person) {
         person.capitalizeToUpperCase();
         Optional<Person> personOptional = personRepository.findUniquePerson(person);

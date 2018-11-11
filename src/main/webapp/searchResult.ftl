@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#import "macro/sidebar.ftl" as sidebar>
 <#import "macro/head.ftl" as header>
-<html lang="en">
+<html lang="en" ng-app="adresbestand">
 <head>
     <@header.headmeta/>
         <script src="<@spring.url '/js/adresbestand_searchResult.js'/>"></script>
@@ -16,38 +16,17 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
+            <div class="container-fluid" ng-controller="searchController" ng-init="searchAll()">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1><@spring.message "showAll.title" /></h1>
                         <p><@spring.message "showAll.subtitle" /></p>
-                        <div class="pagination">
-                            <#if currentIndex == 1>
-                                <li class="disabled"><a href="#">&lt;&lt;</a></li>
-                                <li class="disabled"><a href="#">&lt;</a></li>
-                            <#else>
-                                <li><a href="<@spring.url '/findAll/1'/>">&lt;&lt;</a></li>
-                                <li><a href="<@spring.url '/findAll/${currentIndex - 1}'/>">&lt;</a></li>
-                            </#if>
-                            <#list beginIndex..<(endIndex+1) as index>
-                                <#if index == currentIndex>
-                                    <li class="active"><a href="<@spring.url '/findAll/${index}'/>">${index}</a></li>
-                                <#else>
-                                    <li><a href="<@spring.url '/findAll/${index}'/>">${index}</a></li>
-                                </#if>
-                            </#list>
-                             <#assign totalPages=pagePersons.totalPages>
-                             <#if currentIndex == totalPages>
-                                 <li class="disabled"><a href="#">&gt;</a></li>
-                                 <li class="disabled"><a href="#">&gt;&gt;</a></li>
-                             <#else>
-                                 <li><a href="<@spring.url '/findAll/${currentIndex+1}'/>">&gt;</a></li>
-                                 <li><a href="<@spring.url '/findAll/${totalPages}'/>">&gt;&gt;</a></li>
-                             </#if>
-                        </div>
+
+
                         <table class="table table-bordered">
                             <thead>
                             <tr>
+                                <th class="col-md-1"></th>
                                 <th class="col-md-1"></th>
                                 <th class="col-md-2"><@spring.message "showAll.firstname" /></th>
                                 <th class="col-md-2"><@spring.message "showAll.lastname" /></th>
@@ -55,19 +34,18 @@
                                 <th class="col-md-2"><@spring.message "showAll.phone" /></th>
                             </tr>
                             </thead>
-                            <#list pagePersons.content as person>
-                            <tr>
-                                <#assign personId=person.id>
-                                <td><a href="<@spring.url '/update/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                            <tr ng-repeat="person in persons">
+                                <td><input type="checkbox"  checklist-model="selected.persons"  checklist-value="person" /> </td>
+                                <td><a href="<@spring.url '/update/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     &nbsp;
-                                    <a href="<@spring.url '/view/${personId}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
+                                    <a href="<@spring.url '/view/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a>
                                     &nbsp;
-                                    <a href="personRemoveModal" data-toggle="modal" data-id="${personId}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
+                                    <a href="personRemoveModal" data-toggle="modal" data-id="{{person.id}}" data-target="#personRemoveModal" class="btn btn-danger btn-xs announce"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a>
                                 </td>
-                                <td><#if (person.firstName??)>${person.firstName}</#if></td>
-                                <td>${person.lastName}</td>
-                                <td>${person.mainAddress.street} ${person.mainAddress.houseNumber}, ${person.mainAddress.municipality.zipCode?c} ${person.mainAddress.municipality.city} </td>
-                                <td><#if (person.phone??)>${person.phone}<br/></#if><#if (person.mobilePhone??)> ${person.mobilePhone}</#if></td>
+                                <td>{{person.firstName}}</td>
+                                <td>{{person.lastName}}</td>
+                                <td>{{person.mainAddress.street}} {{person.mainAddress.houseNumber}} {{person.mainAddress.box}} <br />{{person.mainAddress.municipality.zipCode}} {{person.mainAddress.municipality.city}}</td>
+                                <td>{{person.phone}} {{person.mobilePhone}}</td>
                             </tr>
                                 <!-- Modal -->
                                 <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">
@@ -90,11 +68,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </#list>
                         </table>
                     </div>
                     <div class="buttons">
-                        <a href="<@spring.url '/print' />" target="_blank" class="btn btn-info" role="button"><@spring.message "button.print" /></a>
+                        <button class="btn btn-info" id="btn_print" ng-click="print()"><@spring.message "button.print" /></button>
+                        <button class="btn btn-info" id="btn_alle" ng-click="checkAll()"><@spring.message "button.all" /></button>
                     </div>
                 </div>
             </div>

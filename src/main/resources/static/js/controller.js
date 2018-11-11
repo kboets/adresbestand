@@ -1,4 +1,4 @@
-adresbestand.controller('mainController', ['$scope','$http','$location','$window','_', function ($scope, $http, $location, $window, _) {
+adresbestand.controller('searchController', ['$scope','$http','$location','$window','_', function ($scope, $http, $location, $window, _) {
     $scope.persons = [];
     $scope.searched = false;
 
@@ -6,6 +6,23 @@ adresbestand.controller('mainController', ['$scope','$http','$location','$window
         firstName:'',
         lastName:''
     };
+
+    $scope.searchAll = function () {
+        console.log("arrived in searchAll");
+        $http({
+            method: "GET",
+            url: "findAll"
+        })
+            .success(function (response) {
+                $scope.persons = response;
+                $scope.searched= true;
+            })
+            .error(function (data,status,headers,config) {
+                $scope.searched= true;
+                console.log("could not retrieve persons: " + status);
+            });
+    };
+
     $scope.searchPersons = function (searchObject) {
         if(searchObject.firstName === '' && searchObject.lastName === ''){
             $scope.searchAddressForm.$invalid = true;
@@ -33,6 +50,7 @@ adresbestand.controller('mainController', ['$scope','$http','$location','$window
     };
 
     $scope.checkAll = function() {
+        console.log("arrived in checkAll");
         $scope.selected.persons = angular.copy($scope.persons);
     };
     $scope.print = function() {
@@ -55,3 +73,25 @@ adresbestand.controller('mainController', ['$scope','$http','$location','$window
     };
 
 }]);
+
+adresbestand.controller('paginationController', ['$scope','$http','$location','$window','_', function ($scope, $http, $location, $window, _) {
+
+
+    $scope.searchAll = function () {
+
+        $http({
+            method:"GET",
+            url : 'findAll'
+        })
+            .success(function (response) {
+                $scope.persons = response;
+                $scope.searched= true;
+            })
+            .error(function (data,status,headers,config) {
+                $scope.searched= true;
+                console.log("could not retrieve persons: " + status);
+            });
+    };
+
+}]);
+

@@ -8,7 +8,7 @@
             <a href="<@spring.url '/'/>"><@spring.message "search.link" /></a>
         </li>
         <li>
-            <a href="<@spring.url '/findAll/1'/>"><@spring.message "findAll.link" /></a>
+            <a href="<@spring.url '/getAllPersons'/>"><@spring.message "findAll.link" /></a>
         </li>
         <li>
             <a href="<@spring.url '/create'/>"><@spring.message "create.link" /></a>

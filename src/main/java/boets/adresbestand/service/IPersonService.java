@@ -16,6 +16,8 @@ public interface IPersonService {
 
     Page<Person> findAllPersons(Integer pageNumber);
 
+    List<Person> findAll();
+
     void savePerson(Person person);
 
     void updatePerson(Person person);

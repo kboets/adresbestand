@@ -22,9 +22,12 @@
 <!-- Angular -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+
 
 <script src="<@spring.url '/js/underscore.js'/>"></script>
 <script src="<@spring.url '/js/app.js'/>"></script>
+<script src="<@spring.url '/js/dirPagination.js'/>"></script>
 <script src="<@spring.url '/js/directive.js'/>"></script>
 <script src="<@spring.url '/js/controller.js'/>"></script>
 
