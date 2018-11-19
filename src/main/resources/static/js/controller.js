@@ -54,7 +54,8 @@ adresbestand.controller('searchController', ['$scope','$http','$location','$wind
         $scope.selected.persons = angular.copy($scope.persons);
     };
     $scope.print = function() {
-        var url = $location.absUrl() + "print";
+        var url = $location.url() + "print";
+        console.log("print url " + url);
         var config = {
             headers : {
                 'Content-Type': 'application/json'

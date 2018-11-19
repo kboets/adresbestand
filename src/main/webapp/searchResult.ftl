@@ -21,7 +21,8 @@
                     <div class="col-lg-12">
                         <h1><@spring.message "showAll.title" /></h1>
                         <p><@spring.message "showAll.subtitle" /></p>
-
+                        <form id="allAddressForm"   name="allAddressForm" class="form-horizontal" ng-submit="print()">
+                        <dir-pagination-controls></dir-pagination-controls>
 
                         <table class="table table-bordered">
                             <thead>
@@ -34,7 +35,7 @@
                                 <th class="col-md-2"><@spring.message "showAll.phone" /></th>
                             </tr>
                             </thead>
-                            <tr ng-repeat="person in persons">
+                            <tr dir-paginate="person in persons | itemsPerPage: 10">
                                 <td><input type="checkbox"  checklist-model="selected.persons"  checklist-value="person" /> </td>
                                 <td><a href="<@spring.url '/update/{{person.id}}'/>" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                                     &nbsp;
@@ -71,9 +72,10 @@
                         </table>
                     </div>
                     <div class="buttons">
-                        <button class="btn btn-info" id="btn_print" ng-click="print()"><@spring.message "button.print" /></button>
-                        <button class="btn btn-info" id="btn_alle" ng-click="checkAll()"><@spring.message "button.all" /></button>
+                        <button class="btn btn-info" id="btn_print" ><@spring.message "button.print" /></button>
+                        <#--<button class="btn btn-info" id="btn_alle" ng-click="checkAll()"><@spring.message "button.all" /></button>-->
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,3 +1,3 @@
 'use strict';
 
-var adresbestand = angular.module('adresbestand', ['underscore','ui.grid','ui.grid.pagination']);
+var adresbestand = angular.module('adresbestand', ['underscore','angularUtils.directives.dirPagination']);
