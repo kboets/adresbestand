@@ -19,7 +19,8 @@ freemarker <br/>
 <h2> front end <br/></h2>
 bootstrap <br/>
 jquery <br/>
+angularJS
 
 <h2> Database server <br/></h2>
-Oracle XE
+Maria DB
 
