@@ -46,7 +46,7 @@
                                 <td>{{person.firstName}}</td>
                                 <td>{{person.lastName}}</td>
                                 <td>{{person.mainAddress.street}} {{person.mainAddress.houseNumber}} {{person.mainAddress.box}} <br />{{person.mainAddress.municipality.zipCode}} {{person.mainAddress.municipality.city}}</td>
-                                <td>{{person.phone}} {{person.mobilePhone}}</td>
+                                <td>{{person.phone}} <br/>{{person.mobilePhone}}</td>
                             </tr>
                                 <!-- Modal -->
                                 <div class="modal fade bannerformmodal" id="personRemoveModal" tabindex="-1" role="dialog" aria-labelledby="bannerformmodal" aria-hidden="true">

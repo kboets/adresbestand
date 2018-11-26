@@ -19,5 +19,9 @@
     * adding printing functionality
 02/12/2017 version 1.4
     * changed db from oracle xe to mariaDb
-20/11/2011 version 1.5
-    * added angularJS for search + pagination
+20/11/2018 version 1.5
+    * added checkbox for selecting addresses for printing
+    * uses angularJS for search + pagination
+26/11/2018 version 1.5.1
+    * layout bugfix (separate mobile + telephone in searchResult)
+
