@@ -2,13 +2,8 @@ package boets.adresbestand.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

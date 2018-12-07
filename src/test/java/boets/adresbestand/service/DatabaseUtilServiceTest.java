@@ -33,12 +33,6 @@ public class DatabaseUtilServiceTest {
     @InjectMocks
     private DatabaseUtilService objectUnderTest;
 
-    @Ignore
-    @Test
-    public void createMunicipalityScript_returnsOK(){
-        assertThat(objectUnderTest.createMunicipalityScript(), is(equalTo("OK")));
-    }
-
     @Test
     public void test_migratePersons_shouldReturnAllPersonsWithCorrectAddresses() {
         //when

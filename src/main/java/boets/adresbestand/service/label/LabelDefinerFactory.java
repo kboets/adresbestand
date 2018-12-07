@@ -11,7 +11,7 @@ public class LabelDefinerFactory {
     public LabelDefiner retrieveLabelDefiner(int number) {
         switch (number) {
             case 21 :   return new LabelOf21Definer();
-            default:    return new LabelOf21Definer();
+            default:    throw new RuntimeException("Only 21 Label Format is supported");
         }
 
     }

@@ -4,8 +4,10 @@ import boets.adresbestand.domain.Municipality;
 import boets.adresbestand.service.IMunicipalityService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -35,9 +37,9 @@ public class MunicipalityController {
             cities = new ConcurrentHashMap<>();
             cities.putAll(municipalityService.getAllCitiesWithId());
         }
-        Map<Long, String> hashMap = new HashMap<Long, String>(cities);
-        return hashMap;
+        return new HashMap<Long, String>(cities);
     }
+
     @GetMapping(value="/getCitiesWithName",  produces = {"application/json"})
     public @ResponseBody  List<Municipality> getCity(@RequestParam("term") String cityName){
         if (municipalities == null) {

@@ -43,12 +43,9 @@ public class PrintController {
     private ResponseEntity<byte[]> createResponseEntity(byte[] data) {
         HttpHeaders headers = new HttpHeaders();
         String fileName = "adresbestand.pdf";
-        //headers.add("content-disposition", "inline;filename=" + fileName);
-        //headers.setContentType(MediaType.parseMediaType("application/pdf"));
         headers.setContentDispositionFormData(fileName,fileName);
-        ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(
-                data, headers, HttpStatus.OK);
-        return response;
+        return new ResponseEntity<byte[]>(data, headers, HttpStatus.OK);
+
     }
 
 }
