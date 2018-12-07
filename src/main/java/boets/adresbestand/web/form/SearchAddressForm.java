@@ -3,7 +3,6 @@ package boets.adresbestand.web.form;
 
 import boets.adresbestand.domain.Person;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class SearchAddressForm {

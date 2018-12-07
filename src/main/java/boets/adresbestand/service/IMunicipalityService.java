@@ -2,7 +2,6 @@ package boets.adresbestand.service;
 
 import boets.adresbestand.domain.Municipality;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

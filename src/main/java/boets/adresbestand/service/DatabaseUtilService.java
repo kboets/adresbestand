@@ -34,6 +34,11 @@ import java.util.Map;
 @Service
 public class DatabaseUtilService implements IDatabaseUtilService {
 
+    private static final String NULL_DB_VALUE = "[null]";
+    private static final String MOBILE_PHONE = "mobilePhone";
+    private static final String TELEPHONE = "telephone";
+    private static final String EMAIL = "email";
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MunicipalitySQLTransformator municipalitySQLTransformator;
@@ -51,10 +56,10 @@ public class DatabaseUtilService implements IDatabaseUtilService {
             file.createNewFile();
             FileUtils.writeLines(file, "UTF-8", sqlInserts);
         } catch (FileNotFoundException e) {
-            logger.error("Could not load csv file " + e);
+            logger.error("Could not load csv file [%s] ",e);
             return "NOT OK";
         } catch (IOException e) {
-            logger.error("Could not transform csv file " + e);
+            logger.error("Could not transform csv file [%s] ",e);
             return "NOT OK";
         }
         return "OK";
@@ -76,7 +81,7 @@ public class DatabaseUtilService implements IDatabaseUtilService {
                 persons = mapPersons(personDocument, addressMap);
             }
         } catch (FileNotFoundException e) {
-            logger.error("Could not load xml " + e);
+            logger.error("Could not load xml [%s]",e);
         }
         return persons;
     }
@@ -88,19 +93,19 @@ public class DatabaseUtilService implements IDatabaseUtilService {
             Node nNode = personNodeList.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                Long adres_id = Long.parseLong(eElement.getAttribute("adres_id"));
+                Long addressId = Long.parseLong(eElement.getAttribute("adres_id"));
                 Person person = new Person();
                 person.setFirstName(eElement.getAttribute("firstName"));
                 person.setLastName(eElement.getAttribute("name"));
-                person.setMainAddress(addressMap.get(adres_id));
-                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("mobilePhone")) && StringUtils.isNotEmpty(eElement.getAttribute("mobilePhone"))) {
-                    person.setMobilePhone(eElement.getAttribute("mobilePhone"));
+                person.setMainAddress(addressMap.get(addressId));
+                if(!NULL_DB_VALUE.equalsIgnoreCase(eElement.getAttribute(MOBILE_PHONE)) && StringUtils.isNotEmpty(eElement.getAttribute(MOBILE_PHONE))) {
+                    person.setMobilePhone(eElement.getAttribute(MOBILE_PHONE));
                 }
-                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("telephone")) && StringUtils.isNotEmpty(eElement.getAttribute("telephone"))) {
-                    person.setPhone(eElement.getAttribute("telephone"));
+                if(!NULL_DB_VALUE.equalsIgnoreCase(eElement.getAttribute(TELEPHONE)) && StringUtils.isNotEmpty(eElement.getAttribute(TELEPHONE))) {
+                    person.setPhone(eElement.getAttribute(TELEPHONE));
                 }
-                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("email")) && StringUtils.isNotEmpty(eElement.getAttribute("email"))) {
-                    person.addEmail(eElement.getAttribute("email"));
+                if(!NULL_DB_VALUE.equalsIgnoreCase(eElement.getAttribute(EMAIL)) && StringUtils.isNotEmpty(eElement.getAttribute(EMAIL))) {
+                    person.addEmail(eElement.getAttribute(EMAIL));
                 }
                 persons.add(person);
             }
@@ -120,7 +125,7 @@ public class DatabaseUtilService implements IDatabaseUtilService {
                 Address address = new Address();
                 address.setStreet(StringUtils.capitalize(eElement.getAttribute("street")));
                 address.setHouseNumber(StringUtils.capitalize(eElement.getAttribute("houseNumber")));
-                if(!"[null]".equalsIgnoreCase(eElement.getAttribute("box"))) {
+                if(!NULL_DB_VALUE.equalsIgnoreCase(eElement.getAttribute("box"))) {
                     address.setBox(StringUtils.capitalize(eElement.getAttribute("box")));
                 }
                 int zipCode =  Integer.parseInt(eElement.getAttribute("postalCode"));
