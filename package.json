@@ -1,0 +1,29 @@
+{
+  "name": "adresbestand",
+  "version": "1.0.0",
+  "description": "Adresbestand will create an address file to search for addresses.\r It is also will allow CRUD operations on addresses.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kboets/adresbestand.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kboets/adresbestand/issues"
+  },
+  "homepage": "https://github.com/kboets/adresbestand#readme",
+  "devDependencies": {
+    "jasmine": "^3.3.1",
+    "jasmine-core": "^3.3.0",
+    "karma": "^3.1.4",
+    "karma-cli": "^2.0.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.16"
+  }
+}
