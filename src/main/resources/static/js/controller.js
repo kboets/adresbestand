@@ -1,4 +1,4 @@
-adresbestand.controller('searchController', ['$scope','$http','$location','$window','_', function ($scope, $http, $location, $window, _) {
+adresbestand.controller('searchController', ['$scope','$http','$location','$window', function ($scope, $http, $location, $window) {
     $scope.persons = [];
     $scope.searched = false;
 
