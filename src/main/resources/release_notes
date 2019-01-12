@@ -14,7 +14,7 @@
 20/10/2017 version 1.2.0
     * added jndi lookup + application-prd properties
 23/10/2017 version 1.2.1
-    * bugfixed adding double persons
+    * bugfix adding double persons
 25/11/2017 version 1.3
     * adding printing functionality
 02/12/2017 version 1.4

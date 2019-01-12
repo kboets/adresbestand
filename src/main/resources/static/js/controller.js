@@ -15,12 +15,11 @@ adresbestand.controller('searchController', ['$scope','$http','$location','$wind
         })
             .success(function (response) {
                 $scope.persons = response;
-                $scope.searched= true;
             })
             .error(function (data,status,headers,config) {
-                $scope.searched= true;
                 console.log("could not retrieve persons: " + status);
             });
+        $scope.searched= true;
     };
 
     $scope.searchPersons = function (searchObject) {
