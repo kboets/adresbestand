@@ -3,8 +3,8 @@ package boets.adresbestand.service.E2E;
 import boets.adresbestand.domain.Person;
 import boets.adresbestand.mock.MockObject;
 import boets.adresbestand.repository.AddressRepository;
-import boets.adresbestand.service.MunicipalityMockCreator;
 import boets.adresbestand.service.PersonService;
+import boets.adresbestand.web.form.SearchObject;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
@@ -17,6 +17,8 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -89,7 +91,18 @@ public class PersonServiceIntegrationTest {
 
     }
 
-
+    @DatabaseSetup(value = "/boets/adresbestand/repository/PersonRepositoryTest5.xml")
+    @Test
+    public void givenPersonPhoneNumberNonNumeric_whenSearchPerson_shouldRemoveAllNonNumericValues() {
+        SearchObject searchObject = new SearchObject();
+        searchObject.setFirstName("phillip");
+        searchObject.setLastName("webb");
+        List<Person> persons = objectUnderTest.searchPersons(searchObject);
+        assertThat(persons.size(), is(equalTo(1)));
+        Person person = persons.get(0);
+        assertThat(person.getPhone(), is(equalTo("02545788888")));
+        assertThat(person.getMobilePhone(), is(equalTo("0497935555")));
+    }
 
 
 }

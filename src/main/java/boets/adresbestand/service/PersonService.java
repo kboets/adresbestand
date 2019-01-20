@@ -34,24 +34,13 @@ public class PersonService implements IPersonService {
     private AddressRepository addressRepository;
 
     @Override
-    @Deprecated
-    public List<Person> searchPersons(SearchAddressForm searchAddressForm) {
-        if (StringUtils.isNotBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())) {
-            return personRepository.searchPerson(StringUtils.capitalize(searchAddressForm.getLastName()), StringUtils.capitalize(StringUtils.capitalize(searchAddressForm.getFirstName())));
-        } else if (StringUtils.isBlank(searchAddressForm.getFirstName()) && StringUtils.isNotBlank(searchAddressForm.getLastName())) {
-            return personRepository.findByLastNameContaining(StringUtils.capitalize(searchAddressForm.getLastName()));
-        }
-        return personRepository.findByFirstNameContaining(StringUtils.capitalize(searchAddressForm.getFirstName()));
-    }
-
-    @Override
     public List<Person> searchPersons(SearchObject search) {
         if (StringUtils.isNotBlank(search.getFirstName()) && StringUtils.isNotBlank(search.getLastName())) {
-            return personRepository.searchPerson(StringUtils.capitalize(search.getLastName()), StringUtils.capitalize(StringUtils.capitalize(search.getFirstName())));
+            return phoneNumberOnlyToHaveNumericValues(personRepository.searchPerson(StringUtils.capitalize(search.getLastName()), StringUtils.capitalize(search.getFirstName())));
         } else if (StringUtils.isBlank(search.getFirstName()) && StringUtils.isNotBlank(search.getLastName())) {
-            return personRepository.findByLastNameContaining(StringUtils.capitalize(search.getLastName()));
+            return phoneNumberOnlyToHaveNumericValues(personRepository.findByLastNameContaining(StringUtils.capitalize(search.getLastName())));
         }
-        return personRepository.findByFirstNameContaining(StringUtils.capitalize(search.getFirstName()));
+        return phoneNumberOnlyToHaveNumericValues(personRepository.findByFirstNameContaining(StringUtils.capitalize(search.getFirstName())));
     }
 
     @Override
@@ -62,7 +51,7 @@ public class PersonService implements IPersonService {
 
     @Override
     public List<Person> findAll() {
-        return personRepository.findAll();
+        return phoneNumberOnlyToHaveNumericValues(personRepository.findAll());
     }
 
     @Override
@@ -139,4 +128,19 @@ public class PersonService implements IPersonService {
         return personRepository.findOne(id);
     }
 
+    private List<Person> phoneNumberOnlyToHaveNumericValues(List<Person> personList) {
+        for(Person person:personList) {
+            if(person.getPhone() != null && !StringUtils.isNumeric(person.getPhone())) {
+                person.setPhone(removeAllNonNumeric(person.getPhone()));
+            }
+            if(person.getMobilePhone()!= null && !StringUtils.isNumeric(person.getMobilePhone())) {
+                person.setMobilePhone(removeAllNonNumeric(person.getMobilePhone()));
+            }
+        }
+        return personList;
+    }
+
+    private String removeAllNonNumeric(String value) {
+        return StringUtils.deleteWhitespace(StringUtils.remove(value,"/"));
+    }
 }
