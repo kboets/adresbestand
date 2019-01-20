@@ -5,6 +5,6 @@
 
     <ADDRESS id="1" STREET="Westelsebaan" HOUSENUMBER="5"  MUNICIPALITY_ID="1" />
 
-	<PERSON id="0" FIRST_NAME="Phillip" LAST_NAME="Webb" ADDRESS_ID="1" />
+	<PERSON id="0" FIRST_NAME="Phillip" LAST_NAME="Webb" ADDRESS_ID="1" PHONE="02/545 788 888" MOBILE_PHONE="0497 93 55 55"/>
 
 </dataset>

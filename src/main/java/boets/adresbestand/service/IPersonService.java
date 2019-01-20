@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface IPersonService {
 
-    List<Person> searchPersons(SearchAddressForm searchAddressForm);
-
     List<Person> searchPersons(SearchObject search);
 
     Page<Person> findAllPersons(Integer pageNumber);
