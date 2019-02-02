@@ -74,24 +74,16 @@ adresbestand.controller('searchController', ['$scope','$http','$location','$wind
 
 }]);
 
-adresbestand.controller('paginationController', ['$scope','$http','$location','$window','_', function ($scope, $http, $location, $window, _) {
+adresbestand.controller('personController', ['$scope','$http','$location','$window',function ($scope, $http, $location, $window) {
+    $scope.person = {};
 
+    $scope.isPersonEmpty = function () {
+        return isEmptyObject($scope.person);
+    }
 
-    $scope.searchAll = function () {
-
-        $http({
-            method:"GET",
-            url : 'findAll'
-        })
-            .success(function (response) {
-                $scope.persons = response;
-                $scope.searched= true;
-            })
-            .error(function (data,status,headers,config) {
-                $scope.searched= true;
-                console.log("could not retrieve persons: " + status);
-            });
-    };
+    function isEmptyObject(obj){
+        return (Object.getOwnPropertyNames(obj).length === 0);
+    }
 
 }]);
 
