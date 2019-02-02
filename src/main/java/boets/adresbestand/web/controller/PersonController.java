@@ -23,7 +23,7 @@ public class PersonController {
 
     @GetMapping("/create")
     public String getCreatePersonPage(Model model) {
-        model.addAttribute("person", new Person());
+        //model.addAttribute("person", new Person());
         return CREATE_UPDATE_PAGE;
     }
 

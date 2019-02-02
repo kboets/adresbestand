@@ -2,15 +2,12 @@
 <#import "macro/sidebar.ftl" as sidebar>
 <#import "macro/head.ftl" as header>
 <html>
-<head lang="en">
+<head lang="en" ng-app="adresbestand" ng-controller="personController">
     <@header.headmeta/>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
         <script src="<@spring.url '/js/adresbestand_cu.js'/>"></script>
-    <#if person.lastName??>
-        <title><@spring.message "createAddress.title" /></title>
-    <#else>
-        <title><@spring.message "updateAddress.title" /></title>
-    </#if>
+    <div ng-if="isPersonEmpty()"><title><@spring.message "createAddress.title" /></title></div>
+    <div ng-if="!isPersonEmpty()"><title><@spring.message "updateAddress.title" /></title></div>
 </head>
 <body>
 

@@ -75,6 +75,31 @@ describe('Container file for all controller tests of adresbestand application', 
         });
     });
 
+    describe('PersonController', function () {
+        var ctrl, scope, q, httpBackend;
+
+        beforeEach(function () {
+            module("adresbestand");
+
+            inject(function ($controller, $rootScope, $injector, $httpBackend) {
+                scope = $rootScope.$new();
+                q = $injector.get('$q');
+                httpBackend = $httpBackend;
+                ctrl = mockito4js.spy($controller('personController', {
+                    $scope: scope
+                }));
+            });
+        });
+
+        it('Should return true calling isPersonEmpty', function() {
+            scope.person = {};
+
+            expect(scope.isPersonEmpty()).toBe(true);
+
+        });
+
+    });
+
 
 });
 
