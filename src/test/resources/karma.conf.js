@@ -22,6 +22,7 @@ module.exports = function(config) {
         '../../main/resources/static/js/dirPagination.js',
         '../../main/resources/static/js/underscore.js',
         '../../main/resources/static/js/controller.js',
+        '../../main/resources/static/js/phoneNumberFilter.js',
         '../angular/*.js'
     ],
 
@@ -57,7 +58,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers

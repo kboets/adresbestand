@@ -75,7 +75,7 @@
                                     <td>{{person.lastName}}</td>
                                     <td>{{person.mainAddress.street}} {{person.mainAddress.houseNumber}} {{person.mainAddress.box}}
                                         <br/>{{person.mainAddress.municipality.zipCode}} {{person.mainAddress.municipality.city}}
-                                        <br/>{{person.phone}} <br/> {{person.mobilePhone}}</td>
+                                        <br/>{{person.phone | phoneNumber}} <br/> {{person.mobilePhone}}</td>
                                 </tr>
 
                                 <!-- Modal -->
