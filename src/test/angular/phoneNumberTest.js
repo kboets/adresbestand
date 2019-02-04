@@ -1,6 +1,4 @@
-describe('Container file for all filter tests of adresbestand application', function () {
-
-    describe('PhoneNumberFilter', function () {
+    describe('phoneNumberFilter', function () {
 
         var filter;
         beforeEach(function () {
@@ -26,7 +24,6 @@ describe('Container file for all filter tests of adresbestand application', func
         });
 
 
-
     });
 
-});
+

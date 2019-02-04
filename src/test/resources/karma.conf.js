@@ -23,6 +23,7 @@ module.exports = function(config) {
         '../../main/resources/static/js/underscore.js',
         '../../main/resources/static/js/controller.js',
         '../../main/resources/static/js/phoneNumberFilter.js',
+        '../../main/resources/static/js/mobilePhoneNumberFilter.js',
         '../angular/*.js'
     ],
 
