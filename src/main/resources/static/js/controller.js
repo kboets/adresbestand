@@ -8,7 +8,6 @@ adresbestand.controller('searchController', ['$scope','$http','$location','$wind
     };
 
     $scope.searchAll = function () {
-        console.log("arrived in searchAll");
         $http({
             method: "GET",
             url: "findAll"
@@ -54,7 +53,6 @@ adresbestand.controller('searchController', ['$scope','$http','$location','$wind
     };
     $scope.print = function() {
         var url = $location.url() + "print";
-        console.log("print url " + url);
         var config = {
             headers : {
                 'Content-Type': 'application/json'
@@ -74,15 +72,65 @@ adresbestand.controller('searchController', ['$scope','$http','$location','$wind
 
 }]);
 
-adresbestand.controller('personController', ['$scope','$http','$location','$window',function ($scope, $http, $location, $window) {
+adresbestand.controller('personController', ['$scope','$http','$location','$window', function ($scope, $http, $location, $window) {
     $scope.person = {};
+    $scope.created = false;
+    $scope.municipalities = [];
+
+    var foundPerson = {};
 
     $scope.isPersonEmpty = function () {
-        return isEmptyObject($scope.person);
+        return isEmpty(foundPerson);
     }
 
-    function isEmptyObject(obj){
-        return (Object.getOwnPropertyNames(obj).length === 0);
+    function isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
+    $scope.isReadOnly = function() {
+        return false;
+    }
+
+    $scope.isEdit = function() {
+        return !this.isPersonEmpty() && !this.isReadOnly();
+    }
+
+    //populate municpalities from db
+    $scope.getAllMunicipalities = function() {
+        $http({
+            method: "GET",
+            url: "getAllCities"
+        })
+            .success(function (response) {
+                $scope.municipalities = response;
+            })
+            .error(function (data,status,headers,config) {
+                console.log("could not retrieve cities: " + status);
+            });
+    };
+
+    // https://www.youtube.com/watch?v=UWwFMpgLP4k
+
+
+    $scope.createUpdate = function() {
+        console.log("arrived in createUpdate");
+        $http({
+            method:"POST",
+            url : 'createUpdate',
+            data: $scope.person
+        })
+            .success(function (response) {
+                console.log("Arrived in succes of createUpdate");
+                $scope.created= response;
+            })
+            .error(function (data, status, headers, config) {
+                console.log("could not save or update persons: " + status);
+                $scope.created= false;
+            });
     }
 
 }]);

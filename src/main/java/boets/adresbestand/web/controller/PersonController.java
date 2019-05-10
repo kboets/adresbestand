@@ -5,10 +5,7 @@ import boets.adresbestand.service.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -58,13 +55,11 @@ public class PersonController {
         return CREATE_UPDATE_PAGE;
     }
 
-    @PostMapping("createUpdate")
-    public String create(Model model, @ModelAttribute("person") Person person) {
+    @PostMapping(value = "createUpdate", produces = "application/json")
+    public boolean create(@RequestBody Person person) {
         personService.savePerson(person);
-        model.addAttribute("person", new Person());
-        model.addAttribute("success", "success_create");
+        return true;
 
-        return CREATE_UPDATE_PAGE;
     }
 
 }

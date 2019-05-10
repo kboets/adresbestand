@@ -92,9 +92,51 @@ describe('Container file for all controller tests of adresbestand application', 
         });
 
         it('Should return true calling isPersonEmpty', function() {
-            scope.person = {};
-
+            scope.person = { };
             expect(scope.isPersonEmpty()).toBe(true);
+        });
+
+        it('Should return all municipalities when selecting getAllMunicipalities', function () {
+            httpBackend.expectGET("/getAllCities").respond({
+                municipalities : [{
+                    "city": "Neerpelt",
+                    "zipCode": "3910",
+                    "id":"13"
+                },{
+                    "city": "Averbode",
+                    "zipCode": "3271",
+                    "id":"44"
+                }]
+            });
+
+            expect(scope.municipalities).toEqual[0];
+            scope.getAllMunicipalities();
+            expect(scope.municipalities).toEqual[2];
+        });
+
+
+
+        it('Should save the person', function () {
+            scope.person = {
+                firstName:'Kurt',
+                lastName:'Boets',
+                emails: ['k.boets@gmail.com'],
+                mainAddress : {
+                    street:'Westelsebaan',
+                    houseNumber: '5',
+                    municipality : {
+                        zipCode:'3271',
+                        city:'Averbode'
+                    }
+                }
+                };
+
+            httpBackend.expectPOST("/createUpdate").respond({
+                created : true
+            });
+
+            scope.createUpdate(scope.person);
+            expect(scope.created).toBe(true);
 
         });
 
