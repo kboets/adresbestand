@@ -65,8 +65,9 @@
                         <div class="form-group ">
                             <label for="city" class="col-sm-1"><@spring.message "city" /> *</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control autocomplete-suggestions" id="municipalityId" name="municipalityId" ng-model="person.mainAddress.municipality.id" />
+                                <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="municipalityId" ng-model="person.mainAddress.municipality.id" />
                                 <input type="text" class="form-control autocomplete-suggestions" id="city" name="city"  ng-readonly="isReadOnly()" ng-required="true" ng-model="person.mainAddress.municipality.city" />
+
                                 <div ng-show="createUpdateForm.city.$touched && createUpdateForm.city.$invalid"><small class="error"><@spring.message "error.city.mandatory" /></small></div>
                             </div>
                             <label for="zipcode" class="col-sm-1"><@spring.message "zipcode" /> *</label>

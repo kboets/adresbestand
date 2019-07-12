@@ -113,8 +113,9 @@ adresbestand.controller('personController', ['$scope','$http','$location','$wind
             });
     };
 
-    // https://www.youtube.com/watch?v=UWwFMpgLP4k
+    // https://www.youtube.com/watch?v=3p0v2_IiePk
 
+    //$scope.
 
     $scope.createUpdate = function() {
         console.log("arrived in createUpdate");
