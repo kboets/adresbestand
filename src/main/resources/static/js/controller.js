@@ -107,7 +107,6 @@ adresbestand.controller('personController', ['$scope','$http','$location','$wind
             url: "getAllCities"
         })
             .success(function (response) {
-                console.log("Retrieved all the cities: " + status);
                 $scope.municipalities = response;
             })
             .error(function (data,status,headers,config) {
@@ -117,6 +116,18 @@ adresbestand.controller('personController', ['$scope','$http','$location','$wind
 
     $scope.selectedMunicipality = function (value) {
         console.log("Selected Municipality :  "+value);
+        $http({
+            method: "GET",
+            url: "getCityByName/"+value
+
+        })
+            .success(function (response) {
+                console.log("Retrieved requested Municipality"+response);
+                $scope.person.mainAddress.municipality = response;
+            })
+            .error(function (data,status,headers,config) {
+                console.log("could not retrieve requested municipality: " + status);
+            });
     }
 
 

@@ -65,8 +65,8 @@
                         <div class="form-group ">
                             <label for="city" class="col-sm-1"><@spring.message "city" /> *</label>
                             <div class="col-sm-3">
-                                <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="municipalityId" ng-model="person.mainAddress.municipality.id" />
-                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="city"  ng-readonly="isReadOnly()" ng-required="true" list="_municipalities" ng-model='person.mainAddress.municipality.city' ng-blur="selectedMunicipality(person.mainAddress.municipality.city)"/>
+                                <input type="hidden" class="form-control" id="municipalityId" name="municipalityId" ng-model="person.mainAddress.municipality.id" />
+                                <input type="text" class="form-control" id="city" name="city"  ng-readonly="isReadOnly()" ng-required="true" list="_municipalities" ng-model='person.mainAddress.municipality.city' ng-blur="selectedMunicipality(person.mainAddress.municipality.city)"/>
                                 <datalist id="_municipalities">
                                     <option ng-repeat="v in municipalities"  value="{{v}}">{{v}}</option>
                                 </datalist>
