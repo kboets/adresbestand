@@ -1,7 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#import "macro/sidebar.ftl" as sidebar>
 <#import "macro/head.ftl" as header>
-<html ng-app="adresbestand" ng-controller="personController">
+<html ng-app="adresbestand" ng-controller="personController" ng-init="getAllMunicipalities()">
 <head lang="en"
     <@header.headmeta/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
@@ -66,8 +66,10 @@
                             <label for="city" class="col-sm-1"><@spring.message "city" /> *</label>
                             <div class="col-sm-3">
                                 <input type="hidden" class="form-control autocomplete-suggestions" id="municipalityId" name="municipalityId" ng-model="person.mainAddress.municipality.id" />
-                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="city"  ng-readonly="isReadOnly()" ng-required="true" ng-model="person.mainAddress.municipality.city" />
-
+                                <input type="text" class="form-control autocomplete-suggestions" id="city" name="city"  ng-readonly="isReadOnly()" ng-required="true" list="_municipalities" ng-model='person.mainAddress.municipality.city' ng-blur="selectedMunicipality(person.mainAddress.municipality.city)"/>
+                                <datalist id="_municipalities">
+                                    <option ng-repeat="v in municipalities"  value="{{v}}">{{v}}</option>
+                                </datalist>
                                 <div ng-show="createUpdateForm.city.$touched && createUpdateForm.city.$invalid"><small class="error"><@spring.message "error.city.mandatory" /></small></div>
                             </div>
                             <label for="zipcode" class="col-sm-1"><@spring.message "zipcode" /> *</label>

@@ -91,6 +91,7 @@ adresbestand.controller('personController', ['$scope','$http','$location','$wind
         return true;
     }
 
+
     $scope.isReadOnly = function() {
         return false;
     }
@@ -106,6 +107,7 @@ adresbestand.controller('personController', ['$scope','$http','$location','$wind
             url: "getAllCities"
         })
             .success(function (response) {
+                console.log("Retrieved all the cities: " + status);
                 $scope.municipalities = response;
             })
             .error(function (data,status,headers,config) {
@@ -113,9 +115,11 @@ adresbestand.controller('personController', ['$scope','$http','$location','$wind
             });
     };
 
-    // https://www.youtube.com/watch?v=3p0v2_IiePk
+    $scope.selectedMunicipality = function (value) {
+        console.log("Selected Municipality :  "+value);
+    }
 
-    //$scope.
+
 
     $scope.createUpdate = function() {
         console.log("arrived in createUpdate");
