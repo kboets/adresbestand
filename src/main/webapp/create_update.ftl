@@ -54,7 +54,7 @@
                             </div>
                             <label for="houseNumber" class="col-sm-1"><@spring.message "housenumber" /> *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="houseNumber" name="houseNumber"  ng-model="person.mainAddress.houseNumber" ng-readonly="isReadOnly()" ng-required="true" />
+                                <input type="text" class="form-control" id="houseNumber" name="houseNumber" numbers-only  ng-model="person.mainAddress.houseNumber" ng-readonly="isReadOnly()" ng-required="true" />
                                 <div ng-show="createUpdateForm.houseNumber.$touched && createUpdateForm.houseNumber.$invalid"><small class="error"><@spring.message "error.housenumber.mandatory" /></small></div>
                             </div>
                             <label for="box" class="col-sm-1"><@spring.message "box" /></label>
@@ -74,18 +74,18 @@
                             </div>
                             <label for="zipcode" class="col-sm-1"><@spring.message "zipcode" /> *</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" id="zipCode" name="zipCode"  ng-readonly="isReadOnly()" ng-model="person.mainAddress.municipality.zipCode"  />
+                                <input type="text" class="form-control" id="zipCode" name="zipCode"  ng-readonly="isReadOnly()" maxlength="4" numbers-only ng-maxlength="4" ng-model="person.mainAddress.municipality.zipCode"  />
                                 <div ng-show="createUpdateForm.zipCode.$dirty && createUpdateForm.zipCode.$invalid"><small class="error"><@spring.message "error.zipcode.mandatory" /></small></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mobilePhone" class="col-sm-1"><@spring.message "mobilePhone" /></label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="mobilePhone" name="mobilePhone"  ng-readonly="isReadOnly()" ng-model="person.mobilePhone" />
+                                <input type="text" class="form-control" id="mobilePhone" numbers-only name="mobilePhone"  ng-readonly="isReadOnly()" ng-model="person.mobilePhone"  ng-pattern="/^(\d)+$/" />
                             </div>
                             <label for="phone" class="col-sm-1"><@spring.message "phone" /></label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" id="phone" name="phone"  ng-readonly="isReadOnly()" ng-model="person.phone" />
+                                <input type="text" class="form-control" id="phone" name="phone" numbers-only ng-readonly="isReadOnly()" ng-model="person.phone" ng-pattern="/^(\d)+$/" />
                             </div>
                         </div>
                         <div class="form-group">

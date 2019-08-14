@@ -29,6 +29,7 @@
 <script src="<@spring.url '/js/app.js'/>"></script>
 <script src="<@spring.url '/js/dirPagination.js'/>"></script>
 <script src="<@spring.url '/js/directive.js'/>"></script>
+<script src="<@spring.url '/js/numbersOnly.js'/>"></script>
 <script src="<@spring.url '/js/phoneNumberFilter.js'/>"></script>
 <script src="<@spring.url '/js/mobilePhoneNumberFilter.js'/>"></script>
 <script src="<@spring.url '/js/controller.js'/>"></script>
